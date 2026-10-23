@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Monolithe — Atelier d'architecture, Lyon (concept)</title>
+<meta name="description" content="Monolithe : concept de site pour un atelier d'architecture fictif. Projet personnel d'Ouweis Mansouri.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#ebe9e3;
+  --bg-2:#e2dfd7;
+  --ink:#141413;
+  --dim:rgba(20,20,19,.55);
+  --line:rgba(20,20,19,.16);
+  --red:#e2401c;
+  --sans:'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --mono:'IBM Plex Mono', monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --g:clamp(16px,2.6vw,40px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+ul,ol{list-style:none}
+svg{display:block}
+.mono{font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;text-transform:uppercase}
+.concept-flag{position:fixed;left:12px;bottom:12px;z-index:99;font:11px/1 var(--mono);text-transform:uppercase;background:var(--ink);color:var(--bg);padding:8px 12px}
+.concept-flag a{text-decoration:underline}
+
+/* Grid overlay */
+.cols{position:fixed;inset:0 var(--g);display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g);pointer-events:none;z-index:0}
+.cols i{border-left:1px solid rgba(20,20,19,.05)}
+.cols i:last-child{border-right:1px solid rgba(20,20,19,.05)}
+@media (max-width:800px){.cols{grid-template-columns:repeat(4,1fr)}.cols i:nth-child(n+5){display:none}}
+
+.wrap{position:relative;z-index:1;padding-inline:var(--g)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g)}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:20;background:rgba(235,233,227,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .grid{align-items:center;height:64px}
+.nav__logo{grid-column:span 3;font-weight:700;font-stretch:115%;letter-spacing:.08em;font-size:15px}
+.nav__links{grid-column:5/span 5;display:flex;gap:28px}
+.nav__links a:hover{color:var(--red)}
+.nav__coord{grid-column:10/-1;text-align:right}
+@media (max-width:800px){.nav__links{display:none}.nav__logo{grid-column:span 6}.nav__coord{grid-column:7/-1}}
+
+/* Hero */
+.hero{padding-top:clamp(40px,7vw,100px);padding-bottom:clamp(40px,6vw,80px)}
+.hero__meta{grid-column:1/-1;display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:clamp(24px,4vw,56px)}
+.hero h1{grid-column:1/8;font-weight:500;font-stretch:72%;font-size:clamp(4rem,12vw,13.5rem);line-height:.84;letter-spacing:-.035em;text-transform:uppercase}
+.hero h1 span{display:block}
+.hero h1 .r{color:var(--red)}
+.hero__side{grid-column:9/-1;align-self:end;display:flex;flex-direction:column;gap:22px}
+.hero__side p{font-size:17px;line-height:1.45;max-width:34ch}
+.hero__scene{grid-column:1/-1;margin-top:clamp(30px,5vw,70px);position:relative;border:1px solid var(--line);background:var(--bg-2)}
+.hero__scene svg{width:100%;height:auto}
+.hero__cap{position:absolute;left:14px;bottom:12px;right:14px;display:flex;justify-content:space-between}
+.link{display:inline-flex;gap:10px;align-items:center;border-bottom:1px solid var(--ink);padding-bottom:4px;width:max-content}
+.link:hover{color:var(--red);border-color:var(--red)}
+@media (max-width:800px){.hero__meta span:nth-child(2){display:none}.hero h1{grid-column:1/-1}.hero__side{grid-column:1/-1;margin-top:20px}}
+
+/* Section heads */
+.sec{padding-block:clamp(70px,10vw,150px)}
+.sec__head{grid-column:1/-1;display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g);border-top:1px solid var(--ink);padding-top:14px;margin-bottom:clamp(30px,5vw,70px)}
+.sec__head .mono:first-child{grid-column:1/4}
+.sec__head h2{grid-column:4/-1;font-weight:500;font-stretch:72%;font-size:clamp(2.6rem,6vw,6rem);line-height:.9;letter-spacing:-.03em;text-transform:uppercase}
+@media (max-width:800px){.sec__head .mono:first-child,.sec__head h2{grid-column:1/-1}}
+
+/* Index */
+.index{grid-column:1/-1}
+.row{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g);padding:18px 0;border-bottom:1px solid var(--line);align-items:baseline;transition:padding .5s var(--ease),color .3s}
+.row:hover{padding-left:14px;color:var(--red)}
+.row__n{grid-column:1/2}
+.row__name{grid-column:2/7;font-size:clamp(1.4rem,2.6vw,2.4rem);font-weight:500;font-stretch:85%;letter-spacing:-.02em;line-height:1.05}
+.row__place{grid-column:7/9}
+.row__type{grid-column:9/11}
+.row__year{grid-column:11/-1;text-align:right}
+.row--head{color:var(--dim);border-bottom-color:var(--ink)}
+.row--head:hover{padding-left:0;color:var(--dim)}
+.row--head .row__name{font-size:11.5px;font-stretch:100%;letter-spacing:.02em}
+@media (max-width:800px){.row{grid-template-columns:2rem 1fr auto}.row__n{grid-column:1}.row__name{grid-column:2}.row__year{grid-column:3}.row__place,.row__type{display:none}}
+.peek{position:fixed;top:0;left:0;width:340px;pointer-events:none;z-index:30;opacity:0;transform:scale(.92);transition:opacity .3s,transform .5s var(--ease);border:1px solid var(--ink);background:var(--bg-2)}
+.peek.on{opacity:1;transform:none}
+.peek svg{width:100%;height:auto}
+@media (hover:none){.peek{display:none}}
+
+/* Cards */
+.cards{grid-column:1/-1;display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g);margin-top:clamp(40px,6vw,90px)}
+.card{grid-column:span 6}
+.card:nth-child(3n+1){grid-column:1/8}
+.card:nth-child(3n+2){grid-column:8/-1;margin-top:clamp(60px,10vw,160px)}
+.card:nth-child(3n){grid-column:3/11}
+.card__img{border:1px solid var(--line);background:var(--bg-2);overflow:hidden}
+.card__img svg{width:100%;height:auto;transition:transform 1.2s var(--ease)}
+.card:hover .card__img svg{transform:scale(1.04)}
+.card__meta{display:flex;justify-content:space-between;padding-top:12px;gap:12px}
+.card__meta b{font-weight:500;font-size:20px;font-stretch:85%}
+@media (max-width:800px){.card,.card:nth-child(n){grid-column:1/-1;margin-top:0}}
+
+/* Principles */
+.princ{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--g)}
+.princ li{border-top:1px solid var(--line);padding-top:16px}
+.princ .big{font-weight:300;font-stretch:62%;font-size:clamp(6rem,14vw,13rem);line-height:.8;letter-spacing:-.04em;display:block;margin:20px 0 30px}
+.princ h3{font-weight:500;font-size:22px;text-transform:uppercase;font-stretch:85%;margin-bottom:8px}
+.princ p{color:var(--dim);max-width:34ch}
+@media (max-width:800px){.princ{grid-template-columns:1fr}}
+
+/* Sun study */
+.sun{background:var(--ink);color:var(--bg)}
+.sun .sec__head{border-color:var(--bg)}
+.sun__plan{grid-column:1/8;border:1px solid rgba(235,233,227,.2);aspect-ratio:1.25}
+.sun__plan svg{width:100%;height:100%}
+.sun__ctl{grid-column:9/-1;display:flex;flex-direction:column;gap:26px;align-self:center}
+.sun__time{font-weight:300;font-stretch:62%;font-size:clamp(5rem,10vw,9rem);line-height:.8;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.sun__ctl p{color:rgba(235,233,227,.6);max-width:36ch}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;background:transparent;height:30px}
+input[type=range]::-webkit-slider-runnable-track{height:1px;background:rgba(235,233,227,.4)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--red);margin-top:-9px;border:0}
+input[type=range]::-moz-range-track{height:1px;background:rgba(235,233,227,.4)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--red);border:0}
+.sun__data{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(235,233,227,.2)}
+.sun__data div{padding:12px 0;border-bottom:1px solid rgba(235,233,227,.2)}
+.sun__data b{display:block;font-weight:500;font-size:22px;font-stretch:85%}
+@media (max-width:800px){.sun__plan,.sun__ctl{grid-column:1/-1}}
+
+/* Contact */
+.contact h2{grid-column:1/-1;font-weight:500;font-stretch:72%;font-size:clamp(3rem,11vw,12rem);line-height:.85;letter-spacing:-.035em;text-transform:uppercase}
+.contact h2 a:hover{color:var(--red)}
+.contact__info{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:var(--g);margin-top:clamp(30px,5vw,70px);border-top:1px solid var(--line);padding-top:14px}
+.contact__info p:not(.mono){font-size:15px;margin-top:6px}
+@media (max-width:800px){.contact__info{grid-template-columns:1fr 1fr}}
+.foot{border-top:1px solid var(--line);padding-block:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+.rv{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="cols" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+<header class="nav"><div class="wrap grid">
+  <a href="#" class="nav__logo">MONOLITHE</a>
+  <nav class="nav__links mono" aria-label="Principal"><a href="#projets">(01) Projets</a><a href="#atelier">(02) Atelier</a><a href="#lumiere">(03) Lumière</a><a href="#contact">(04) Contact</a></nav>
+  <span class="nav__coord mono">Lyon — 45.76° N 4.83° E</span>
+</div></header>
+
+<main>
+<section class="wrap grid hero">
+  <div class="hero__meta mono"><span>Atelier d'architecture</span><span>Logements · Équipements · Paysage</span><span>Depuis 2014</span></div>
+  <h1><span>Construire</span><span>le <span class="r" style="display:inline">silence.</span></span></h1>
+  <div class="hero__side">
+    <p>Nous dessinons des bâtiments sobres et durables, où la matière, la lumière et l'usage décident de la forme — jamais l'inverse.</p>
+    <a href="#projets" class="link mono">Voir les projets <span aria-hidden="true">↘</span></a>
+  </div>
+  <div class="hero__scene rv" data-scene="arches" data-big></div>
+</section>
+
+<section class="wrap grid sec" id="projets">
+  <div class="sec__head"><span class="mono">(01) Projets</span><h2>Index</h2></div>
+  <div class="index">
+    <div class="row row--head mono"><span class="row__n">N°</span><span class="row__name mono">Projet</span><span class="row__place">Lieu</span><span class="row__type">Programme</span><span class="row__year">Année</span></div>
+    <a href="#" class="row" data-peek="arches"><span class="row__n mono">01</span><span class="row__name">Pavillon des Arches</span><span class="row__place mono">Villeurbanne</span><span class="row__type mono">Équipement culturel</span><span class="row__year mono">2025</span></a>
+    <a href="#" class="row" data-peek="tour"><span class="row__n mono">02</span><span class="row__name">Tour Calcaire</span><span class="row__place mono">Lyon 7e</span><span class="row__type mono">Logements</span><span class="row__year mono">2024</span></a>
+    <a href="#" class="row" data-peek="porte"><span class="row__n mono">03</span><span class="row__name">Maison Rhône</span><span class="row__place mono">Givors</span><span class="row__type mono">Maison individuelle</span><span class="row__year mono">2023</span></a>
+    <a href="#" class="row" data-peek="cour"><span class="row__n mono">04</span><span class="row__name">Cour des Tilleuls</span><span class="row__place mono">Annecy</span><span class="row__type mono">Réhabilitation</span><span class="row__year mono">2022</span></a>
+  </div>
+  <div class="cards">
+    <article class="card rv"><div class="card__img" data-scene="tour"></div><div class="card__meta"><b>Tour Calcaire</b><span class="mono">Logements — 2024</span></div></article>
+    <article class="card rv"><div class="card__img" data-scene="porte"></div><div class="card__meta"><b>Maison Rhône</b><span class="mono">Maison — 2023</span></div></article>
+    <article class="card rv"><div class="card__img" data-scene="cour"></div><div class="card__meta"><b>Cour des Tilleuls</b><span class="mono">Réhabilitation — 2022</span></div></article>
+  </div>
+</section>
+
+<section class="wrap grid sec" id="atelier" style="padding-top:0">
+  <div class="sec__head"><span class="mono">(02) Atelier</span><h2>Trois principes</h2></div>
+  <ol class="princ">
+    <li class="rv"><span class="mono">Principe</span><span class="big">01</span><h3>Matière</h3><p>Pierre, terre crue, bois local. Des matériaux qui vieillissent bien et racontent leur origine.</p></li>
+    <li class="rv"><span class="mono">Principe</span><span class="big">02</span><h3>Lumière</h3><p>Chaque projet commence par une étude d'ensoleillement. L'ombre est un matériau comme un autre.</p></li>
+    <li class="rv"><span class="mono">Principe</span><span class="big">03</span><h3>Usage</h3><p>On dessine pour celles et ceux qui habiteront les lieux, pas pour les photos.</p></li>
+  </ol>
+</section>
+
+<section class="sun sec" id="lumiere"><div class="wrap grid">
+  <div class="sec__head"><span class="mono">(03) Lumière</span><h2>Étude d'ensoleillement</h2></div>
+  <div class="sun__plan" aria-label="Plan masse avec ombres portées"><svg id="plan" viewBox="0 0 500 400"></svg></div>
+  <div class="sun__ctl">
+    <span class="mono" style="color:rgba(235,233,227,.6)">Pavillon des Arches — 21 juin</span>
+    <span class="sun__time" data-time>12:00</span>
+    <label class="mono" for="hour" style="display:flex;justify-content:space-between"><span>06:00</span><span>Heure solaire</span><span>21:00</span></label>
+    <input id="hour" type="range" min="6" max="21" step="0.05" value="12">
+    <div class="sun__data mono"><div>Azimut<b data-az>180°</b></div><div>Hauteur<b data-el>67°</b></div></div>
+    <p>Déplacez le curseur : les ombres des volumes sont recalculées en direct à partir de la course du soleil au solstice d'été, à Lyon.</p>
+  </div>
+</div></section>
+
+<section class="wrap grid sec contact" id="contact">
+  <div class="sec__head"><span class="mono">(04) Contact</span><h2>Un projet ?</h2></div>
+  <h2><a href="#">bonjour@<br>monolithe.archi</a></h2>
+  <div class="contact__info">
+    <div><p class="mono">Adresse</p><p>12 quai fictif<br>69002 Lyon</p></div>
+    <div><p class="mono">Téléphone</p><p>04 00 00 00 00</p></div>
+    <div><p class="mono">Recrutement</p><p>Stages &amp; candidatures</p></div>
+    <div><p class="mono">Suivre</p><p>Instagram · LinkedIn</p></div>
+  </div>
+</section>
+</main>
+
+<footer class="wrap foot mono"><span>© Monolithe — atelier fictif</span><span>Concept imaginé par Ouweis Mansouri</span></footer>
+<div class="peek" aria-hidden="true"></div>
+<p class="concept-flag">Concept — <a href="../../projets/monolithe.html">voir l'étude de cas</a></p>
+
+<script>
+(() => {
+  /* ---------- Architectural elevations (SVG) ---------- */
+  const C = { sky1:'#e9e6df', sky2:'#d9d5cb', ground:'#c7c1b4', face:'#f1eee8', side:'#b3ada1', shade:'#8f897d', dark:'#262624', glass:'#3a4140', line:'#141413', red:'#e2401c' };
+  const person = (x, y, s = 1) => `<g transform="translate(${x} ${y}) scale(${s})" fill="${C.line}"><circle cx="0" cy="-27" r="3.2"/><path d="M-3 -23 h6 l1.5 13 h-2 l-.5 10 h-1.6 l-.4 -10 h-.4 l-.4 10 h-1.6 l-.5 -10 h-2z"/></g>`;
+  const base = (id, inner) => `<svg viewBox="0 0 600 400" role="img" aria-label="Élévation"><defs>
+    <linearGradient id="sky${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${C.sky1}"/><stop offset="1" stop-color="${C.sky2}"/></linearGradient>
+    <linearGradient id="op${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b2a27"/><stop offset="1" stop-color="#55524b"/></linearGradient>
+    <linearGradient id="gl${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a5250"/><stop offset=".5" stop-color="#2b3130"/><stop offset=".52" stop-color="#596462"/><stop offset="1" stop-color="#2b3130"/></linearGradient>
+  </defs><rect width="600" height="400" fill="url(#sky${id})"/><rect y="330" width="600" height="70" fill="${C.ground}"/>${inner}<line x1="0" x2="600" y1="330" y2="330" stroke="${C.line}" stroke-width=".8"/></svg>`;
+  let k = 0;
+  const scenes = {
+    arches: () => { const id = ++k; let a = ''; for (let i = 0; i < 6; i++) { const x = 92 + i * 72; a += `<path d="M${x} 330 V245 a26 26 0 0 1 52 0 V330z" fill="url(#op${id})"/><path d="M${x} 245 a26 26 0 0 1 52 0" fill="none" stroke="${C.shade}" stroke-width="1"/>`; }
+      return base(id, `<polygon points="540,330 600,330 600,352 520,352" fill="${C.shade}" opacity=".45"/><polygon points="60,352 540,352 560,330 60,330" fill="${C.shade}" opacity=".25"/>
+        <rect x="60" y="170" width="480" height="160" fill="${C.face}"/><rect x="540" y="176" width="16" height="154" fill="${C.side}"/>
+        <rect x="48" y="160" width="504" height="14" fill="${C.face}" stroke="${C.line}" stroke-width=".6"/><rect x="48" y="174" width="504" height="6" fill="${C.shade}" opacity=".5"/>${a}
+        <rect x="60" y="170" width="480" height="160" fill="none" stroke="${C.line}" stroke-width=".6"/>${person(170, 330, 1)}${person(388, 330, .95)}<rect x="500" y="300" width="1" height="30" fill="${C.red}"/>`); },
+    tour: () => { const id = ++k; let w = ''; for (let i = 0; i < 9; i++) w += `<rect x="${252 + (i % 3) * 36}" y="${66 + Math.floor(i / 3) * 84}" width="6" height="58" fill="${C.dark}"/>`;
+      return base(id, `<polygon points="360,330 560,330 590,352 360,352" fill="${C.shade}" opacity=".35"/>
+        <rect x="230" y="40" width="130" height="290" fill="${C.face}"/><polygon points="360,40 392,52 392,330 360,330" fill="${C.side}"/>${w}
+        <rect x="230" y="290" width="130" height="40" fill="url(#gl${id})"/><rect x="230" y="40" width="130" height="290" fill="none" stroke="${C.line}" stroke-width=".6"/>
+        <rect x="120" y="290" width="80" height="40" fill="${C.face}" stroke="${C.line}" stroke-width=".6"/>${person(214, 330, 1)}<rect x="296" y="40" width="1" height="18" fill="${C.red}"/>`); },
+    porte: () => { const id = ++k;
+      return base(id, `<polygon points="120,330 380,330 400,350 120,350" fill="${C.shade}" opacity=".3"/>
+        <rect x="120" y="236" width="260" height="94" fill="${C.face}"/><rect x="150" y="262" width="70" height="68" fill="url(#op${id})"/>
+        <rect x="200" y="146" width="330" height="90" fill="${C.face}"/><rect x="200" y="236" width="330" height="10" fill="${C.shade}" opacity=".55"/>
+        <rect x="236" y="172" width="270" height="40" fill="url(#gl${id})"/><rect x="380" y="246" width="150" height="84" fill="${C.shade}" opacity=".18"/>
+        <rect x="120" y="236" width="260" height="94" fill="none" stroke="${C.line}" stroke-width=".6"/><rect x="200" y="146" width="330" height="90" fill="none" stroke="${C.line}" stroke-width=".6"/>
+        <line x1="480" x2="480" y1="246" y2="330" stroke="${C.line}" stroke-width="1.4"/>${person(300, 330, 1)}<rect x="529" y="236" width="1" height="94" fill="${C.red}" opacity=".0"/>`); },
+    cour: () => { const id = ++k; let s = ''; for (let i = 0; i < 6; i++) s += `<rect x="${250 + i * 8}" y="${330 - (i + 1) * 9}" width="${100 - i * 16}" height="9" fill="${i % 2 ? C.face : '#dcd8cf'}" stroke="${C.line}" stroke-width=".4"/>`;
+      return base(id, `<rect x="70" y="90" width="460" height="240" fill="${C.face}"/><rect x="200" y="140" width="200" height="190" fill="${C.sky2}"/>
+        <rect x="200" y="140" width="200" height="190" fill="none" stroke="${C.line}" stroke-width=".6"/><circle cx="300" cy="200" r="58" fill="#7b7a66"/><circle cx="276" cy="186" r="34" fill="#8d8b74"/><rect x="297" y="240" width="6" height="90" fill="${C.dark}"/>
+        <polygon points="200,140 230,140 230,330 200,330" fill="${C.shade}" opacity=".35"/>${s}
+        <rect x="70" y="90" width="460" height="240" fill="none" stroke="${C.line}" stroke-width=".6"/>${person(150, 330, 1)}${person(372, 330, .9)}`); }
+  };
+  document.querySelectorAll('[data-scene]').forEach(el => { el.innerHTML = scenes[el.dataset.scene](); });
+  if (document.querySelector('[data-big]')) {
+    const cap = document.createElement('div'); cap.className = 'hero__cap mono'; cap.innerHTML = '<span>Pavillon des Arches — élévation sud</span><span>Éch. 1:200</span>';
+    document.querySelector('[data-big]').appendChild(cap);
+  }
+
+  /* ---------- Peek on index hover ---------- */
+  const peek = document.querySelector('.peek'); let px = 0, py = 0, tx = 0, ty = 0;
+  document.querySelectorAll('[data-peek]').forEach(r => {
+    r.addEventListener('mouseenter', () => { peek.innerHTML = scenes[r.dataset.peek](); peek.classList.add('on'); });
+    r.addEventListener('mouseleave', () => peek.classList.remove('on'));
+  });
+  addEventListener('mousemove', e => { tx = e.clientX + 24; ty = e.clientY - 120; }, { passive: true });
+  const loop = () => { px += (tx - px) * .15; py += (ty - py) * .15; peek.style.transform = `translate(${px}px,${py}px)` + (peek.classList.contains('on') ? '' : ' scale(.92)'); requestAnimationFrame(loop); };
+  loop();
+
+  /* ---------- Sun study ---------- */
+  const svg = document.getElementById('plan');
+  // Blocks in plan (x, y, w, d, height in metres; 1 unit = 0.5 m)
+  const blocks = [
+    { x: 70, y: 150, w: 260, d: 70, h: 9 },
+    { x: 340, y: 90, w: 70, d: 200, h: 15 },
+    { x: 120, y: 260, w: 90, d: 60, h: 5 },
+    { x: 250, y: 300, w: 40, d: 40, h: 24 }
+  ];
+  const trees = [[440, 330, 14], [460, 60, 18], [60, 70, 16], [210, 70, 12]];
+  const lat = 45.76 * Math.PI / 180, decl = 23.44 * Math.PI / 180; // 21 June
+  const sunPos = hr => { const H = (hr - 12) * 15 * Math.PI / 180; const el = Math.asin(Math.sin(lat) * Math.sin(decl) + Math.cos(lat) * Math.cos(decl) * Math.cos(H));
+    let az = Math.acos(Math.max(-1, Math.min(1, (Math.sin(decl) - Math.sin(el) * Math.sin(lat)) / (Math.cos(el) * Math.cos(lat))))); if (H > 0) az = 2 * Math.PI - az; return { el, az }; };
+  const hull = pts => { pts = pts.slice().sort((a, b) => a[0] - b[0] || a[1] - b[1]); const cr = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+    const lo = [], up = []; for (const p of pts) { while (lo.length >= 2 && cr(lo[lo.length - 2], lo[lo.length - 1], p) <= 0) lo.pop(); lo.push(p); }
+    for (const p of pts.reverse()) { while (up.length >= 2 && cr(up[up.length - 2], up[up.length - 1], p) <= 0) up.pop(); up.push(p); } return lo.slice(0, -1).concat(up.slice(0, -1)); };
+  const render = hr => {
+    const { el, az } = sunPos(hr); const sun = el > 0.02;
+    const len = sun ? Math.min(1 / Math.tan(el), 12) : 0; // shadow length per metre of height
+    // plan: north up; shadow points away from sun. azimuth measured from north clockwise
+    const dx = -Math.sin(az) * len * 2, dy = Math.cos(az) * len * 2;
+    let s = `<rect width="500" height="400" fill="#dedbd3"/>`;
+    for (let x = 0; x <= 500; x += 25) s += `<line x1="${x}" x2="${x}" y1="0" y2="400" stroke="rgba(20,20,19,.07)"/>`;
+    for (let y = 0; y <= 400; y += 25) s += `<line y1="${y}" y2="${y}" x1="0" x2="500" stroke="rgba(20,20,19,.07)"/>`;
+    if (sun) {
+      blocks.forEach(b => { const c = [[b.x, b.y], [b.x + b.w, b.y], [b.x + b.w, b.y + b.d], [b.x, b.y + b.d]]; const sh = c.map(([x, y]) => [x + dx * b.h, y + dy * b.h]);
+        s += `<polygon points="${hull(c.concat(sh)).map(p => p.join(',')).join(' ')}" fill="rgba(20,20,19,.42)"/>`; });
+      trees.forEach(([x, y, r]) => { s += `<ellipse cx="${x + dx * 6}" cy="${y + dy * 6}" rx="${r}" ry="${r}" fill="rgba(20,20,19,.3)"/>`; });
+    }
+    blocks.forEach(b => { s += `<rect x="${b.x}" y="${b.y}" width="${b.w}" height="${b.d}" fill="${sun ? '#f7f5f0' : '#9a978f'}" stroke="#141413" stroke-width="1"/><text x="${b.x + 6}" y="${b.y + 14}" font-family="IBM Plex Mono" font-size="9" fill="#141413">+${b.h} m</text>`; });
+    trees.forEach(([x, y, r]) => { s += `<circle cx="${x}" cy="${y}" r="${r}" fill="rgba(110,122,90,.35)" stroke="#141413" stroke-width="1"/><circle cx="${x}" cy="${y}" r="1.5" fill="#141413"/>`; });
+    // north arrow + sun direction
+    s += `<g transform="translate(462 40)" fill="none" stroke="#141413"><circle r="16" stroke-opacity=".4"/><path d="M0 -12 L5 8 L0 4 L-5 8Z" fill="#141413" stroke="none"/></g><text x="458" y="74" font-family="IBM Plex Mono" font-size="9" fill="#141413">N</text>`;
+    if (sun) { const r = 175, cx = 250 + Math.sin(az) * r, cy = 200 - Math.cos(az) * r; s += `<line x1="250" y1="200" x2="${cx}" y2="${cy}" stroke="#e2401c" stroke-dasharray="3 4"/><circle cx="${cx}" cy="${cy}" r="9" fill="#e2401c"/>`; }
+    svg.innerHTML = s;
+    const h = Math.floor(hr), m = Math.round((hr - h) * 60) % 60;
+    document.querySelector('[data-time]').textContent = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+    document.querySelector('[data-az]').textContent = sun ? Math.round(az * 180 / Math.PI) + '°' : '—';
+    document.querySelector('[data-el]').textContent = sun ? Math.round(el * 180 / Math.PI) + '°' : 'nuit';
+  };
+  const range = document.getElementById('hour');
+  range.addEventListener('input', () => render(+range.value));
+  render(+range.value);
+  // Gentle autoplay until the user touches the slider
+  let auto = !matchMedia('(prefers-reduced-motion: reduce)').matches, v = 12;
+  range.addEventListener('pointerdown', () => { auto = false; });
+  const play = () => { if (!auto) return; v += 0.01; if (v > 20) v = 7; range.value = v; render(v); requestAnimationFrame(play); };
+  new IntersectionObserver(es => { if (es[0].isIntersecting && auto) play(); }, { threshold: .4 }).observe(svg);
+
+  /* ---------- Reveal ---------- */
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .1 });
+  document.querySelectorAll('.rv').forEach((el, i) => { el.style.transitionDelay = (i % 3) * .08 + 's'; io.observe(el); });
+})();
+</script>
+</body>
+</html>
