@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Maison Sable — Parfums de l'heure dorée (concept)</title>
+<meta name="description" content="Maison Sable : concept de boutique en ligne pour une parfumerie de niche. Projet personnel d'Ouweis Mansouri.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Manrope:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#f6f1e8;
+  --sand:#ece2d1;
+  --sand-2:#e2d3bb;
+  --ink:#1f1a15;
+  --ink-dim:rgba(31,26,21,.62);
+  --line:rgba(31,26,21,.14);
+  --terra:#a9472a;
+  --terra-2:#c96a43;
+  --olive:#5f5c3f;
+  --serif:'Bodoni Moda', 'Didot', serif;
+  --sans:'Manrope', -apple-system, sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --g:clamp(16px,4vw,56px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+ul{list-style:none}
+img,svg{display:block}
+em{font-style:italic}
+.concept-flag{position:fixed;left:12px;bottom:12px;z-index:99;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:7px 12px;border-radius:100px;opacity:.85}
+.concept-flag a{text-decoration:underline;text-underline-offset:2px}
+
+/* Bar & nav */
+.bar{background:var(--ink);color:var(--paper);text-align:center;font-size:12px;letter-spacing:.06em;padding:9px var(--g)}
+.nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:22px var(--g);border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(246,241,232,.88);backdrop-filter:blur(12px);z-index:20}
+.nav__links{display:flex;gap:28px;font-size:13.5px}
+.nav__links a{position:relative}
+.nav__links a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+.nav__links a:hover::after{transform:scaleX(1);transform-origin:left}
+.logo{font-family:var(--serif);font-size:22px;letter-spacing:.32em;text-transform:uppercase;text-align:center;line-height:1}
+.logo small{display:block;font-family:var(--sans);font-size:9px;letter-spacing:.42em;margin-top:6px;color:var(--ink-dim)}
+.nav__tools{display:flex;justify-content:flex-end;gap:24px;font-size:13.5px;align-items:center}
+.cart{display:inline-flex;align-items:center;gap:8px}
+.cart b{display:inline-grid;place-items:center;min-width:22px;height:22px;border-radius:100px;background:var(--ink);color:var(--paper);font-size:11px;font-weight:600;transition:transform .4s var(--ease)}
+.cart b.bump{transform:scale(1.35)}
+.burger{display:none}
+@media (max-width:860px){
+  .nav{grid-template-columns:auto 1fr auto;gap:12px}
+  .nav__links{display:none}
+  .burger{display:block;width:26px;height:12px;position:relative}
+  .burger::before,.burger::after{content:"";position:absolute;left:0;right:0;height:1.5px;background:var(--ink)}
+  .burger::before{top:0}.burger::after{bottom:0}
+  .logo{font-size:17px}
+  .nav__tools .hide-m{display:none}
+}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,5vw,80px);align-items:center;padding:clamp(40px,6vw,90px) var(--g) clamp(48px,6vw,100px);min-height:calc(100vh - 110px)}
+.eyebrow{font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--terra);display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:"";width:28px;height:1px;background:currentColor}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(3.2rem,7.4vw,7.6rem);line-height:.95;letter-spacing:-.02em;margin:24px 0 28px}
+.hero h1 em{color:var(--terra)}
+.hero p{max-width:40ch;color:var(--ink-dim);font-size:16px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 26px;border-radius:100px;font-size:14px;font-weight:500;transition:background .4s,color .4s,transform .4s var(--ease)}
+.btn--dark{background:var(--ink);color:var(--paper)}
+.btn--dark:hover{background:var(--terra)}
+.btn--ghost{border:1px solid var(--ink)}
+.btn--ghost:hover{background:var(--ink);color:var(--paper)}
+.hero__perks{display:flex;gap:28px;margin-top:56px;padding-top:24px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-dim)}
+.hero__perks b{display:block;color:var(--ink);font-weight:600;font-size:13px}
+
+.stage{position:relative;aspect-ratio:4/5;border-radius:999px 999px 18px 18px;overflow:hidden;background:linear-gradient(180deg,#e9b886 0%,#df9a6a 38%,#c9714a 70%,#a9472a 100%)}
+.stage__sun{position:absolute;left:50%;top:26%;width:46%;aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle at 50% 50%,#fff3dc 0%,#ffd9a1 45%,rgba(255,217,161,0) 70%);filter:blur(2px);animation:sun 9s ease-in-out infinite alternate}
+@keyframes sun{to{transform:translate(-50%,-44%) scale(1.06)}}
+.stage__dunes{position:absolute;inset:auto 0 0 0;width:100%}
+.stage__bottle{position:absolute;left:50%;bottom:9%;width:40%;transform:translateX(-50%);animation:float 6s ease-in-out infinite;filter:drop-shadow(0 30px 30px rgba(70,25,10,.35))}
+@keyframes float{50%{transform:translate(-50%,-10px)}}
+.stage__tag{position:absolute;right:7%;top:46%;background:rgba(246,241,232,.92);backdrop-filter:blur(6px);border-radius:14px;padding:14px 16px;font-size:12px;line-height:1.5;box-shadow:0 20px 40px -20px rgba(60,20,5,.5)}
+.stage__tag b{display:block;font-family:var(--serif);font-weight:400;font-style:italic;font-size:18px}
+.stage__price{position:absolute;left:7%;top:58%;background:var(--ink);color:var(--paper);border-radius:100px;padding:10px 16px;font-size:12px}
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr;min-height:0;padding-top:28px}
+  .hero__visual{order:-1}
+  .stage{aspect-ratio:4/4.3;border-radius:999px 999px 16px 16px}
+  .hero h1{margin:18px 0 18px}
+  .hero__perks{gap:18px;margin-top:36px;flex-wrap:wrap}
+  .stage__bottle{width:34%;bottom:16%}
+  .stage__tag{top:auto;bottom:5%;right:5%;padding:9px 12px;font-size:11px}
+  .stage__tag b{font-size:15px}
+  .stage__price{top:auto;bottom:5%;left:5%;padding:8px 12px;font-size:11px}
+  .card__info{flex-direction:column;gap:4px}
+  .card__info h3{font-size:20px}
+}
+
+/* Marquee */
+.marquee{overflow:hidden;border-block:1px solid var(--line);padding:22px 0;white-space:nowrap}
+.marquee__t{display:inline-flex;gap:40px;animation:mq 30s linear infinite;font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,3vw,2.6rem)}
+.marquee__t span::after{content:"✳";font-style:normal;font-size:.5em;color:var(--terra);margin-left:40px;vertical-align:middle}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* Collection */
+.section{padding:clamp(70px,10vw,140px) var(--g)}
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:clamp(36px,5vw,64px);flex-wrap:wrap}
+.h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,5.4vw,5rem);line-height:1;letter-spacing:-.015em}
+.h2 em{color:var(--terra)}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filters button{padding:9px 16px;border:1px solid var(--line);border-radius:100px;font-size:13px;transition:background .3s,color .3s,border-color .3s}
+.filters button.is-on,.filters button:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,28px)}
+.card__media{position:relative;aspect-ratio:4/5;border-radius:16px;overflow:hidden;display:grid;place-items:end center;padding-bottom:9%}
+.card__media .b{width:46%;transition:transform .9s var(--ease);filter:drop-shadow(0 24px 22px rgba(40,20,10,.28))}
+.card:hover .card__media .b{transform:translateY(-14px) rotate(-2deg)}
+.card__badge{position:absolute;top:16px;left:16px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;background:rgba(246,241,232,.9);padding:6px 11px;border-radius:100px}
+.card__add{position:absolute;left:16px;right:16px;bottom:16px;padding:14px;border-radius:100px;background:var(--ink);color:var(--paper);font-size:13px;font-weight:500;opacity:0;transform:translateY(12px);transition:opacity .4s,transform .5s var(--ease),background .3s}
+.card:hover .card__add,.card__add:focus-visible{opacity:1;transform:none}
+.card__add.is-added{background:var(--olive)}
+.card__info{display:flex;justify-content:space-between;gap:12px;padding:18px 4px 0}
+.card__info h3{font-family:var(--serif);font-weight:400;font-size:24px;line-height:1.1}
+.card__info p{font-size:12.5px;color:var(--ink-dim)}
+.card__price{font-size:14px;font-weight:600;white-space:nowrap}
+.bg-ambre{background:linear-gradient(170deg,#efc796,#d38b5a)}
+.bg-figue{background:linear-gradient(170deg,#cdc4ae,#8e8b63)}
+.bg-neroli{background:linear-gradient(170deg,#f3e7cf,#e3c99a)}
+@media (max-width:860px){.grid{grid-template-columns:1fr 1fr}.grid .card:last-child{display:none}.card__add{opacity:1;transform:none;padding:11px;font-size:12px}}
+
+/* Pyramid */
+.pyr{background:var(--ink);color:var(--paper);border-radius:28px;margin:0 clamp(8px,1.5vw,20px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,100px);align-items:center}
+.pyr .eyebrow{color:var(--terra-2)}
+.pyr .h2 em{color:var(--terra-2)}
+.tabs{display:flex;gap:6px;margin:34px 0 26px;border-bottom:1px solid rgba(246,241,232,.16)}
+.tabs button{padding:12px 4px;margin-right:22px;font-size:14px;color:rgba(246,241,232,.55);border-bottom:1.5px solid transparent;margin-bottom:-1px;transition:color .3s,border-color .3s}
+.tabs button.is-on{color:var(--paper);border-color:var(--terra-2)}
+.panel{display:none;animation:fade .7s var(--ease)}
+.panel.is-on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}}
+.panel h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:10px}
+.panel p{color:rgba(246,241,232,.68);max-width:44ch}
+.notes{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.notes li{border:1px solid rgba(246,241,232,.2);border-radius:100px;padding:7px 14px;font-size:12.5px}
+.rings{position:relative;aspect-ratio:1;max-width:520px;width:100%;justify-self:center}
+.rings svg{width:100%;height:100%}
+.rings circle{transition:stroke .5s,opacity .5s}
+@media (max-width:860px){.pyr{grid-template-columns:1fr;border-radius:20px}.rings{max-width:320px}}
+
+/* Atelier */
+.atelier{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(30px,6vw,110px);align-items:end}
+.quote{font-family:var(--serif);font-size:clamp(2rem,4.2vw,3.9rem);line-height:1.08;letter-spacing:-.01em}
+.quote em{color:var(--terra)}
+.facts{display:grid;gap:0;border-top:1px solid var(--line)}
+.facts div{display:flex;justify-content:space-between;gap:20px;padding:20px 0;border-bottom:1px solid var(--line);font-size:14px}
+.facts b{font-family:var(--serif);font-weight:400;font-size:28px;line-height:1}
+@media (max-width:860px){.atelier{grid-template-columns:1fr}}
+
+/* Coffret */
+.coffret{margin:0 var(--g);border-radius:28px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;background:var(--sand)}
+.coffret__txt{padding:clamp(36px,6vw,90px)}
+.coffret__txt p{color:var(--ink-dim);max-width:38ch;margin:18px 0 30px}
+.coffret__vis{position:relative;background:linear-gradient(160deg,#d9c3a1,#b98f63);display:flex;align-items:flex-end;justify-content:center;gap:4%;padding:0 8% 10%;min-height:340px}
+.coffret__vis .b{width:13%;filter:drop-shadow(0 14px 12px rgba(60,30,10,.3))}
+.coffret__vis .b:nth-child(even){transform:translateY(-6%)}
+@media (max-width:860px){.coffret{grid-template-columns:1fr}.coffret__vis{min-height:240px}}
+
+/* Footer */
+.foot{padding:clamp(60px,8vw,110px) var(--g) 32px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
+.foot h4{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:16px;color:var(--ink-dim);font-weight:500}
+.foot li{font-size:14px;padding:4px 0}
+.news{display:flex;border-bottom:1px solid var(--ink);margin-top:20px;max-width:380px}
+.news input{flex:1;border:0;background:none;padding:12px 0;font:inherit;outline:none}
+.news button{font-size:13px;font-weight:600}
+.foot__big{grid-column:1/-1;font-family:var(--serif);font-size:clamp(3rem,15vw,15rem);letter-spacing:.06em;line-height:.9;text-align:center;margin-top:40px;color:var(--sand-2)}
+.foot__legal{grid-column:1/-1;display:flex;justify-content:space-between;font-size:12px;color:var(--ink-dim);flex-wrap:wrap;gap:10px}
+@media (max-width:860px){.foot{grid-template-columns:1fr 1fr}.foot>div:first-child{grid-column:1/-1}}
+
+.rv{opacity:0;transform:translateY(30px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="bar">Livraison offerte dès 80 € · Deux échantillons offerts avec chaque commande</div>
+
+<header class="nav">
+  <button class="burger" aria-label="Menu"></button>
+  <nav class="nav__links" aria-label="Principal">
+    <a href="#collection">Parfums</a><a href="#collection">Bougies</a><a href="#atelier">L'atelier</a><a href="#notes">Journal</a>
+  </nav>
+  <a href="#" class="logo">Maison Sable<small>Parfums · Lyon</small></a>
+  <div class="nav__tools">
+    <a href="#" class="hide-m">Rechercher</a><a href="#" class="hide-m">Compte</a>
+    <a href="#" class="cart">Panier <b data-cart>0</b></a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero__txt">
+    <p class="eyebrow">Nouvelle eau de parfum</p>
+    <h1>L'heure <em>dorée,</em><br>en flacon.</h1>
+    <p>Ambre Nomade capture l'instant où le soleil touche les dunes : une chaleur ambrée, la douceur de la figue, un fond de santal qui reste sur la peau jusqu'au soir.</p>
+    <div class="ctas">
+      <a href="#collection" class="btn btn--dark" data-add="Ambre Nomade">Ajouter — 128 €</a>
+      <a href="#collection" class="btn btn--ghost">Toute la collection</a>
+    </div>
+    <div class="hero__perks">
+      <span><b>Composé à Grasse</b>Matières premières tracées</span>
+      <span><b>Flacon rechargeable</b>Recharge à −30 %</span>
+      <span><b>Échantillon offert</b>Essayez avant d'ouvrir</span>
+    </div>
+  </div>
+  <div class="hero__visual">
+    <div class="stage" data-tilt>
+      <div class="stage__sun"></div>
+      <svg class="stage__dunes" viewBox="0 0 400 220" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 120 C 80 70, 150 90, 220 110 S 340 80, 400 95 L400 220 L0 220Z" fill="#d78a5c"/>
+        <path d="M0 150 C 70 120, 160 135, 230 150 S 350 130, 400 140 L400 220 L0 220Z" fill="#c06c43"/>
+        <path d="M0 180 C 90 160, 180 170, 260 185 S 360 175, 400 178 L400 220 L0 220Z" fill="#a24f2f"/>
+      </svg>
+      <div class="stage__bottle" data-bottle="ambre" data-name="Ambre Nomade"></div>
+      <div class="stage__tag"><b>Ambre Nomade</b>Ambre · Figue · Santal</div>
+      <div class="stage__price">50 ml — 128 €</div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee__t">
+  <span>Ambre</span><span>Figue</span><span>Santal</span><span>Néroli</span><span>Encens</span><span>Oud blanc</span>
+  <span>Ambre</span><span>Figue</span><span>Santal</span><span>Néroli</span><span>Encens</span><span>Oud blanc</span>
+</div></div>
+
+<section class="section" id="collection">
+  <div class="head">
+    <div><p class="eyebrow">La collection</p><h2 class="h2" style="margin-top:16px">Trois heures <em>du jour.</em></h2></div>
+    <div class="filters" role="tablist"><button class="is-on">Tout</button><button>Boisé</button><button>Ambré</button><button>Hespéridé</button></div>
+  </div>
+  <div class="grid">
+    <article class="card rv">
+      <div class="card__media bg-neroli"><span class="card__badge">Matin</span><div class="b" data-bottle="neroli" data-name="Néroli Blanc"></div><button class="card__add" data-add="Néroli Blanc">Ajouter au panier</button></div>
+      <div class="card__info"><div><h3>Néroli Blanc</h3><p>Hespéridé · Fleur d'oranger, bergamote</p></div><span class="card__price">118 €</span></div>
+    </article>
+    <article class="card rv">
+      <div class="card__media bg-ambre"><span class="card__badge">Crépuscule</span><div class="b" data-bottle="ambre" data-name="Ambre Nomade"></div><button class="card__add" data-add="Ambre Nomade">Ajouter au panier</button></div>
+      <div class="card__info"><div><h3>Ambre Nomade</h3><p>Ambré · Figue, santal, benjoin</p></div><span class="card__price">128 €</span></div>
+    </article>
+    <article class="card rv">
+      <div class="card__media bg-figue"><span class="card__badge">Nuit</span><div class="b" data-bottle="figue" data-name="Figue Noire"></div><button class="card__add" data-add="Figue Noire">Ajouter au panier</button></div>
+      <div class="card__info"><div><h3>Figue Noire</h3><p>Boisé · Feuille de figuier, encens, cèdre</p></div><span class="card__price">124 €</span></div>
+    </article>
+  </div>
+</section>
+
+<section class="section pyr" id="notes">
+  <div>
+    <p class="eyebrow">Ambre Nomade</p>
+    <h2 class="h2" style="margin-top:16px">Une signature <em>en trois temps.</em></h2>
+    <div class="tabs" role="tablist">
+      <button class="is-on" data-tab="0">Tête</button><button data-tab="1">Cœur</button><button data-tab="2">Fond</button>
+    </div>
+    <div class="panel is-on"><h3>L'éclat</h3><p>Les premières minutes : la fraîcheur verte de la figue et une pointe de cardamome, comme une brise chaude.</p><ul class="notes"><li>Figue verte</li><li>Cardamome</li><li>Bergamote</li></ul></div>
+    <div class="panel"><h3>La chaleur</h3><p>Après une heure, l'ambre s'installe, enveloppé de fleur d'oranger et de miel de lavande.</p><ul class="notes"><li>Ambre</li><li>Fleur d'oranger</li><li>Miel</li></ul></div>
+    <div class="panel"><h3>Le sillage</h3><p>Ce qui reste le soir sur la peau : un santal crémeux, du benjoin et un musc blanc très doux.</p><ul class="notes"><li>Santal</li><li>Benjoin</li><li>Musc blanc</li></ul></div>
+  </div>
+  <div class="rings" aria-hidden="true">
+    <svg viewBox="0 0 400 400">
+      <circle cx="200" cy="200" r="190" fill="none" stroke="rgba(246,241,232,.15)"/>
+      <circle class="ring" data-r="2" cx="200" cy="200" r="150" fill="none" stroke="#c96a43" stroke-width="40" opacity=".35"/>
+      <circle class="ring" data-r="1" cx="200" cy="200" r="100" fill="none" stroke="#c96a43" stroke-width="40" opacity=".35"/>
+      <circle class="ring" data-r="0" cx="200" cy="200" r="50" fill="#c96a43" opacity="1"/>
+      <text x="200" y="30" text-anchor="middle" fill="rgba(246,241,232,.5)" font-size="11" letter-spacing="3" font-family="Manrope">0 — 15 MIN · 1 H · 8 H</text>
+    </svg>
+  </div>
+</section>
+
+<section class="section" id="atelier">
+  <div class="atelier">
+    <p class="quote rv">« Un parfum devrait ressembler à un souvenir de voyage : <em>flou sur les bords,</em> précis au cœur. »</p>
+    <div class="rv">
+      <p class="eyebrow" style="margin-bottom:24px">L'atelier</p>
+      <div class="facts">
+        <div><span>Concentration en essences</span><b>18 %</b></div>
+        <div><span>Ingrédients d'origine naturelle</span><b>92 %</b></div>
+        <div><span>Flacons recyclés ou rechargés</span><b>1 sur 2</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="coffret rv">
+  <div class="coffret__txt">
+    <p class="eyebrow">Coffret découverte</p>
+    <h2 class="h2" style="margin-top:16px">Six heures, <em>six essais.</em></h2>
+    <p>Six miniatures de 2 ml pour trouver votre signature. Le montant est déduit de votre premier flacon.</p>
+    <a href="#" class="btn btn--dark" data-add="Coffret découverte">Ajouter — 24 €</a>
+  </div>
+  <div class="coffret__vis">
+    <div class="b" data-bottle="neroli"></div><div class="b" data-bottle="ambre"></div><div class="b" data-bottle="figue"></div><div class="b" data-bottle="rose"></div><div class="b" data-bottle="oud"></div><div class="b" data-bottle="neroli"></div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div><a href="#" class="logo" style="text-align:left;display:block">Maison Sable</a><p style="margin-top:18px;color:var(--ink-dim);max-width:34ch;font-size:14px">Recevez nos nouvelles fragrances et les ouvertures de l'atelier, une fois par mois.</p><form class="news" onsubmit="event.preventDefault();this.querySelector('button').textContent='Merci ✓'"><input type="email" placeholder="Votre e-mail" aria-label="E-mail"><button>S'inscrire</button></form></div>
+  <div><h4>Boutique</h4><ul><li>Parfums</li><li>Bougies</li><li>Recharges</li><li>Coffrets</li></ul></div>
+  <div><h4>Maison</h4><ul><li>L'atelier</li><li>Journal</li><li>Boutique de Lyon</li></ul></div>
+  <div><h4>Aide</h4><ul><li>Livraison</li><li>Retours</li><li>Contact</li></ul></div>
+  <p class="foot__big" aria-hidden="true">SABLE</p>
+  <div class="foot__legal"><span>© Maison Sable — marque fictive</span><span>Concept imaginé par Ouweis Mansouri</span></div>
+</footer>
+
+<p class="concept-flag">Concept — <a href="../../projets/maison-sable.html">voir l'étude de cas</a></p>
+
+<script>
+(() => {
+  const palettes = {
+    ambre:{top:'#f2b56b',mid:'#d9822f',bot:'#9c4a17',cap:['#2b1d12','#7a5a3a','#22170e']},
+    figue:{top:'#a7a37a',mid:'#6f6c45',bot:'#3e3c22',cap:['#1c1a12','#5b5640','#15130c']},
+    neroli:{top:'#fbefcf',mid:'#f0d695',bot:'#d4a85a',cap:['#8b7356','#d8c3a2','#7a634a']},
+    rose:{top:'#f3c1b3',mid:'#d98a7b',bot:'#a8574d',cap:['#3a2420','#8a5d52','#2c1a17']},
+    oud:{top:'#7a4a36',mid:'#4b281b',bot:'#24120b',cap:['#111','#4a4a4a','#0b0b0b']}
+  };
+  let uid = 0;
+  const bottle = (k, name) => {
+    const c = palettes[k]; const i = ++uid;
+    return `<svg viewBox="0 0 200 340" role="img" aria-label="Flacon ${name||''}">
+      <defs>
+        <linearGradient id="cap${i}" x1="0" x2="1"><stop offset="0" stop-color="${c.cap[0]}"/><stop offset=".45" stop-color="${c.cap[1]}"/><stop offset="1" stop-color="${c.cap[2]}"/></linearGradient>
+        <linearGradient id="liq${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c.top}"/><stop offset=".55" stop-color="${c.mid}"/><stop offset="1" stop-color="${c.bot}"/></linearGradient>
+        <linearGradient id="gl${i}" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".18" stop-color="#fff" stop-opacity=".12"/><stop offset=".8" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#fff" stop-opacity=".4"/></linearGradient>
+        <linearGradient id="gold${i}" x1="0" x2="1"><stop offset="0" stop-color="#8a6a3a"/><stop offset=".5" stop-color="#f1d9a6"/><stop offset="1" stop-color="#7a5a2c"/></linearGradient>
+      </defs>
+      <rect x="66" y="6" width="68" height="74" rx="5" fill="url(#cap${i})"/>
+      <rect x="72" y="10" width="6" height="66" rx="3" fill="#fff" opacity=".18"/>
+      <rect x="80" y="78" width="40" height="14" fill="url(#gold${i})"/>
+      <rect x="28" y="90" width="144" height="236" rx="16" fill="url(#liq${i})" opacity=".92"/>
+      <rect x="28" y="90" width="144" height="236" rx="16" fill="url(#gl${i})" stroke="rgba(255,255,255,.7)" stroke-width="1.5"/>
+      <rect x="28" y="300" width="144" height="26" rx="12" fill="#fff" opacity=".22"/>
+      <rect x="40" y="102" width="9" height="190" rx="4.5" fill="#fff" opacity=".38"/>
+      <rect x="154" y="110" width="4" height="170" rx="2" fill="#000" opacity=".12"/>
+      <rect x="58" y="168" width="84" height="98" rx="2" fill="#f6f1e8"/>
+      <text x="100" y="190" text-anchor="middle" font-family="Bodoni Moda, serif" font-size="7" letter-spacing="1.4" fill="#1f1a15">MAISON SABLE</text>
+      <line x1="80" x2="120" y1="200" y2="200" stroke="#1f1a15" stroke-width=".6"/>
+      <text x="100" y="226" text-anchor="middle" font-family="Bodoni Moda, serif" font-style="italic" font-size="${(name||'').length>11?10:11.5}" fill="#1f1a15">${name||''}</text>
+      <text x="100" y="252" text-anchor="middle" font-family="Manrope, sans-serif" font-size="5" letter-spacing=".8" fill="#1f1a15">EAU DE PARFUM · 50 ML</text>
+    </svg>`;
+  };
+  document.querySelectorAll('[data-bottle]').forEach(el => { el.innerHTML = bottle(el.dataset.bottle, el.dataset.name); });
+
+  // Cart
+  const cart = document.querySelector('[data-cart]'); let n = 0;
+  document.querySelectorAll('[data-add]').forEach(b => b.addEventListener('click', e => {
+    e.preventDefault(); n++; cart.textContent = n; cart.classList.add('bump'); setTimeout(() => cart.classList.remove('bump'), 300);
+    if (b.classList.contains('card__add')) { b.textContent = 'Ajouté ✓'; b.classList.add('is-added'); setTimeout(() => { b.textContent = 'Ajouter au panier'; b.classList.remove('is-added'); }, 1600); }
+  }));
+
+  // Filters (visual only)
+  document.querySelectorAll('.filters button').forEach(b => b.addEventListener('click', () => { document.querySelectorAll('.filters button').forEach(x => x.classList.toggle('is-on', x === b)); }));
+
+  // Tabs + rings
+  const tabs = document.querySelectorAll('[data-tab]'), panels = document.querySelectorAll('.panel'), rings = document.querySelectorAll('.ring');
+  tabs.forEach(t => t.addEventListener('click', () => {
+    const k = +t.dataset.tab;
+    tabs.forEach(x => x.classList.toggle('is-on', x === t));
+    panels.forEach((p, i) => p.classList.toggle('is-on', i === k));
+    rings.forEach(r => r.setAttribute('opacity', +r.dataset.r === k ? '1' : '.35'));
+  }));
+
+  // Tilt
+  const stage = document.querySelector('[data-tilt]');
+  if (stage && matchMedia('(hover:hover)').matches) {
+    const bt = stage.querySelector('.stage__bottle');
+    stage.addEventListener('mousemove', e => { const r = stage.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - .5; bt.style.marginLeft = (x * 24) + 'px'; });
+  }
+
+  // Reveal
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
+  document.querySelectorAll('.rv').forEach((el, i) => { el.style.transitionDelay = (i % 3) * 0.08 + 's'; io.observe(el); });
+})();
+</script>
+</body>
+</html>
