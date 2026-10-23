@@ -1,6 +1,6 @@
 # Ouweis Mansouri — Portfolio
 
-Portfolio de web designer & développeur créatif, publié sur [ouweismansouri.fr](https://ouweismansouri.fr).
+Portfolio de web designer & développeur créatif, publié sur [ouweisbts.github.io/Ouweismansouri](https://ouweisbts.github.io/Ouweismansouri/).
 
 ## Structure
 
