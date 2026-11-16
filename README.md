@@ -5,8 +5,9 @@ Portfolio de web designer & développeur créatif, publié sur [ouweisbts.github
 ## Structure
 
 - `index.html` — page d'accueil (hero WebGL, projets, expertises, méthode, à propos, contact)
-- `projets/` — études de cas : Dubaï Center (client), Maison Sable, ÉCHO et Monolithe (concepts)
-- `concepts/` — prototypes en ligne des trois projets concept (marques fictives)
+- `projets/` — études de cas : Dubaï Center (client), Anas Food (proposition de refonte), Maison Sable et Monolithe (concepts)
+- `anas-food/` — site complet de la refonte Anas Food (autonome : ses propres styles, scripts et images)
+- `concepts/` — prototypes en ligne des projets concept (marques fictives)
 - `assets/css/main.css`, `assets/js/main.js` — styles et interactions du portfolio
 - `assets/js/gl.js` — shader « or liquide » du hero
 - `assets/vendor/` — GSAP 3.12.5 + ScrollTrigger, Lenis 1.1.13 (servis localement)
