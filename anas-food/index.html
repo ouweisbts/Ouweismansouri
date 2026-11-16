@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Anas Food — Burgers, tacos & pizzas à Vaulx-en-Velin (proposition de refonte)</title>
+<meta name="description" content="Proposition de refonte du site d'Anas Food, Vaulx-en-Velin : burgers, tacos, pizzas et roulés, livraison 15–45 min. Prototype réalisé par Ouweis Mansouri.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0e0a07">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap">
+<link rel="preload" as="image" href="assets/img/hero/king.webp" type="image/webp">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#carte">Aller à la carte</a>
+
+<!-- Top bar -->
+<div class="topbar"><div class="topbar__track" aria-hidden="true">
+  <span>Livraison 15–45 min</span><i></i><span>Halal</span><i></i><span>Vaulx-en-Velin &amp; alentours</span><i></i><span>Tiramisu fait maison</span><i></i><span>Commande en ligne</span><i></i>
+  <span>Livraison 15–45 min</span><i></i><span>Halal</span><i></i><span>Vaulx-en-Velin &amp; alentours</span><i></i><span>Tiramisu fait maison</span><i></i><span>Commande en ligne</span><i></i>
+</div><p class="sr">Livraison 15 à 45 minutes, halal, Vaulx-en-Velin et alentours.</p></div>
+
+<!-- Nav -->
+<header class="nav">
+  <a href="#top" class="logo" aria-label="Anas Food — accueil">
+    <svg class="logo__flame" viewBox="0 0 24 32" aria-hidden="true"><path d="M12 1c1.5 6-4.5 8-4.5 14 0 2.6 1.6 4.6 3.6 5.3-1-1.7-.7-4 1.4-6.3.6 2.7 3.9 3.9 3.9 7.3 0 .8-.2 1.6-.6 2.2C19.3 22.3 21 19.7 21 16.5 21 9.6 14.7 7.4 12 1Z" fill="currentColor"/><path d="M12 31c-4.4 0-8-3.4-8-7.7 0-2.3 1-4.3 2.6-5.7-.1.5-.1 1-.1 1.5 0 3.7 2.6 6.5 5.5 6.5s5.5-2.8 5.5-6.5c0-.5 0-1-.1-1.5 1.6 1.4 2.6 3.4 2.6 5.7 0 4.3-3.6 7.7-8 7.7Z" fill="currentColor" opacity=".55"/></svg>
+    <span>ANAS<b>FOOD</b></span>
+  </a>
+  <nav class="nav__links" aria-label="Principal">
+    <a href="#signatures">Signatures</a><a href="#faim">Quelle faim ?</a><a href="#carte">La carte</a><a href="#box">Box du Peuple</a><a href="#livraison">Livraison</a>
+  </nav>
+  <button class="cart-btn" type="button" data-open-cart aria-label="Ouvrir le panier">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7Zm3 0a3 3 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+    <span class="cart-btn__total" data-cart-total>0,00 €</span><b data-cart-count>0</b>
+  </button>
+</header>
+
+<main>
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <canvas class="embers" aria-hidden="true"></canvas>
+  <div class="hero__glow" aria-hidden="true"></div>
+  <p class="hero__word" aria-hidden="true" data-hero-word>KING</p>
+
+  <div class="hero__text">
+    <p class="pill"><i class="pill__dot"></i>Vaulx-en-Velin · ouvert à la commande</p>
+    <h1 class="hero__title">Ça grille.<br>Ça <span class="fire">fond.</span><br>Ça claque.</h1>
+    <p class="hero__lead">Burgers, tacos, pizzas et roulés préparés minute, généreux comme il faut. Commandez en deux clics : on s'occupe du reste.</p>
+    <div class="hero__ctas">
+      <a href="#carte" class="btn btn--fire">Commander maintenant <span aria-hidden="true">→</span></a>
+      <a href="#signatures" class="btn btn--ghost">Nos signatures</a>
+    </div>
+  </div>
+
+  <div class="hero__stage" data-tilt>
+    <img class="hero__orbit hero__orbit--a" src="assets/img/hero/frites.webp" alt="" aria-hidden="true">
+    <img class="hero__orbit hero__orbit--b" src="assets/img/hero/cola.webp" alt="" aria-hidden="true">
+    <img class="hero__orbit hero__orbit--c" src="assets/img/hero/wings.webp" alt="" aria-hidden="true">
+    <div class="hero__plate">
+      <img class="hero__product is-on" src="assets/img/hero/king.webp" alt="Le King Burger : trois steaks, bacon et double cheddar" data-slide="0">
+      <img class="hero__product" src="assets/img/hero/tacos.webp" alt="Tacos Le Anas : choukchouka, œuf et double cheddar" data-slide="1" loading="lazy">
+      <img class="hero__product" src="assets/img/hero/pizza.webp" alt="Pizza Anas : viande hachée, choukchouka, œuf et mozzarella" data-slide="2" loading="lazy">
+      <img class="hero__product" src="assets/img/hero/roule.webp" alt="Maxi Roulé en pâte à pizza" data-slide="3" loading="lazy">
+    </div>
+    <div class="sticker" data-sticker><b data-sticker-name>Le King</b><span data-sticker-price>6,50 € · menu 9,50 €</span></div>
+  </div>
+
+  <div class="hero__slides" role="tablist" aria-label="Produits mis en avant">
+    <button class="slide-tab is-on" role="tab" aria-selected="true" data-go="0"><img src="assets/img/hero/king.webp" alt=""><span>Le King</span><i></i></button>
+    <button class="slide-tab" role="tab" aria-selected="false" data-go="1"><img src="assets/img/hero/tacos.webp" alt=""><span>Tacos Le Anas</span><i></i></button>
+    <button class="slide-tab" role="tab" aria-selected="false" data-go="2"><img src="assets/img/hero/pizza.webp" alt=""><span>Pizza Anas</span><i></i></button>
+    <button class="slide-tab" role="tab" aria-selected="false" data-go="3"><img src="assets/img/hero/roule.webp" alt=""><span>Maxi Roulé</span><i></i></button>
+  </div>
+</section>
+
+<!-- Ticker -->
+<div class="ticker" aria-hidden="true"><div class="ticker__track">
+  <span>Préparé minute</span><span class="star">✷</span><span>Pâte à pizza maison pour les roulés</span><span class="star">✷</span><span>Gratinage en supplément</span><span class="star">✷</span><span>Pizzas jusqu'à 50 cm</span><span class="star">✷</span>
+  <span>Préparé minute</span><span class="star">✷</span><span>Pâte à pizza maison pour les roulés</span><span class="star">✷</span><span>Gratinage en supplément</span><span class="star">✷</span><span>Pizzas jusqu'à 50 cm</span><span class="star">✷</span>
+</div></div>
+
+<!-- ================= SIGNATURES ================= -->
+<section class="sig" id="signatures" aria-label="Nos signatures">
+  <div class="sig__sticky">
+    <div class="sig__head"><p class="eyebrow">Les signatures</p><p class="sig__count"><span data-sig-index>01</span> / 05</p></div>
+    <div class="sig__track" data-sig-track>
+      <article class="sig__panel sig__panel--coal">
+        <div class="sig__copy">
+          <p class="sig__num">01</p>
+          <h2 class="sig__name">Tacos<br><span class="fire">Le Anas</span></h2>
+          <ul class="chips"><li>Choukchouka</li><li>Œuf</li><li>Double cheddar</li></ul>
+          <p class="sig__price"><b>9 €</b><span>Menu 12 € · Maxi 13,50 €</span></p>
+          <button class="btn btn--fire" data-add='{"n":"Tacos Le Anas","l":"Seul","v":9,"img":"assets/img/hero/tacos.webp"}'>Ajouter <span aria-hidden="true">+</span></button>
+        </div>
+        <img class="sig__img" src="assets/img/hero/tacos.webp" alt="Tacos Le Anas" loading="lazy">
+      </article>
+      <article class="sig__panel sig__panel--fire">
+        <div class="sig__copy">
+          <p class="sig__num">02</p>
+          <h2 class="sig__name">Le King<br>Burger</h2>
+          <ul class="chips"><li>3 steaks 45 g</li><li>Bacon</li><li>2 cheddar</li></ul>
+          <p class="sig__price"><b>6,50 €</b><span>Menu frites + boisson 9,50 €</span></p>
+          <button class="btn btn--coal" data-add='{"n":"Le King Burger","l":"Seul","v":6.5,"img":"assets/img/hero/king.webp"}'>Ajouter <span aria-hidden="true">+</span></button>
+        </div>
+        <img class="sig__img" src="assets/img/hero/king.webp" alt="Le King Burger" loading="lazy">
+      </article>
+      <article class="sig__panel sig__panel--cream">
+        <div class="sig__copy">
+          <p class="sig__num">03</p>
+          <h2 class="sig__name">Pizza<br><span class="chili">Anas</span></h2>
+          <ul class="chips"><li>Viande hachée</li><li>Choukchouka</li><li>Œuf</li><li>Mozzarella</li></ul>
+          <p class="sig__price"><b>dès 9 €</b><span>Solo 33 cm · Large 40 cm 13 € · Géante 50 cm 17 €</span></p>
+          <button class="btn btn--coal" data-add='{"n":"Pizza Anas","l":"Solo 33 cm","v":9,"img":"assets/img/hero/pizza.webp"}'>Ajouter <span aria-hidden="true">+</span></button>
+        </div>
+        <img class="sig__img sig__img--round" src="assets/img/hero/pizza.webp" alt="Pizza Anas" loading="lazy">
+      </article>
+      <article class="sig__panel sig__panel--chili">
+        <div class="sig__copy">
+          <p class="sig__num">04</p>
+          <h2 class="sig__name">Maxi<br>Roulé</h2>
+          <ul class="chips"><li>Pâte à pizza</li><li>2 viandes</li><li>1 sauce au choix</li></ul>
+          <p class="sig__price"><b>13 €</b><span>Menu 16 € · Roulé normal 9 €</span></p>
+          <button class="btn btn--cream" data-add='{"n":"Maxi Roulé","l":"Seul","v":13,"img":"assets/img/hero/roule.webp"}'>Ajouter <span aria-hidden="true">+</span></button>
+        </div>
+        <img class="sig__img" src="assets/img/hero/roule.webp" alt="Maxi Roulé" loading="lazy">
+      </article>
+      <article class="sig__panel sig__panel--coal">
+        <div class="sig__copy">
+          <p class="sig__num">05</p>
+          <h2 class="sig__name">Frites bowl<br><span class="fire">3 fromages</span></h2>
+          <ul class="chips"><li>Frites</li><li>Trois fromages fondus</li><li>Bacon</li></ul>
+          <p class="sig__price"><b>7,50 €</b><span>Aussi en escalope, steak, tchika ou saumon</span></p>
+          <button class="btn btn--fire" data-add='{"n":"Frites Bowl 3 Fromages & Bacon","l":"","v":7.5,"img":"assets/img/hero/bowl.webp"}'>Ajouter <span aria-hidden="true">+</span></button>
+        </div>
+        <img class="sig__img" src="assets/img/hero/bowl.webp" alt="Frites bowl trois fromages et bacon" loading="lazy">
+      </article>
+    </div>
+    <div class="sig__bar" aria-hidden="true"><i data-sig-bar></i></div>
+  </div>
+</section>
+
+<!-- ================= QUELLE FAIM ================= -->
+<section class="faim" id="faim">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--dark">Le conseil du chef</p>
+    <h2 class="h2">Quelle faim<br>avez-vous <span class="chili">ce soir ?</span></h2>
+    <div class="moods" role="tablist" aria-label="Choisir sa faim">
+      <button class="mood is-on" role="tab" aria-selected="true" data-mood="0"><b>01</b>Petit creux</button>
+      <button class="mood" role="tab" aria-selected="false" data-mood="1"><b>02</b>Grosse faim</button>
+      <button class="mood" role="tab" aria-selected="false" data-mood="2"><b>03</b>Faim de loup</button>
+      <button class="mood" role="tab" aria-selected="false" data-mood="3"><b>04</b>Entre potes</button>
+    </div>
+    <div class="combo" data-combo aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- ================= CARTE ================= -->
+<section class="carte" id="carte">
+  <div class="wrap">
+    <div class="carte__head">
+      <div><p class="eyebrow">La carte complète</p><h2 class="h2 h2--light">Tout est <span class="fire">là.</span></h2></div>
+      <label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" placeholder="Une envie ? chèvre, tacos, saumon…" data-search aria-label="Rechercher dans la carte"></label>
+    </div>
+  </div>
+  <nav class="cats" aria-label="Catégories"><div class="cats__inner" data-cats></div></nav>
+  <div class="wrap"><div class="menu" data-menu></div><p class="menu__empty" data-empty hidden>Rien ne correspond… mais un Tacos Le Anas, ça marche toujours.</p></div>
+</section>
+
+<!-- ================= BOX DU PEUPLE ================= -->
+<section class="box" id="box">
+  <div class="wrap box__grid">
+    <div>
+      <p class="eyebrow eyebrow--dark">Réservé aux abonnés</p>
+      <h2 class="box__title">La Box<br>du Peuple</h2>
+      <p class="box__lead">Les offres qui ont fait parler TikTok. Montrez que vous suivez <b>@anasgrill69</b> et repartez avec la box.</p>
+      <a class="btn btn--coal" href="https://www.tiktok.com/@anasgrill69" target="_blank" rel="noopener">Suivre sur TikTok <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="tickets">
+      <article class="ticket">
+        <p class="ticket__tag">Sur place &amp; à emporter</p>
+        <p class="ticket__price">10<sup>€</sup></p>
+        <p class="ticket__name">Box à 10 €</p>
+        <img src="assets/img/hero/escalope.webp" alt="" loading="lazy">
+        <button class="ticket__add" data-add='{"n":"Box à 10 €","l":"","v":10,"img":"assets/img/hero/escalope.webp"}'>Ajouter +</button>
+      </article>
+      <article class="ticket ticket--alt">
+        <p class="ticket__tag">Livraison possible</p>
+        <p class="ticket__price">20<sup>€</sup></p>
+        <p class="ticket__name">3 pizzas 31 cm</p>
+        <img src="assets/img/hero/pizza.webp" alt="" loading="lazy">
+        <button class="ticket__add" data-add='{"n":"Box 3 pizzas 31 cm à 20 €","l":"","v":20,"img":"assets/img/hero/pizza.webp"}'>Ajouter +</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TIKTOK ================= -->
+<section class="social">
+  <div class="wrap social__grid">
+    <div class="phone" aria-hidden="true">
+      <div class="phone__screen">
+        <div class="tt__avatar">AG</div>
+        <p class="tt__name">ANAS GRILL OFFICIEL</p>
+        <p class="tt__handle">@anasgrill69</p>
+        <div class="tt__stats"><span><b>3 451</b>Abonnements</span><span><b>50K</b>Abonnés</span><span><b>1M</b>J'aime</span></div>
+        <span class="tt__follow">Suivre</span>
+        <p class="tt__bio">Vaulx-en-Velin / Lyon 8e / Villeurbanne Charpennes / Lyon La Duchère / Vénissieux / Rillieux-la-Pape / Bourgoin-Jallieu / Oullins</p>
+        <div class="tt__grid"><i><img src="assets/img/hero/king.webp" alt="" loading="lazy"></i><i><img src="assets/img/hero/tacos.webp" alt="" loading="lazy"></i><i><img src="assets/img/hero/pizza.webp" alt="" loading="lazy"></i><i><img src="assets/img/hero/bowl.webp" alt="" loading="lazy"></i><i><img src="assets/img/hero/roule.webp" alt="" loading="lazy"></i><i><img src="assets/img/hero/tiramisu.webp" alt="" loading="lazy"></i></div>
+      </div>
+    </div>
+    <div>
+      <p class="eyebrow">La communauté</p>
+      <h2 class="h2 h2--light">On est <span class="fire" data-count-to="50000" data-suffix="">50 000</span><br>à avoir faim.</h2>
+      <div class="counters">
+        <div><b data-count-to="1000000" data-format="M">1M</b><span>j'aime sur TikTok</span></div>
+        <div><b data-count-to="967">967</b><span>vidéos publiées</span></div>
+        <div><b data-count-to="8">8</b><span>villes dans la bio</span></div>
+      </div>
+      <a class="btn btn--fire" href="https://www.tiktok.com/@anasgrill69" target="_blank" rel="noopener">Voir les vidéos <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LIVRAISON ================= -->
+<section class="livraison" id="livraison">
+  <div class="wrap">
+    <p class="eyebrow">Livraison &amp; retrait</p>
+    <h2 class="h2 h2--light">On arrive <span class="fire">chaud.</span></h2>
+    <div class="liv__grid">
+      <div class="liv__zones">
+        <p class="liv__label">Choisissez votre ville</p>
+        <div class="zones" data-zones></div>
+      </div>
+      <div class="liv__card" data-zone-card aria-live="polite"></div>
+    </div>
+    <div class="spot">
+      <div><p class="liv__label">À emporter ou sur place</p><p class="spot__addr">5 rue Lamartine<br>69120 Vaulx-en-Velin</p></div>
+      <div class="spot__ctas">
+        <a class="btn btn--ghost" href="tel:+33472166517">04 72 16 65 17</a>
+        <a class="btn btn--fire" href="https://www.google.com/maps/search/?api=1&amp;query=ANAS%20FOOD%205%20rue%20Lamartine%2069120%20Vaulx-en-Velin" target="_blank" rel="noopener">Itinéraire <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <p class="foot__giant" aria-hidden="true">ANAS<span>FOOD</span></p>
+  <div class="wrap foot__row">
+    <span>© Anas Food — 5 rue Lamartine, 69120 Vaulx-en-Velin</span>
+    <span>Proposition de refonte non officielle, imaginée par <a href="../projets/anas-food.html">Ouweis Mansouri</a>. Carte et prix repris d'anasfood.fr (novembre 2026).</span>
+  </div>
+</footer>
+
+<!-- Cart drawer -->
+<div class="drawer" data-drawer aria-hidden="true">
+  <div class="drawer__scrim" data-close-cart></div>
+  <aside class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+    <header class="drawer__head"><h2 id="cart-title">Votre commande</h2><button class="drawer__x" data-close-cart aria-label="Fermer le panier">✕</button></header>
+    <div class="drawer__mode" role="radiogroup" aria-label="Mode de retrait">
+      <button class="is-on" data-mode="delivery" role="radio" aria-checked="true">Livraison</button>
+      <button data-mode="pickup" role="radio" aria-checked="false">À emporter</button>
+    </div>
+    <label class="drawer__zone" data-zone-wrap>Livrer à
+      <select data-zone-select></select>
+    </label>
+    <ul class="drawer__list" data-cart-list></ul>
+    <div class="drawer__empty" data-cart-empty><img src="assets/img/hero/frites.webp" alt=""><p>Votre panier attend sa première commande.</p></div>
+    <footer class="drawer__foot">
+      <div class="drawer__progress" data-min-wrap><p data-min-text></p><i><b data-min-bar></b></i></div>
+      <dl class="drawer__sum">
+        <div><dt>Sous-total</dt><dd data-subtotal>0,00 €</dd></div>
+        <div data-fee-row><dt>Livraison</dt><dd data-fee>3,00 €</dd></div>
+        <div class="drawer__total"><dt>Total</dt><dd data-total>0,00 €</dd></div>
+      </dl>
+      <button class="btn btn--fire btn--block" data-checkout>Valider la commande</button>
+    </footer>
+  </aside>
+</div>
+
+<!-- Checkout modal -->
+<div class="modal" data-modal aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal__box">
+    <img src="assets/img/hero/king.webp" alt="">
+    <h2 id="modal-title">C'est presque dans votre assiette.</h2>
+    <p>Ce site est une proposition de refonte : dans la version finale, votre commande partirait directement en cuisine. En attendant, finalisez-la sur le site actuel d'Anas Food.</p>
+    <div class="modal__ctas"><a class="btn btn--fire" href="https://anasfood.fr/categories" target="_blank" rel="noopener">Finaliser sur anasfood.fr <span aria-hidden="true">↗</span></a><button class="btn btn--ghost" data-close-modal>Continuer</button></div>
+  </div>
+</div>
+
+<div class="toast" data-toast role="status" aria-live="polite"></div>
+<a class="concept" href="../projets/anas-food.html">Proposition de refonte · <b>voir l'étude de cas</b></a>
+
+<script src="assets/js/menu-data.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</body>
+</html>
