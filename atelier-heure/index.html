@@ -1,121 +1,178 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" class="no-js">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Atelier Heure — Composez votre montre (concept)</title>
-<meta name="description" content="Atelier Heure : configurateur 3D de montre automatique. Concept personnel d'Ouweis Mansouri, marque fictive.">
+<title>Atelier Heure — Maison horlogère, Lyon (concept)</title>
+<meta name="description" content="Atelier Heure : site vitrine d'une maison horlogère fictive. Concept personnel d'Ouweis Mansouri.">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#0b0c0f">
+<meta name="theme-color" content="#000000">
+<script>document.documentElement.classList.replace('no-js','js')</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=Inter:wght@300;400;500;700&display=swap">
+<link rel="preload" as="image" href="assets/img/watch-noir.webp" type="image/webp">
 <link rel="stylesheet" href="assets/css/style.css">
-<script type="importmap">{"imports":{"three":"./assets/vendor/three.module.min.js","three/addons/":"./assets/vendor/addons/"}}</script>
 </head>
 <body>
+<a class="skip" href="#collections">Aller aux collections</a>
+<div class="cursor" aria-hidden="true"><i></i></div>
 
-<header class="top">
-  <a href="#" class="brand" aria-label="Atelier Heure">ATELIER <i>Heure</i></a>
-  <nav class="top__nav" aria-label="Principal"><a href="#configurateur">Configurateur</a><a href="#savoir-faire">Savoir-faire</a><a href="#garantie">Garantie</a></nav>
-  <p class="top__time mono">Lyon <time data-clock>--:--:--</time></p>
+<!-- ================= NAV ================= -->
+<header class="nav" data-nav>
+  <a href="#top" class="nav__brand" aria-label="Atelier Heure — accueil">Atelier <i>Heure</i></a>
+  <nav class="nav__links" aria-label="Principal">
+    <a href="#collections">Collections</a><a href="#heritage">Héritage</a><a href="#savoir-faire">Savoir-faire</a><a href="#galerie">Galerie</a>
+  </nav>
+  <a href="#contact" class="pill pill--sm">Rendez-vous</a>
 </header>
 
 <main>
-<section class="config" id="configurateur">
-  <!-- Stage -->
-  <div class="stage">
-    <canvas class="stage__canvas" aria-label="Montre en 3D : faites-la tourner avec la souris ou le doigt"></canvas>
-    <div class="stage__fallback" hidden><p>La 3D n'est pas disponible sur cet appareil.</p></div>
-    <div class="stage__title">
-      <p class="mono kicker">Modèle AH-01 · 40 mm · automatique</p>
-      <h1>Composez<br><em>votre heure.</em></h1>
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="hero__inner" data-hero>
+    <div class="hero__media" aria-hidden="true">
+      <canvas class="dust" data-dust></canvas>
+      <div class="hero__halo"></div>
+      <img class="hero__watch" src="assets/img/watch-noir.webp" alt="" width="782" height="1156" data-hero-watch>
+      <div class="hero__shade"></div>
     </div>
-    <div class="stage__loading mono" data-loading>Assemblage en cours…</div>
-    <div class="stage__views" role="group" aria-label="Vues">
-      <button class="chip is-on" data-view="face">Face</button>
-      <button class="chip" data-view="profil">Profil</button>
-      <button class="chip" data-view="dos">Dos</button>
-      <button class="chip chip--accent" data-explode aria-pressed="false">Vue éclatée</button>
+    <div class="hero__copy">
+      <p class="eyebrow" data-hero-in>L'excellence horlogère lyonnaise</p>
+      <h1 class="hero__title" aria-label="Le temps est un art">
+        <span class="line" aria-hidden="true"><span data-hero-line>Le temps</span></span>
+        <span class="line" aria-hidden="true"><span data-hero-line><i>est un</i></span></span>
+        <span class="line" aria-hidden="true"><span data-hero-line>art</span></span>
+      </h1>
+      <a href="#collections" class="pill" data-hero-in>Découvrir les collections</a>
     </div>
-    <p class="stage__hint mono" aria-hidden="true">Glissez pour tourner · molette pour zoomer</p>
+    <p class="hero__scroll" aria-hidden="true"><i></i>Défiler</p>
   </div>
-
-  <!-- Panel -->
-  <aside class="panel" aria-label="Personnalisation">
-    <div class="panel__scroll">
-      <fieldset class="step">
-        <legend><span class="mono">01</span>Boîtier<small data-label="case"></small></legend>
-        <div class="swatches" data-group="case"></div>
-      </fieldset>
-      <fieldset class="step">
-        <legend><span class="mono">02</span>Cadran<small data-label="dial"></small></legend>
-        <div class="swatches" data-group="dial"></div>
-      </fieldset>
-      <fieldset class="step">
-        <legend><span class="mono">03</span>Bracelet<small data-label="strap"></small></legend>
-        <div class="swatches" data-group="strap"></div>
-      </fieldset>
-      <fieldset class="step">
-        <legend><span class="mono">04</span>Gravure du fond<small>+ 45 €</small></legend>
-        <label class="engrave">
-          <input type="text" maxlength="12" placeholder="Vos initiales, une date…" data-engrave aria-label="Texte à graver au dos">
-          <span class="mono" data-engrave-count>0/12</span>
-        </label>
-        <p class="step__note">Le texte apparaît en direct au dos de la montre.</p>
-      </fieldset>
-
-      <dl class="recap" data-recap></dl>
-    </div>
-    <div class="panel__foot">
-      <div class="total"><span class="mono">Votre montre</span><b data-price>830 €</b></div>
-      <div class="panel__ctas">
-        <button class="btn btn--light" data-share>Partager</button>
-        <button class="btn btn--accent" data-order>Commander</button>
-      </div>
-    </div>
-  </aside>
 </section>
 
+<!-- ================= COLLECTIONS (desktop pinned) ================= -->
+<section class="collections" id="collections" aria-label="Collections">
+  <div class="col__stage" data-col-stage>
+    <div class="col__bg" data-col-bg aria-hidden="true"></div>
+    <canvas class="col__particles" data-particles aria-hidden="true"></canvas>
+    <p class="col__ghost" data-col-ghost aria-hidden="true"></p>
+
+    <div class="col__left">
+      <p class="col__num"><span data-col-num>01</span><i>/ 04</i></p>
+      <div class="col__swap" data-col-left></div>
+    </div>
+    <div class="col__center" data-col-center></div>
+    <div class="col__right" data-col-right></div>
+
+    <div class="col__dots" role="tablist" aria-label="Choisir une collection" data-col-dots></div>
+  </div>
+  <!-- Mobile: stacked collections -->
+  <div class="col__list" data-col-list></div>
+</section>
+
+<!-- ================= HERITAGE ================= -->
+<section class="heritage" id="heritage">
+  <figure class="heritage__media" data-mask>
+    <img src="assets/img/heritage.webp" alt="Chronographe Atelier Heure en noir et blanc" width="680" height="1020" loading="lazy" data-heritage-img>
+    <figcaption>Le chronographe Héritage, réédité en 2026</figcaption>
+  </figure>
+  <div class="heritage__copy">
+    <p class="eyebrow eyebrow--gold" data-st>Depuis 1884</p>
+    <h2 class="h2" data-st>Un héritage<br><i>de perfection</i></h2>
+    <p class="body" data-st>Tout commence sur les pentes de la Croix-Rousse, dans l'atelier d'un horloger qui réparait les montres des canuts. Cinq générations plus tard, chaque Atelier Heure est encore assemblée à la main, à Lyon, par une équipe de douze artisans.</p>
+    <p class="body" data-st>Nous ne produisons que 900 montres par an. Assez pour en prendre soin, une par une, pendant toute leur vie.</p>
+    <dl class="figures" data-st>
+      <div><dt>142</dt><dd>ans de savoir-faire</dd></div>
+      <div><dt>12</dt><dd>maîtres horlogers</dd></div>
+      <div><dt>900</dt><dd>pièces par an</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ================= SAVOIR-FAIRE ================= -->
 <section class="craft" id="savoir-faire">
-  <div class="craft__head">
-    <p class="mono kicker">Savoir-faire</p>
-    <h2>Assemblée à la main,<br><em>réglée à Lyon.</em></h2>
-  </div>
-  <div class="specs">
-    <article><span class="mono">Mouvement</span><b>Calibre AH-01</b><p>Automatique, 42 heures de réserve de marche, 28 800 alternances par heure.</p></article>
-    <article><span class="mono">Verre</span><b>Saphir bombé</b><p>Traitement antireflet sur la face intérieure, inrayable au quotidien.</p></article>
-    <article><span class="mono">Étanchéité</span><b>100 mètres</b><p>Couronne vissée et fond plein gravé, testés un par un avant expédition.</p></article>
-    <article><span class="mono">Dimensions</span><b>40 × 11,4 mm</b><p>Entre-cornes de 20 mm, bracelets interchangeables sans outil.</p></article>
+  <div class="craft__sticky">
+    <div class="craft__bg" data-craft-bg aria-hidden="true">
+      <svg class="gears" viewBox="0 0 1000 1000" data-gears></svg>
+    </div>
+    <div class="craft__ring" aria-hidden="true"></div>
+    <div class="craft__ring craft__ring--2" aria-hidden="true"></div>
+    <div class="craft__copy" data-craft-copy>
+      <p class="eyebrow">Savoir-faire</p>
+      <h2 class="craft__title">Précision<br><i>invisible</i></h2>
+      <p class="body">312 composants, 120 heures d'assemblage et de réglage, cinq positions de test. Ce que vous ne verrez jamais est précisément ce qui fait une grande montre.</p>
+      <dl class="figures figures--center">
+        <div><dt>312</dt><dd>composants</dd></div>
+        <div><dt>120 h</dt><dd>d'assemblage</dd></div>
+        <div><dt>±2 s</dt><dd>par jour</dd></div>
+      </dl>
+    </div>
   </div>
 </section>
 
-<section class="guarantee" id="garantie">
-  <p class="guarantee__big">5 ans</p>
-  <div><h2>de garantie,<br><em>et un service à vie.</em></h2><p>Révision, polissage, nouveau bracelet : votre montre revient à l'atelier aussi souvent qu'il le faut.</p></div>
+<!-- ================= GALERIE ================= -->
+<section class="gallery" id="galerie" aria-label="Galerie">
+  <div class="gallery__pin" data-gallery-pin>
+    <div class="gallery__head">
+      <p class="eyebrow">Galerie</p>
+      <h2 class="h2">Dans le <i>détail</i></h2>
+    </div>
+    <div class="gallery__track" data-gallery-track></div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <div class="contact__grid">
+    <div data-fade>
+      <p class="eyebrow eyebrow--gold">Rendez-vous privé</p>
+      <h2 class="h2">Essayez-la<br><i>à votre poignet</i></h2>
+      <p class="body">Nos boutiques vous reçoivent sur rendez-vous, le temps qu'il faut, pour essayer chaque collection et choisir le bracelet qui vous ressemble.</p>
+      <ul class="boutiques">
+        <li><b>Lyon</b><span>Place des Célestins</span></li>
+        <li><b>Paris</b><span>Rue de la Paix</span></li>
+        <li><b>Genève</b><span>Rue du Rhône</span></li>
+        <li><b>Tokyo</b><span>Ginza</span></li>
+      </ul>
+    </div>
+    <form class="form" data-form data-fade novalidate>
+      <label class="field"><span>Nom</span><input name="name" autocomplete="name" required></label>
+      <label class="field"><span>E-mail</span><input name="email" type="email" autocomplete="email" required></label>
+      <label class="field"><span>Boutique</span>
+        <select name="boutique" required><option value="" disabled selected>Choisir une boutique</option><option>Lyon</option><option>Paris</option><option>Genève</option><option>Tokyo</option></select>
+      </label>
+      <label class="field"><span>Collection</span>
+        <select name="collection"><option>Royal Océan</option><option>Héritage Sahara</option><option>Élégance Rose</option><option>Noir Carmin</option><option>Je ne sais pas encore</option></select>
+      </label>
+      <button class="pill pill--light" type="submit">Demander un rendez-vous</button>
+      <p class="form__msg" data-form-msg role="status" aria-live="polite"></p>
+    </form>
+  </div>
 </section>
 </main>
 
 <footer class="foot">
-  <p class="foot__brand">ATELIER <i>Heure</i></p>
-  <p class="mono">Marque fictive — concept imaginé par <a href="../projets/atelier-heure.html">Ouweis Mansouri</a></p>
+  <p class="foot__giant" aria-hidden="true">Atelier <i>Heure</i></p>
+  <div class="foot__row">
+    <span class="foot__brand">Atelier <i>Heure</i></span>
+    <nav aria-label="Liens"><a href="#">Instagram</a><a href="#">Journal</a><a href="#">Mentions légales</a></nav>
+    <span>Maison fictive — concept par <a href="../projets/atelier-heure.html">Ouweis Mansouri</a></span>
+  </div>
 </footer>
 
-<!-- Order sheet -->
-<div class="sheet" data-sheet aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
-  <div class="sheet__box">
-    <button class="sheet__x" data-close aria-label="Fermer">✕</button>
-    <p class="mono kicker">Récapitulatif</p>
-    <h2 id="sheet-title">Votre <em>Atelier Heure</em></h2>
-    <dl class="recap recap--sheet" data-recap-sheet></dl>
-    <div class="total total--sheet"><span class="mono">Total</span><b data-price-sheet></b></div>
-    <p class="sheet__note">Assemblée et réglée à la main, livrée sous trois semaines. Ceci est un prototype : aucune commande n'est passée.</p>
-    <button class="btn btn--accent btn--block" data-close>Parfait, merci</button>
-  </div>
+<!-- Gallery modal -->
+<div class="modal" data-modal role="dialog" aria-modal="true" aria-label="Image agrandie" aria-hidden="true">
+  <button class="modal__x" data-modal-close aria-label="Fermer">✕</button>
+  <button class="modal__nav modal__nav--prev" data-modal-prev aria-label="Image précédente">←</button>
+  <figure class="modal__fig"><img alt="" data-modal-img><figcaption><b data-modal-title></b><span data-modal-text></span></figcaption></figure>
+  <button class="modal__nav modal__nav--next" data-modal-next aria-label="Image suivante">→</button>
 </div>
-<div class="toast" data-toast role="status" aria-live="polite"></div>
-<a class="concept mono" href="../projets/atelier-heure.html">Concept · <b>voir l'étude de cas</b></a>
 
-<script type="module" src="assets/js/app.js"></script>
+<a class="concept" href="../projets/atelier-heure.html">Concept · <b>voir l'étude de cas</b></a>
+
+<script src="assets/vendor/gsap.min.js" defer></script>
+<script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+<script src="assets/vendor/lenis.min.js" defer></script>
+<script src="assets/js/app.js" defer></script>
 </body>
 </html>
