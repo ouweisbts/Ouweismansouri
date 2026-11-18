@@ -204,6 +204,26 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--violet
 .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:clamp(70px,9vw,120px);padding-bottom:30px;font-size:.85rem;color:rgba(242,236,228,.6)}
 .foot a:hover{color:var(--cream)}
 
+/* ---------- Manifesto: words light up on scroll ---------- */
+.manifesto{background:var(--paper);padding-block:clamp(90px,12vw,170px)}
+.manifesto__grid{display:grid;grid-template-columns:1fr 3fr;gap:var(--g)}
+.manifesto__side{display:flex;flex-direction:column;justify-content:space-between;gap:30px}
+.manifesto__badge{position:relative;width:clamp(104px,10vw,150px);aspect-ratio:1}
+.manifesto__ring{position:absolute;inset:0;border-radius:50%;overflow:hidden}
+.manifesto__ring svg{width:100%;height:100%;animation:spin 20s linear infinite}
+.manifesto__ring text{font-family:var(--sans);font-weight:600;font-size:7.4px;letter-spacing:2.3px;fill:var(--violet)}
+.manifesto__badge b{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,2.4vw,2.4rem);color:var(--violet)}
+.manifesto__text{font-size:clamp(1.9rem,4.3vw,4.6rem);line-height:1.1;letter-spacing:-.025em;color:var(--ink)}
+.manifesto__text em{font-size:1.06em;letter-spacing:-.01em}
+.js .manifesto__text .w{opacity:.14}
+@media (min-width:901px){.manifesto{min-height:100vh;min-height:100svh;display:flex;align-items:center}.manifesto>.wrap{width:100%}}
+@media (max-width:900px){.manifesto__grid{grid-template-columns:1fr}.manifesto__side{flex-direction:row;align-items:center}}
+
+/* ---------- Giant name at the very bottom ---------- */
+.contact{overflow:hidden}
+.giant{font-family:var(--serif);font-size:min(17vw,25rem);line-height:.86;letter-spacing:-.035em;white-space:nowrap;text-align:center;margin:clamp(10px,2vw,30px) 0 -.13em;color:rgba(242,236,228,.11);user-select:none;pointer-events:none}
+.giant em{color:inherit}
+
 /* ---------- Reveal (JS only) ---------- */
 .js [data-reveal],.js [data-in]{opacity:0;transform:translateY(30px)}
 .js [data-line]{transform:translateY(105%)}
@@ -212,4 +232,5 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--violet
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
   .js [data-reveal],.js [data-in],.js [data-line],.js [data-photo]{opacity:1!important;transform:none!important}
+  .js .manifesto__text .w{opacity:1!important}
 }
