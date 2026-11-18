@@ -63,10 +63,10 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--violet
 .nav.is-scrolled{background:rgba(251,248,244,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
 .nav.is-hidden{transform:translateY(-100%)}
 .nav__logo{display:flex;align-items:center;gap:12px;font-weight:600;font-size:.95rem}
-/* Monogram badge: the SVG is a knock-out mask (disc with the signature cut out), so the disc takes
-   the text colour of its context and the signature shows the background behind it */
-.om-badge{display:inline-block;flex:none;width:42px;height:42px;background:currentColor;-webkit-mask:url(../img/logo-badge-mask.svg) center/contain no-repeat;mask:url(../img/logo-badge-mask.svg) center/contain no-repeat}
-.nav__logo .om-badge{color:var(--ink)}
+/* Signature logo, same drawing and violet as the favicon. The SVG is used as a mask,
+   so it takes the colour set here (or the text colour of its context) */
+.sig{display:inline-block;flex:none;aspect-ratio:831.9/574.3;background:currentColor;-webkit-mask:url(../img/logo-om.svg) center/contain no-repeat;mask:url(../img/logo-om.svg) center/contain no-repeat}
+.nav__logo .sig{height:46px;color:#5f4e82}
 .nav__links{display:flex;gap:clamp(18px,2.6vw,38px);font-size:.95rem;font-weight:500;color:var(--muted)}
 .nav__links a{position:relative;padding:6px 0;transition:color .3s}
 .nav__links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--violet);transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
