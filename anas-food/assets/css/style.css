@@ -131,6 +131,8 @@ ul{list-style:none}
 }
 
 /* ---------- Ticker ---------- */
+/* The tilted strip is wider than the screen: clip it sideways only, so phones cannot pan. */
+.ticker-wrap{overflow-x:clip}
 .ticker{background:var(--cream);color:var(--coal);overflow:hidden;white-space:nowrap;padding:16px 0;rotate:-1.6deg;scale:1.03;margin:10px 0 0;box-shadow:0 20px 50px -20px rgba(0,0,0,.6);position:relative;z-index:3}
 .ticker__track{display:inline-flex;align-items:center;gap:30px;animation:slide 26s linear infinite;padding-right:30px;font-family:var(--disp);font-weight:900;font-size:clamp(1.5rem,3vw,2.6rem);text-transform:uppercase}
 .ticker .star{color:var(--fire)}
