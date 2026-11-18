@@ -39,6 +39,7 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--violet
 
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--violet)}
 .eyebrow--light{color:var(--cream-2)}
+@media (max-width:340px){.hero .eyebrow{letter-spacing:.1em}}
 .dot{width:8px;height:8px;border-radius:50%;background:#3fbf6f;box-shadow:0 0 0 0 rgba(63,191,111,.5);animation:ping 2.2s infinite}
 @keyframes ping{70%{box-shadow:0 0 0 9px rgba(63,191,111,0)}100%{box-shadow:0 0 0 0 rgba(63,191,111,0)}}
 .h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,5.6vw,5.2rem);line-height:1;letter-spacing:-.015em;color:var(--ink);margin-top:14px}
