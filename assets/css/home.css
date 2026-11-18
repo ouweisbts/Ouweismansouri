@@ -62,7 +62,7 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--violet
 .nav{position:fixed;inset:0 0 auto;z-index:60;height:var(--nav);display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 var(--g);transition:background .4s,box-shadow .4s,transform .5s var(--ease)}
 .nav.is-scrolled{background:rgba(251,248,244,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
 .nav.is-hidden{transform:translateY(-100%)}
-.nav__logo{display:flex;align-items:center;gap:12px;font-weight:600;font-size:.95rem}
+.nav__logo{display:flex;align-items:center}
 /* Signature logo, same drawing and violet as the favicon. The SVG is used as a mask,
    so it takes the colour set here (or the text colour of its context) */
 .sig{display:inline-block;flex:none;aspect-ratio:831.9/574.3;background:currentColor;-webkit-mask:url(../img/logo-om.svg) center/contain no-repeat;mask:url(../img/logo-om.svg) center/contain no-repeat}
@@ -81,7 +81,7 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--violet
 .menu.is-open{clip-path:inset(0);visibility:visible;transition:clip-path .7s var(--ease)}
 .menu nav{display:flex;flex-direction:column}
 .menu nav a{font-family:var(--serif);font-size:clamp(2.8rem,13vw,4.4rem);line-height:1.15;border-bottom:1px solid var(--line);padding:6px 0}
-@media (max-width:860px){.nav__links,.nav>.btn{display:none}.burger{display:block}.nav__logo{font-size:0}}
+@media (max-width:860px){.nav__links,.nav>.btn{display:none}.burger{display:block}}
 
 /* ---------- Hero ---------- */
 .hero{position:relative;padding-top:calc(var(--nav) + clamp(24px,5vh,64px));overflow:hidden;background:radial-gradient(60% 70% at 85% 30%,rgba(143,127,176,.16),transparent 70%),var(--paper)}
