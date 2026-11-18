@@ -76,10 +76,10 @@
     .to('[data-line]', { y: 0, yPercent: 0, duration: 1.3, ease: 'expo.out', stagger: 0.1 }, 0.1)
     .to('[data-in]', { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out', stagger: 0.08 }, 0.35);
 
-  /* ---------- Manifesto: words light up as you scroll ---------- */
-  // Created before the other triggers so its pin is measured first.
+  /* ---------- Manifesto: words light up as you scroll (phones and tablets only) ---------- */
+  // On a computer (mouse or trackpad) the text simply shows in full.
   const mani = $('[data-words]');
-  if (mani && !reduced) {
+  if (mani && !reduced && !fine) {
     const walk = (node) => [...node.childNodes].forEach((c) => {
       if (c.nodeType === 1) return walk(c);
       if (c.nodeType !== 3) return;
@@ -98,13 +98,7 @@
       const t = p * (n + 3) - 1.5;
       words.forEach((w, i) => { const k = Math.min(1, Math.max(0, t - i)); w.style.opacity = (0.14 + 0.86 * k).toFixed(3); });
     };
-    const mmM = gsap.matchMedia();
-    mmM.add('(min-width: 901px)', () => {
-      ScrollTrigger.create({ trigger: '.manifesto', start: 'top top', end: '+=110%', pin: true, scrub: true, onUpdate: (st) => light(st.progress) });
-    });
-    mmM.add('(max-width: 900px)', () => {
-      ScrollTrigger.create({ trigger: mani, start: 'top 82%', end: 'bottom 42%', scrub: true, onUpdate: (st) => light(st.progress) });
-    });
+    ScrollTrigger.create({ trigger: mani, start: 'top 82%', end: 'bottom 42%', scrub: true, onUpdate: (st) => light(st.progress) });
   }
 
   /* ---------- Reveals ---------- */
