@@ -88,7 +88,10 @@ em{font-family:var(--serif);font-style:italic;font-weight:400}
 .header{position:fixed;inset:0 0 auto;z-index:1000;height:var(--header);display:flex;align-items:center;justify-content:space-between;gap:24px;padding-inline:var(--g);mix-blend-mode:difference;color:#fff;transition:transform .7s var(--ease)}
 .header.is-hidden{transform:translateY(-110%)}
 .logo{font-family:var(--serif);font-size:1.75rem;line-height:1;display:inline-flex;align-items:flex-start;gap:2px}
-.logo sup{font-family:var(--mono);font-size:.5rem;margin-top:2px}
+/* Signature logo: the SVG is used as a mask, so it takes the text colour of its context */
+.sig{display:inline-block;flex:none;aspect-ratio:900/513;background:currentColor;-webkit-mask:url(../img/logo-om.svg) center/contain no-repeat;mask:url(../img/logo-om.svg) center/contain no-repeat}
+.logo .sig{height:40px}
+.curtain .sig{width:clamp(150px,18vw,260px)}
 .nav{display:flex;gap:clamp(18px,2.6vw,40px)}
 .nav a{position:relative;display:inline-flex;overflow:hidden;font-size:.92rem;height:1.5em;line-height:1.5}
 .nav a span{display:block;transition:transform .6s var(--ease)}
