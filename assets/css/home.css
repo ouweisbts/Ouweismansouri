@@ -184,7 +184,15 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--violet
 .about__ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
 .timeline{background:var(--white);border:1px solid var(--line);border-radius:24px;padding:clamp(24px,2.8vw,40px)}
 .timeline__title{font-weight:600;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--violet);margin-bottom:12px}
-.timeline li{display:grid;grid-template-columns:96px 1fr;column-gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.timeline__track{position:relative;padding-left:30px}
+.timeline li{position:relative;display:grid;grid-template-columns:96px 1fr;column-gap:16px;padding:14px 0;border-bottom:1px solid var(--line);transition:opacity .6s var(--ease)}
+/* Scroll-filled line, as on the Dubaï Center history page: --tl-top/--tl-h are set by home.js */
+.timeline__line{position:absolute;left:4.5px;top:var(--tl-top,26px);height:var(--tl-h,calc(100% - 52px));width:3px;border-radius:2px;background:var(--cream-2);overflow:hidden}
+.timeline__fill{position:absolute;inset:0;background:linear-gradient(var(--violet),var(--violet-soft));transform-origin:top center}
+.js .timeline__fill{transform:scaleY(0)}
+.timeline li::before{content:"";position:absolute;left:-30px;top:20px;width:12px;height:12px;border-radius:50%;border:2px solid var(--violet);background:var(--violet);box-shadow:0 0 0 5px rgba(91,74,125,.12);z-index:1;transition:background .4s var(--ease),border-color .4s var(--ease),box-shadow .4s var(--ease)}
+.js .timeline li:not(.is-reached){opacity:.45}
+.js .timeline li:not(.is-reached)::before{background:var(--white);border-color:var(--cream-2);box-shadow:0 0 0 0 rgba(91,74,125,0)}
 .timeline li:last-child{border-bottom:0;padding-bottom:0}
 .timeline li span{grid-row:span 2;font-size:.85rem;font-weight:600;color:var(--muted);padding-top:2px}
 .timeline li b{font-weight:600;line-height:1.35}
@@ -233,4 +241,6 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--violet
   *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
   .js [data-reveal],.js [data-in],.js [data-line],.js [data-photo]{opacity:1!important;transform:none!important}
   .js .manifesto__text .w{opacity:1!important}
+  .js .timeline__fill{transform:none!important}
+  .js .timeline li{opacity:1!important}
 }
