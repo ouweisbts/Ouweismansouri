@@ -89,8 +89,11 @@ em{font-family:var(--serif);font-style:italic;font-weight:400}
 .header.is-hidden{transform:translateY(-110%)}
 .logo{font-family:var(--serif);font-size:1.75rem;line-height:1;display:inline-flex;align-items:flex-start;gap:2px}
 /* Signature logo: the SVG is used as a mask, so it takes the text colour of its context */
-.sig{display:inline-block;flex:none;aspect-ratio:900/513;background:currentColor;-webkit-mask:url(../img/logo-om.svg) center/contain no-repeat;mask:url(../img/logo-om.svg) center/contain no-repeat}
-.logo .sig{height:40px}
+.sig{display:inline-block;flex:none;aspect-ratio:831.9/574.3;background:currentColor;-webkit-mask:url(../img/logo-om.svg) center/contain no-repeat;mask:url(../img/logo-om.svg) center/contain no-repeat}
+/* Monogram badge: the SVG is a knock-out mask (disc with the signature cut out), so the disc takes
+   the text colour of its context and the signature shows the background behind it */
+.om-badge{display:inline-block;flex:none;width:42px;height:42px;background:currentColor;-webkit-mask:url(../img/logo-badge-mask.svg) center/contain no-repeat;mask:url(../img/logo-badge-mask.svg) center/contain no-repeat}
+.logo .om-badge{width:44px;height:44px}
 .curtain .sig{width:clamp(150px,18vw,260px)}
 .nav{display:flex;gap:clamp(18px,2.6vw,40px)}
 .nav a{position:relative;display:inline-flex;overflow:hidden;font-size:.92rem;height:1.5em;line-height:1.5}
