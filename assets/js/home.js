@@ -131,6 +131,29 @@
     gsap.to('.hero__photo img', { yPercent: 8, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
   }
 
+  /* ---------- Parcours: the line fills as you scroll ---------- */
+  const track = $('[data-timeline]');
+  if (track) {
+    const fill = $('.timeline__fill', track);
+    const steps = $$('li', track);
+    let marks = [];
+    // The line runs from the first dot to the last one; each dot lights up when the fill reaches it.
+    const measure = () => {
+      const top = track.getBoundingClientRect().top;
+      marks = steps.map((li) => li.getBoundingClientRect().top - top + 26);
+      track.style.setProperty('--tl-top', marks[0] + 'px');
+      track.style.setProperty('--tl-h', (marks[marks.length - 1] - marks[0]) + 'px');
+    };
+    const paint = (p) => {
+      gsap.set(fill, { scaleY: p });
+      const reached = marks[0] + p * (marks[marks.length - 1] - marks[0]) + 1;
+      steps.forEach((li, i) => li.classList.toggle('is-reached', p > 0 && marks[i] <= reached));
+    };
+    measure();
+    if (reduced) paint(1);
+    else ScrollTrigger.create({ trigger: track, start: 'top 78%', end: 'bottom 45%', scrub: 0.4, onRefresh: (st) => { measure(); paint(st.progress); }, onUpdate: (st) => paint(st.progress) });
+  }
+
   /* ---------- Giant name rises at the bottom ---------- */
   if (!reduced) {
     gsap.fromTo('.giant', { yPercent: 45 }, { yPercent: 0, ease: 'none', scrollTrigger: { trigger: '.foot', start: 'top bottom', end: 'max', scrub: true } });
