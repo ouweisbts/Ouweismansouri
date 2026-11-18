@@ -76,10 +76,48 @@
     .to('[data-line]', { y: 0, yPercent: 0, duration: 1.3, ease: 'expo.out', stagger: 0.1 }, 0.1)
     .to('[data-in]', { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out', stagger: 0.08 }, 0.35);
 
+  /* ---------- Manifesto: words light up as you scroll ---------- */
+  // Created before the other triggers so its pin is measured first.
+  const mani = $('[data-words]');
+  if (mani && !reduced) {
+    const walk = (node) => [...node.childNodes].forEach((c) => {
+      if (c.nodeType === 1) return walk(c);
+      if (c.nodeType !== 3) return;
+      const frag = document.createDocumentFragment();
+      c.textContent.split(/(\s+)/).forEach((part) => {
+        if (!part) return;
+        if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+        const w = document.createElement('span'); w.className = 'w'; w.textContent = part; frag.appendChild(w);
+      });
+      c.replaceWith(frag);
+    });
+    walk(mani);
+    const words = $$('.w', mani), n = words.length;
+    // Each word fades from 14 % to 100 % over a short window, so the light travels smoothly.
+    const light = (p) => {
+      const t = p * (n + 3) - 1.5;
+      words.forEach((w, i) => { const k = Math.min(1, Math.max(0, t - i)); w.style.opacity = (0.14 + 0.86 * k).toFixed(3); });
+    };
+    const mmM = gsap.matchMedia();
+    mmM.add('(min-width: 901px)', () => {
+      ScrollTrigger.create({ trigger: '.manifesto', start: 'top top', end: '+=110%', pin: true, scrub: true, onUpdate: (st) => light(st.progress) });
+    });
+    mmM.add('(max-width: 900px)', () => {
+      ScrollTrigger.create({ trigger: mani, start: 'top 82%', end: 'bottom 42%', scrub: true, onUpdate: (st) => light(st.progress) });
+    });
+  }
+
   /* ---------- Reveals ---------- */
   ScrollTrigger.batch('[data-reveal]', {
     start: 'top 88%',
-    onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out', stagger: 0.08, overwrite: true }),
+    onEnter: (els) => {
+      // After a jump (reload mid-page, fast fling), blocks already above the screen show at once,
+      // so the ones in view are not kept waiting at the end of a long stagger.
+      const above = els.filter((e) => e.getBoundingClientRect().bottom < 0);
+      if (above.length) gsap.set(above, { opacity: 1, y: 0, overwrite: true });
+      const rest = els.filter((e) => !above.includes(e));
+      if (rest.length) gsap.to(rest, { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out', stagger: 0.08, overwrite: true });
+    },
   });
 
   /* ---------- Counters ---------- */
@@ -91,6 +129,11 @@
   /* ---------- Gentle parallax on the hero photo ---------- */
   if (!reduced) {
     gsap.to('.hero__photo img', { yPercent: 8, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  }
+
+  /* ---------- Giant name rises at the bottom ---------- */
+  if (!reduced) {
+    gsap.fromTo('.giant', { yPercent: 45 }, { yPercent: 0, ease: 'none', scrollTrigger: { trigger: '.foot', start: 'top bottom', end: 'max', scrub: true } });
   }
 
   addEventListener('load', () => ScrollTrigger.refresh());
