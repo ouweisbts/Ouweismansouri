@@ -62,6 +62,11 @@
       el.addEventListener('mouseenter', () => cur.classList.add('is-on'));
       el.addEventListener('mouseleave', () => cur.classList.remove('is-on'));
     });
+    // The case-study link sits above the card: hide the "Voir" bubble while it is hovered.
+    $$('.card__more').forEach((el) => {
+      el.addEventListener('mouseenter', () => cur.classList.remove('is-on'));
+      el.addEventListener('mouseleave', () => cur.classList.add('is-on'));
+    });
     if (hasGsap) $$('[data-magnetic]').forEach((el) => {
       el.addEventListener('mousemove', (e) => { const r = el.getBoundingClientRect(); gsap.to(el, { x: (e.clientX - r.left - r.width / 2) * 0.25, y: (e.clientY - r.top - r.height / 2) * 0.35, duration: 0.5, ease: 'power3.out' }); });
       el.addEventListener('mouseleave', () => gsap.to(el, { x: 0, y: 0, duration: 0.8, ease: 'elastic.out(1,.45)' }));
