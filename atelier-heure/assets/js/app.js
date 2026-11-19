@@ -204,7 +204,7 @@
   const openModal = (i) => {
     mIdx = (i + GALLERY.length) % GALLERY.length; const [img, title, col, text] = GALLERY[mIdx];
     mImg.src = `assets/img/${img}.webp`; mImg.alt = title;
-    $('[data-modal-title]').textContent = `${title} — ${col}`; $('[data-modal-text]').textContent = text;
+    $('[data-modal-title]').textContent = `${title} · ${col}`; $('[data-modal-text]').textContent = text;
     modal.classList.add('is-open'); modal.setAttribute('aria-hidden', 'false'); lenis?.stop();
   };
   const closeModal = () => { modal.classList.remove('is-open'); modal.setAttribute('aria-hidden', 'true'); lenis?.start(); };
