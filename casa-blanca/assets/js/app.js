@@ -315,19 +315,6 @@
   });
   renderDays(); setGuests(2);
 
-  /* ---------- Ring of text around the chef: spaced to close exactly on itself ---------- */
-  const ringText = $('.vision__ring text'), ringPath = $('#vring');
-  const fitRing = () => {
-    if (!ringText || !ringPath.getTotalLength) return;
-    const full = ringPath.getTotalLength(), n = ringText.textContent.length;
-    for (let k = 0; k < 3; k++) {
-      const ls = parseFloat(getComputedStyle(ringText).letterSpacing) || 0;
-      ringText.style.letterSpacing = (ls + (full - ringText.getComputedTextLength()) / n) + 'px';
-    }
-  };
-  fitRing();
-  document.fonts?.ready.then(fitRing);
-
   /* ---------- Newsletter (demo) ---------- */
   const nl = $('[data-newsletter]'), nlMsg = $('[data-newsletter-msg]');
   nl.addEventListener('submit', (e) => {

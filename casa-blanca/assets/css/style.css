@@ -284,7 +284,7 @@ p{color:var(--creme-70)}
 /* The ring spins inside a round frame that does not: its corners never stick out of the screen (phones would pan sideways) */
 .vision__ringframe{position:absolute;inset:0;border-radius:50%;overflow:hidden;pointer-events:none}
 .vision__ring{position:absolute;inset:0;width:100%;height:100%;animation:spin 40s linear infinite}
-.vision__ring text{font-family:var(--sans);font-size:7.4px;font-weight:500;letter-spacing:3.4px;fill:var(--or-clair)}
+.vision__ring text{font-family:var(--sans);font-size:7.6px;font-weight:500;fill:var(--or-clair)}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* ---------- 8. Experience ---------- */
