@@ -1,7 +1,8 @@
 /* ==========================================================================
    La Casa Blanca by Ouweis — interactions
    Vanilla JS + GSAP/ScrollTrigger + Lenis (vendored). Everything degrades:
-   without GSAP the page is fully readable, with reduced motion nothing moves.
+   without GSAP the page is fully readable, with reduced motion nothing moves
+   and the videos stay on their poster frame.
    ========================================================================== */
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
@@ -9,23 +10,29 @@
   const root = document.documentElement;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const saveData = !!(navigator.connection && navigator.connection.saveData);
   const hasGsap = !!(window.gsap && window.ScrollTrigger);
   // Initial hidden states only apply when we can animate them back in.
   if (!hasGsap || reduced) root.classList.remove('anim');
-  if (!hasGsap) document.querySelector('[data-loader]')?.classList.add('is-done');
+  if (!hasGsap) $('[data-loader]')?.classList.add('is-done');
 
   $$('[data-year]').forEach((y) => { y.textContent = new Date().getFullYear(); });
 
-  /* ---------- Image slots: fallback image, then art-directed placeholder ---------- */
-  const fail = (img) => {
-    const fb = img.dataset.fallback;
-    if (fb && !img.dataset.triedFallback) { img.dataset.triedFallback = '1'; img.src = fb; return; }
-    img.closest('.media')?.classList.add('is-missing');
-  };
-  $$('img[data-slot]').forEach((img) => {
-    img.addEventListener('error', () => fail(img));
-    if (img.complete && img.naturalWidth === 0 && img.getAttribute('loading') !== 'lazy') fail(img);
-  });
+  /* ---------- Videos: load when near the screen, play only while visible ---------- */
+  const motionOk = !reduced && !saveData;
+  const videos = $$('video.vid');
+  const play = (v) => { const p = v.play(); if (p) p.catch(() => {}); };
+  if (!motionOk) {
+    videos.forEach((v) => { v.removeAttribute('autoplay'); v.pause(); });
+  } else {
+    const io = new IntersectionObserver((entries) => entries.forEach(({ target: v, isIntersecting }) => {
+      if (isIntersecting) {
+        if (v.dataset.src && !v.getAttribute('src')) { v.src = v.dataset.src; v.preload = 'auto'; }
+        play(v);
+      } else if (!v.paused) v.pause();
+    }), { rootMargin: '200px 0px' });
+    videos.forEach((v) => io.observe(v));
+  }
 
   /* ---------- Smooth scroll ---------- */
   let lenis = null;
@@ -43,8 +50,10 @@
     else (typeof target === 'number' ? scrollTo({ top: target, behavior: reduced ? 'auto' : 'smooth' }) : target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' }));
   };
 
-  /* ---------- Navigation & mobile menu ---------- */
+  /* ---------- Navigation, mobile menu, sticky phone button ---------- */
   const nav = $('[data-nav]'), burger = $('.burger'), menu = $('#menu'), sticky = $('[data-sticky-cta]');
+  let bookingVisible = false, heroCtaVisible = true;
+  const updateSticky = () => sticky.classList.toggle('is-away', bookingVisible || heroCtaVisible || menu.classList.contains('is-open'));
   const setMenu = (open) => {
     menu.classList.toggle('is-open', open);
     menu.setAttribute('aria-hidden', String(!open));
@@ -55,17 +64,9 @@
   };
   burger.addEventListener('click', () => setMenu(!menu.classList.contains('is-open')));
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && menu.classList.contains('is-open')) setMenu(false); });
-
-  $$('a[href^="#"]').forEach((a) => a.addEventListener('click', (e) => {
-    const id = a.getAttribute('href');
-    if (id === '#') return;
-    const target = id === '#top' ? 0 : $(id);
-    if (target === null) return;
-    e.preventDefault();
-    if (a.dataset.occasion) setOccasion(a.dataset.occasion);
-    setMenu(false);
-    goTo(target);
-  }));
+  // The sticky button steps aside while the hero's own button or the booking form is on screen.
+  new IntersectionObserver(([entry]) => { bookingVisible = entry.isIntersecting; updateSticky(); }, { threshold: 0.15 }).observe($('#reserver'));
+  new IntersectionObserver(([entry]) => { heroCtaVisible = entry.isIntersecting; updateSticky(); }).observe($('.hero__ctas'));
 
   let lastY = 0;
   const onScroll = () => {
@@ -76,12 +77,6 @@
   };
   addEventListener('scroll', onScroll, { passive: true });
   onScroll();
-
-  // The phone's sticky "Réserver" button steps aside while the booking form is on screen.
-  let bookingVisible = false, heroCtaVisible = true;
-  const updateSticky = () => sticky.classList.toggle('is-away', bookingVisible || heroCtaVisible || menu.classList.contains('is-open'));
-  new IntersectionObserver(([entry]) => { bookingVisible = entry.isIntersecting; updateSticky(); }, { threshold: 0.15 }).observe($('#reserver'));
-  new IntersectionObserver(([entry]) => { heroCtaVisible = entry.isIntersecting; updateSticky(); }).observe($('.hero__ctas'));
 
   /* ---------- Legal dialog ---------- */
   const legal = $('[data-legal]');
@@ -95,33 +90,18 @@
     const dx = gsap.quickTo(dot, 'x', { duration: 0.12 }), dy = gsap.quickTo(dot, 'y', { duration: 0.12 });
     const rx = gsap.quickTo(ring, 'x', { duration: 0.5, ease: 'power3' }), ry = gsap.quickTo(ring, 'y', { duration: 0.5, ease: 'power3' });
     addEventListener('pointermove', (e) => { cursor.classList.add('is-on'); dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY); }, { passive: true });
-    document.addEventListener('pointerleave', () => cursor.classList.remove('is-on'));
+    document.addEventListener('pointerleave', () => cursor.classList.toggle('is-on', false));
     document.addEventListener('pointerover', (e) => {
-      const view = e.target.closest('[data-cursor-label]');
       const link = e.target.closest('a, button, .tab, label, select, input');
+      const view = !link && e.target.closest('[data-cursor-label]');
       cursor.classList.toggle('is-view', !!view);
-      cursor.classList.toggle('is-link', !view && !!link);
+      cursor.classList.toggle('is-link', !!link);
     });
     $$('[data-magnetic]').forEach((el) => {
       const mx = gsap.quickTo(el, 'x', { duration: 0.6, ease: 'power3' }), my = gsap.quickTo(el, 'y', { duration: 0.6, ease: 'power3' });
       el.addEventListener('pointermove', (e) => { const r = el.getBoundingClientRect(); mx((e.clientX - r.left - r.width / 2) * 0.28); my((e.clientY - r.top - r.height / 2) * 0.4); });
       el.addEventListener('pointerleave', () => { mx(0); my(0); });
     });
-  }
-
-  /* ---------- Hero: optional slow-motion video over the photograph ---------- */
-  const heroMedia = $('[data-hero-media]');
-  const videoSrc = heroMedia.dataset.video;
-  const saveData = navigator.connection && navigator.connection.saveData;
-  if (videoSrc && !reduced && !saveData) {
-    const v = document.createElement('video');
-    Object.assign(v, { muted: true, loop: true, playsInline: true, autoplay: true, preload: 'auto' });
-    v.className = 'hero__video';
-    v.setAttribute('aria-hidden', 'true');
-    v.src = videoSrc;
-    v.addEventListener('canplay', () => { v.classList.add('is-ready'); v.play().catch(() => {}); }, { once: true });
-    v.addEventListener('error', () => v.remove(), { once: true });
-    heroMedia.querySelector('.media--hero').after(v);
   }
 
   /* ---------- Menu tabs (works with or without GSAP) ---------- */
@@ -136,7 +116,6 @@
     tab.classList.add('is-active'); tab.setAttribute('aria-selected', 'true'); tab.tabIndex = 0;
     if (focus) tab.focus();
     moveBar(tab);
-    tab.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduced ? 'auto' : 'smooth' });
     const show = () => {
       from.hidden = true; from.classList.remove('is-active');
       to.hidden = false; to.classList.add('is-active');
@@ -165,6 +144,44 @@
   placeBar();
   addEventListener('resize', placeBar);
   document.fonts?.ready.then(placeBar);
+
+  /* ---------- In-page links (smooth scroll, occasion preset, open a menu tab) ---------- */
+  $$('a[href^="#"]').forEach((a) => a.addEventListener('click', (e) => {
+    const id = a.getAttribute('href');
+    if (id === '#') return;
+    const target = id === '#top' ? 0 : $(id);
+    if (target === null) return;
+    e.preventDefault();
+    if (a.dataset.occasion) setOccasion(a.dataset.occasion);
+    if (a.dataset.openTab) activate($('#tab-' + a.dataset.openTab));
+    setMenu(false);
+    goTo(target);
+  }));
+
+  /* ---------- Reviews carousel ---------- */
+  const stage = $('[data-reviews]'), reviews = $$('.review', stage), dotsEl = $('[data-review-dots]');
+  let current = 0, timer = null;
+  const dots = reviews.map((_, i) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.setAttribute('aria-label', `Avis ${i + 1}`);
+    b.addEventListener('click', () => { show(i); restart(); });
+    dotsEl.append(b); return b;
+  });
+  function show(i) {
+    current = (i + reviews.length) % reviews.length;
+    reviews.forEach((r, k) => { r.classList.toggle('is-active', k === current); r.setAttribute('aria-hidden', String(k !== current)); });
+    dots.forEach((d, k) => d.setAttribute('aria-current', String(k === current)));
+  }
+  const restart = () => { clearInterval(timer); if (!reduced) timer = setInterval(() => show(current + 1), 6500); };
+  $('[data-review-prev]').addEventListener('click', () => { show(current - 1); restart(); });
+  $('[data-review-next]').addEventListener('click', () => { show(current + 1); restart(); });
+  stage.addEventListener('pointerenter', () => clearInterval(timer));
+  stage.addEventListener('pointerleave', restart);
+  let startX = null;
+  stage.addEventListener('pointerdown', (e) => { startX = e.clientX; });
+  stage.addEventListener('pointerup', (e) => { if (startX !== null && Math.abs(e.clientX - startX) > 40) { show(current + (e.clientX < startX ? 1 : -1)); restart(); } startX = null; });
+  new IntersectionObserver(([entry]) => { entry.isIntersecting ? restart() : clearInterval(timer); }).observe(stage);
+  show(0);
 
   /* ---------- Reservation (front-end demo: nothing is sent or stored) ---------- */
   const form = $('[data-resa]');
@@ -222,7 +239,7 @@
         const b = document.createElement('button');
         b.type = 'button'; b.className = 'slot'; b.setAttribute('role', 'radio');
         b.setAttribute('aria-checked', String(state.time === m));
-        b.textContent = fmtTime(m).replace(' h ', ':').replace(/^(\d):/, '0$1:');
+        b.textContent = fmtTime(m).replace(' h ', ':');
         b.addEventListener('click', () => { state.time = m; $$('.slot', slotsEl).forEach((s) => s.setAttribute('aria-checked', String(s === b))); renderSummary(); errorEl.hidden = true; });
         row.append(b);
       });
@@ -293,10 +310,32 @@
   $('[data-again]').addEventListener('click', () => {
     form.reset(); done.hidden = true;
     state.date = null; state.time = null;
-    $$('.input', form).forEach((i) => i.classList.remove('is-invalid'));
+    $$('.input', form).forEach((i) => i.classList.toggle('is-invalid', false));
     renderDays(); renderSlots(); setGuests(2);
   });
   renderDays(); setGuests(2);
+
+  /* ---------- Ring of text around the chef: spaced to close exactly on itself ---------- */
+  const ringText = $('.vision__ring text'), ringPath = $('#vring');
+  const fitRing = () => {
+    if (!ringText || !ringPath.getTotalLength) return;
+    const full = ringPath.getTotalLength(), n = ringText.textContent.length;
+    for (let k = 0; k < 3; k++) {
+      const ls = parseFloat(getComputedStyle(ringText).letterSpacing) || 0;
+      ringText.style.letterSpacing = (ls + (full - ringText.getComputedTextLength()) / n) + 'px';
+    }
+  };
+  fitRing();
+  document.fonts?.ready.then(fitRing);
+
+  /* ---------- Newsletter (demo) ---------- */
+  const nl = $('[data-newsletter]'), nlMsg = $('[data-newsletter-msg]');
+  nl.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(nl.elements.email.value.trim());
+    nlMsg.textContent = ok ? 'Merci, à très vite à table. (Démonstration : rien n\'est envoyé.)' : 'Cette adresse e-mail ne semble pas valide.';
+    if (ok) nl.reset();
+  });
 
   if (!hasGsap) return;
 
@@ -304,16 +343,17 @@
      Motion (GSAP)
      ========================================================================== */
   // Headings: the whole block rises from behind a mask.
-  $$('[data-split]').forEach((h) => {
-    h.innerHTML = `<span class="ln"><span>${h.innerHTML}</span></span>`;
-  });
+  $$('[data-split]').forEach((h) => { h.innerHTML = `<span class="ln"><span>${h.innerHTML}</span></span>`; });
 
   const heroIntro = () => {
     if (reduced) return;
-    const tl = gsap.timeline();
-    tl.to('.media--hero img', { scale: 1, duration: 2.6, ease: 'expo.out' }, 0)
+    gsap.timeline()
+      .to('.hero__video', { scale: 1, duration: 2.8, ease: 'expo.out' }, 0)
       .to('[data-hero-line]', { y: 0, yPercent: 0, duration: 1.4, ease: 'expo.out', stagger: 0.12 }, 0.15)
-      .to('[data-hero-in]', { opacity: 1, y: 0, duration: 1.2, ease: 'expo.out', stagger: 0.1 }, 0.45);
+      .to('[data-hero-in]', { opacity: 1, y: 0, duration: 1.2, ease: 'expo.out', stagger: 0.1 }, 0.45)
+      .to('[data-hero-card]', { opacity: 1, y: 0, scale: 1, duration: 1.6, ease: 'expo.out' }, 0.5)
+      // The signature card then floats gently.
+      .to('[data-hero-card]', { y: -16, duration: 3.2, ease: 'sine.inOut', yoyo: true, repeat: -1 }, 2.1);
   };
 
   // Intro loader, once per visit.
@@ -334,6 +374,18 @@
 
   if (reduced) return;
 
+  // Pillars: on desktop with a mouse, the section pins and the four dishes slide by horizontally.
+  const pillars = $('.pillars'), track = $('[data-pillars-track]');
+  gsap.matchMedia().add('(min-width: 1024px) and (hover: hover) and (pointer: fine)', () => {
+    pillars.classList.add('is-horizontal');
+    const distance = () => Math.max(0, track.scrollWidth - innerWidth);
+    const tween = gsap.to(track, {
+      x: () => -distance(), ease: 'none',
+      scrollTrigger: { trigger: '[data-pillars]', start: 'top top', end: () => '+=' + distance(), pin: true, scrub: 1, invalidateOnRefresh: true, anticipatePin: 1 },
+    });
+    return () => { tween.scrollTrigger?.kill(); tween.kill(); gsap.set(track, { clearProps: 'transform' }); pillars.classList.remove('is-horizontal'); };
+  });
+
   // Scroll reveals.
   ScrollTrigger.batch('[data-reveal]', {
     start: 'top 88%',
@@ -342,6 +394,10 @@
       if (above.length) gsap.set(above, { opacity: 1, y: 0 });
       gsap.to(els.filter((e) => !above.includes(e)), { opacity: 1, y: 0, duration: 1.2, ease: 'expo.out', stagger: 0.08, overwrite: true });
     },
+  });
+  ScrollTrigger.batch('[data-course]', {
+    start: 'top 85%',
+    onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: 1.4, ease: 'power4.out', stagger: 0.18, overwrite: true }),
   });
   $$('.h2 .ln > span').forEach((s) => {
     gsap.from(s, { yPercent: 105, duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: s.closest('.h2'), start: 'top 88%', once: true } });
@@ -353,15 +409,14 @@
     ScrollTrigger.create({ trigger: el, start: 'top 90%', once: true, onEnter: () => gsap.to(o, { v: to, duration: 1.8, ease: 'power3.out', onUpdate: () => { el.textContent = Math.round(o.v); } }) });
   });
 
-  // Parallax: manifesto frames drift at different speeds, the dining room glides inside its frame.
+  // Parallax: manifesto frames drift at different speeds, the dining room glides behind its text.
   $$('[data-speed]').forEach((el) => {
     gsap.to(el, { yPercent: Number(el.dataset.speed), ease: 'none', scrollTrigger: { trigger: el.closest('section'), start: 'top bottom', end: 'bottom top', scrub: true } });
   });
-  $$('[data-parallax]').forEach((img) => {
-    gsap.fromTo(img, { yPercent: -7 }, { yPercent: 7, ease: 'none', scrollTrigger: { trigger: img.closest('.media'), start: 'top bottom', end: 'bottom top', scrub: true } });
+  $$('[data-parallax]').forEach((v) => {
+    gsap.fromTo(v, { yPercent: -6 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: v.closest('section'), start: 'top bottom', end: 'bottom top', scrub: true } });
   });
-  // Hero photograph sinks slightly as you leave it.
-  gsap.to('.hero__media', { yPercent: 14, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  gsap.to('.hero__bg', { yPercent: 12, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
 
   // Gallery tiles open like a curtain.
   gsap.utils.toArray('.tile').forEach((t, i) => {

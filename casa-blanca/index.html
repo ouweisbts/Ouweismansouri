@@ -10,13 +10,13 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="La Casa Blanca by Ouweis">
 <meta property="og:description" content="L'Art du Fait Maison. L'Instinct de la Gourmandise. Concept de restaurant imaginé par Ouweis Mansouri.">
-<meta property="og:image" content="https://ouweisbts.github.io/Ouweismansouri/casa-blanca/assets/img/hero-pizza.webp">
+<meta property="og:image" content="https://ouweisbts.github.io/Ouweismansouri/casa-blanca/assets/img/og.jpg">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <script>document.documentElement.className='js anim'</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap">
-<link rel="preload" as="image" href="assets/img/hero-pizza.webp" type="image/webp">
+<link rel="preload" as="image" href="assets/img/four.webp" type="image/webp">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -45,7 +45,7 @@
     <a href="#philosophie">Notre Philosophie</a>
     <a href="#experience">L'Expérience</a>
   </nav>
-  <a href="#reserver" class="btn btn--line nav__cta" data-magnetic>Réserver</a>
+  <a href="#reserver" class="btn btn--line nav__cta" data-magnetic>Réserver une table</a>
   <button class="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
 </header>
 
@@ -65,31 +65,42 @@
 <main>
 <!-- ================= 1. HERO ================= -->
 <section class="hero" id="top">
-  <!-- Photo now; a slow-motion loop can be added later by filling data-video (e.g. "assets/video/hero.mp4") -->
-  <div class="hero__media" data-hero-media data-video="">
-    <figure class="media media--hero" data-ph="Visuel 1 · La part de pizza soulevée, fior di latte filante">
-      <img src="assets/img/hero-pizza.webp" alt="Une part de pizza soulevée, la fior di latte s'étire en longs fils dorés" width="2400" height="1350" fetchpriority="high" data-slot>
-    </figure>
-    <div class="steam" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="hero__bg" aria-hidden="true">
+    <video class="vid hero__video" src="assets/video/four.mp4" poster="assets/img/four.webp" muted loop playsinline autoplay preload="auto" data-hero-video></video>
+    <video class="vid hero__smoke" data-src="assets/video/fumee.mp4" muted loop playsinline preload="none"></video>
     <div class="hero__shade"></div>
   </div>
 
-  <div class="hero__content">
-    <p class="over" data-hero-in>Pizzas · Pâtes fraîches · Burgers — 100 % fait maison</p>
-    <h1 class="hero__title" aria-label="L'Art du Fait Maison. L'Instinct de la Gourmandise.">
-      <span class="line" aria-hidden="true"><span data-hero-line>L'Art du Fait Maison.</span></span>
-      <span class="line" aria-hidden="true"><span data-hero-line><em>L'Instinct de la Gourmandise.</em></span></span>
-    </h1>
-    <p class="hero__sub" data-hero-in>Pâte fermentée 72 heures, pâtes tréfilées au bronze, bœuf maturé : une cuisine réconfortante, travaillée comme de la haute gastronomie.</p>
-    <div class="hero__ctas" data-hero-in>
-      <a href="#reserver" class="btn btn--gold" data-magnetic>Réserver une table</a>
-      <a href="#carte" class="link">Découvrir la carte</a>
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <p class="over" data-hero-in><span class="pulse"></span>Ce soir, service dès 19 h</p>
+      <h1 class="hero__title" aria-label="L'Art du Fait Maison. L'Instinct de la Gourmandise.">
+        <span class="line" aria-hidden="true"><span data-hero-line>L'Art du Fait Maison.</span></span>
+        <span class="line" aria-hidden="true"><span data-hero-line><em class="gold">L'Instinct de la</em></span></span>
+        <span class="line" aria-hidden="true"><span data-hero-line><em class="gold">Gourmandise.</em></span></span>
+      </h1>
+      <p class="hero__sub" data-hero-in>Pizzas à la pâte fermentée 72 heures, pâtes fraîches tréfilées au bronze, burgers de bœuf maturé. Une cuisine réconfortante, travaillée comme de la haute gastronomie.</p>
+      <div class="hero__ctas" data-hero-in>
+        <a href="#reserver" class="btn btn--gold" data-magnetic>Réserver une table</a>
+        <a href="#carte" class="link">Découvrir la carte</a>
+      </div>
     </div>
+
+    <figure class="hero__card" data-hero-card>
+      <video class="vid" src="assets/video/saisie.mp4" poster="assets/img/saisie.webp" muted loop playsinline autoplay preload="auto" aria-hidden="true"></video>
+      <figcaption class="glass hero__tag">
+        <small>Signature du chef</small>
+        <b>Le Casa Blanca</b>
+        <span>Bœuf maturé 28 jours, saisi à la minute</span>
+      </figcaption>
+    </figure>
   </div>
 
-  <div class="hero__foot" data-hero-in>
-    <p><span class="pulse"></span>Ce soir, service dès 19 h</p>
-    <a href="#philosophie" class="scroll" aria-label="Faire défiler"><span>Défiler</span><i></i></a>
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>Pâte fermentée 72 h</span><i>✦</i><span>Four à bois 450 °C</span><i>✦</i><span>Pâtes tréfilées au bronze</span><i>✦</i><span>Bœuf maturé 28 jours</span><i>✦</i><span>Sauces mijotées 6 h</span><i>✦</i><span>100 % fait maison</span><i>✦</i>
+      <span>Pâte fermentée 72 h</span><i>✦</i><span>Four à bois 450 °C</span><i>✦</i><span>Pâtes tréfilées au bronze</span><i>✦</i><span>Bœuf maturé 28 jours</span><i>✦</i><span>Sauces mijotées 6 h</span><i>✦</i><span>100 % fait maison</span><i>✦</i>
+    </div>
   </div>
 </section>
 
@@ -100,39 +111,93 @@
       <p class="over" data-reveal><b>01</b>Notre philosophie</p>
       <h2 class="h2" data-split>Le temps est notre <em>premier ingrédient.</em></h2>
       <p class="lead" data-reveal>Ici, le réconfort se travaille comme la haute gastronomie : avec patience, précision, et des produits choisis un par un.</p>
-      <p data-reveal>Notre pâte à pizza repose 72 heures avant de rencontrer la flamme. Nos pâtes sont tréfilées au bronze pour accrocher chaque goutte de sauce. Nos viandes sont sélectionnées puis maturées, nos sauces mijotent des heures à feu doux. Rien n'est industriel, rien n'est laissé au hasard.</p>
+      <p data-reveal>Notre pâte à pizza repose 72 heures avant de rencontrer la flamme. Nos pâtes sont tréfilées au bronze pour accrocher chaque goutte de sauce. Notre bœuf est sélectionné puis maturé, nos sauces mijotent des heures à feu doux. Rien n'est industriel, rien n'est laissé au hasard.</p>
       <ul class="figures">
         <li data-reveal><b><span data-count="72">72</span> h</b><span>de fermentation lente, pour une pâte légère et alvéolée</span></li>
         <li data-reveal><b>Bronze</b><span>un tréfilage traditionnel, pour des pâtes rugueuses qui retiennent la sauce</span></li>
         <li data-reveal><b><span data-count="28">28</span> j</b><span>de maturation pour notre bœuf, tendre et profond</span></li>
         <li data-reveal><b><span data-count="6">6</span> h</b><span>de cuisson douce pour nos sauces tomate et nos ragùs</span></li>
       </ul>
-      <p class="signature" data-reveal>Ouweis<span>Fondateur</span></p>
     </div>
 
     <div class="manifesto__visuals">
       <figure class="frame frame--a" data-speed="-8">
-        <div class="media" data-ph="Visuel 2 · Les mains du chef façonnent la pâte">
-          <img src="assets/img/manifeste-mains.webp" alt="Les mains du chef étirent une pâte à pizza farinée sur un plan de travail en marbre" width="1200" height="1500" loading="lazy" data-slot>
-        </div>
-        <figcaption>Le geste <span>Façonnée à la main, chaque jour</span></figcaption>
+        <div class="media"><video class="vid" data-src="assets/video/pate.mp4" poster="assets/img/pate.webp" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+        <figcaption>Le geste <span>Pâte étirée à la main, chaque matin</span></figcaption>
       </figure>
       <figure class="frame frame--b" data-speed="10">
-        <div class="media" data-ph="Visuel 3 · La matière brute : farine, basilic, truffe">
-          <img src="assets/img/manifeste-produits.webp" alt="Farine italienne, basilic frais, tomates San Marzano et truffe noire sur une ardoise sombre" width="1200" height="1500" loading="lazy" data-slot>
-        </div>
-        <figcaption>La matière <span>Farine type 00, basilic, truffe noire</span></figcaption>
+        <div class="media"><video class="vid" data-src="assets/video/sauce.mp4" poster="assets/img/sauce.webp" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+        <figcaption>Le temps <span>Sauce tomate, six heures à frémir</span></figcaption>
       </figure>
     </div>
   </div>
 </section>
 
-<!-- ================= 3. LA CARTE ================= -->
+<!-- ================= 3. LES QUATRE PILIERS ================= -->
+<section class="pillars" id="piliers" aria-labelledby="piliers-title">
+  <div class="pillars__pin" data-pillars>
+    <header class="wrap pillars__head">
+      <p class="over" data-reveal><b>02</b>Nos spécialités</p>
+      <h2 class="h2" id="piliers-title" data-split>Quatre piliers. <em>Une même exigence.</em></h2>
+      <p class="pillars__hint" aria-hidden="true"><span class="pillars__hint-line"></span>Faites défiler</p>
+    </header>
+    <div class="pillars__viewport">
+      <div class="pillars__track" data-pillars-track>
+        <article class="pillar" data-cursor-label>
+          <video class="vid" data-src="assets/video/pizza.mp4" poster="assets/img/pizza.webp" muted loop playsinline preload="none" aria-hidden="true"></video>
+          <div class="pillar__shade"></div>
+          <div class="pillar__body">
+            <p class="pillar__num">01</p>
+            <h3 class="pillar__title">Les <em>Pizzas</em></h3>
+            <p class="pillar__line">Pâte fermentée 72 heures, cuite en 90 secondes au four à bois. Croûte boursouflée, cœur fondant.</p>
+            <p class="pillar__sig"><span>À l'image</span>La Diavola Fumée · 19 €</p>
+            <a href="#carte" class="link" data-open-tab="pizzas">Voir les pizzas</a>
+          </div>
+        </article>
+        <article class="pillar" data-cursor-label>
+          <video class="vid" data-src="assets/video/spaghetti.mp4" poster="assets/img/spaghetti.webp" muted loop playsinline preload="none" aria-hidden="true"></video>
+          <div class="pillar__shade"></div>
+          <div class="pillar__body">
+            <p class="pillar__num">02</p>
+            <h3 class="pillar__title">Les <em>Spaghettis</em></h3>
+            <p class="pillar__line">Pâtes fraîches tirées chaque matin, sauces liées à la minute. Brillantes, nappantes, généreuses.</p>
+            <p class="pillar__sig"><span>À l'image</span>Pomodoro della Casa · 17 €</p>
+            <a href="#carte" class="link" data-open-tab="spaghettis">Voir les spaghettis</a>
+          </div>
+        </article>
+        <article class="pillar" data-cursor-label>
+          <video class="vid" data-src="assets/video/penne.mp4" poster="assets/img/penne.webp" muted loop playsinline preload="none" aria-hidden="true" style="object-position:80% 75%"></video>
+          <div class="pillar__shade"></div>
+          <div class="pillar__body">
+            <p class="pillar__num">03</p>
+            <h3 class="pillar__title">Les <em>Pennes</em></h3>
+            <p class="pillar__line">Des stries pour accrocher, un cœur pour fondre. De la tomate vive à la crème de truffe noire.</p>
+            <p class="pillar__sig"><span>À l'image</span>All'Arrabbiata · 16 €</p>
+            <a href="#carte" class="link" data-open-tab="pennes">Voir les pennes</a>
+          </div>
+        </article>
+        <article class="pillar" data-cursor-label>
+          <video class="vid" data-src="assets/video/burger.mp4" poster="assets/img/burger.webp" muted loop playsinline preload="none" aria-hidden="true"></video>
+          <div class="pillar__shade"></div>
+          <div class="pillar__body">
+            <p class="pillar__num">04</p>
+            <h3 class="pillar__title">Les <em>Burgers</em></h3>
+            <p class="pillar__line">Bœuf maturé 28 jours, haché et saisi à la commande. Brioche toastée au beurre noisette.</p>
+            <p class="pillar__sig"><span>À l'image</span>Le Casa Blanca · 26 €</p>
+            <a href="#carte" class="link" data-open-tab="burgers">Voir les burgers</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 4. LA CARTE ================= -->
 <section class="carte section" id="carte">
   <div class="wrap">
     <header class="carte__head">
-      <p class="over" data-reveal><b>02</b>La carte signature</p>
-      <h2 class="h2" data-split>Quatre piliers. <em>Une même exigence.</em></h2>
+      <p class="over" data-reveal><b>03</b>La carte signature</p>
+      <h2 class="h2" data-split>À la carte, <em>ce soir.</em></h2>
     </header>
 
     <div class="tabs" role="tablist" aria-label="Spécialités" data-reveal>
@@ -147,34 +212,32 @@
       <!-- Pizzas -->
       <div class="panel is-active" role="tabpanel" id="panel-pizzas" aria-labelledby="tab-pizzas">
         <figure class="panel__visual">
-          <div class="media" data-ph="Visuel 8 · La Blanca, vue de dessus">
-            <img src="assets/img/plat-pizza.webp" data-fallback="assets/img/hero-pizza.webp" alt="Pizza La Blanca, croûte boursouflée et mouchetée, burrata et truffe noire" width="1200" height="1500" loading="lazy" data-slot>
-          </div>
+          <div class="media"><video class="vid" data-src="assets/video/pizza.mp4" poster="assets/img/pizza.webp" muted loop playsinline preload="none" aria-hidden="true"></video></div>
           <figcaption>Pâte fermentée 72 h, cuite au four à bois à 450 °C</figcaption>
         </figure>
         <div class="panel__list">
           <p class="panel__intro">Une pâte qui a pris son temps, une croûte qui chante sous la dent.</p>
           <article class="dish">
-            <header><h3>La Blanca <span class="badge">Signature</span></h3><p class="price">24</p></header>
+            <header><h3>La Blanca <span class="badge">Signature</span></h3><i class="dots"></i><p class="price">24</p></header>
             <p>Crème de burrata, fior di latte, truffe noire râpée minute et huile au basilic. Croûte alvéolée et croustillante, cœur d'une douceur lactée.</p>
             <ul class="tags"><li>Végétarienne</li><li>Truffe</li></ul>
           </article>
           <article class="dish">
-            <header><h3>Margherita Riserva</h3><p class="price">16</p></header>
+            <header><h3>Margherita Riserva</h3><i class="dots"></i><p class="price">16</p></header>
             <p>Tomates San Marzano DOP écrasées à la main, fior di latte d'Agerola, basilic frais, filet d'huile d'olive vierge extra. L'essentiel, sans détour.</p>
             <ul class="tags"><li>Végétarienne</li></ul>
           </article>
           <article class="dish">
-            <header><h3>Pistacchio &amp; Bresaola</h3><p class="price">22</p></header>
-            <p>Crème de pistache de Bronte, stracciatella fraîche, fines tranches de bresaola de bœuf, éclats de pistache torréfiée. Fondant, croquant, salin.</p>
-          </article>
-          <article class="dish">
-            <header><h3>La Diavola Fumée</h3><p class="price">19</p></header>
+            <header><h3>La Diavola Fumée</h3><i class="dots"></i><p class="price">19</p></header>
             <p>Sauce tomate relevée au piment de Calabre, provola fumée, salami de bœuf épicé, miel de châtaignier. La chaleur, puis la douceur.</p>
             <ul class="tags"><li>Relevée</li></ul>
           </article>
           <article class="dish">
-            <header><h3>Funghi &amp; Taleggio</h3><p class="price">20</p></header>
+            <header><h3>Pistacchio &amp; Bresaola</h3><i class="dots"></i><p class="price">22</p></header>
+            <p>Crème de pistache de Bronte, stracciatella fraîche, fines tranches de bresaola de bœuf, éclats de pistache torréfiée. Fondant, croquant, salin.</p>
+          </article>
+          <article class="dish">
+            <header><h3>Funghi &amp; Taleggio</h3><i class="dots"></i><p class="price">20</p></header>
             <p>Champignons des bois rôtis au thym, taleggio coulant, crème d'ail doux. Un sous-bois gourmand, profond et réconfortant.</p>
             <ul class="tags"><li>Végétarienne</li></ul>
           </article>
@@ -184,29 +247,27 @@
       <!-- Spaghettis -->
       <div class="panel" role="tabpanel" id="panel-spaghettis" aria-labelledby="tab-spaghettis" hidden>
         <figure class="panel__visual">
-          <div class="media" data-ph="Visuel 4 · Spaghetti, sauce brillante et vapeur">
-            <img src="assets/img/plat-spaghetti.webp" alt="Nid de spaghetti frais nappé d'une sauce tomate brillante, vapeur visible" width="1200" height="1500" loading="lazy" data-slot>
-          </div>
+          <div class="media"><video class="vid" data-src="assets/video/spaghetti.mp4" poster="assets/img/spaghetti.webp" muted loop playsinline preload="none" aria-hidden="true"></video></div>
           <figcaption>Pâtes fraîches tréfilées au bronze, chaque matin</figcaption>
         </figure>
         <div class="panel__list">
           <p class="panel__intro">Des pâtes rugueuses qui retiennent tout : la sauce, le gras, le goût.</p>
           <article class="dish">
-            <header><h3>Pomodoro della Casa <span class="badge">Signature</span></h3><p class="price">17</p></header>
-            <p>Tomates confites six heures, basilic frais, parmesan affiné 24 mois. Une sauce brillante, nappante, qui enrobe chaque brin.</p>
+            <header><h3>Pomodoro della Casa <span class="badge">Signature</span></h3><i class="dots"></i><p class="price">17</p></header>
+            <p>Tomates confites six heures, basilic frais, copeaux de parmesan affiné 24 mois. Une sauce brillante, nappante, qui enrobe chaque brin.</p>
             <ul class="tags"><li>Végétarienne</li></ul>
           </article>
           <article class="dish">
-            <header><h3>Carbonara au Bœuf Fumé</h3><p class="price">21</p></header>
+            <header><h3>Carbonara au Bœuf Fumé</h3><i class="dots"></i><p class="price">21</p></header>
             <p>Bœuf fumé croustillant, jaune d'œuf fermier, pecorino romano, poivre noir concassé minute. Soyeuse, intense, sans une goutte de crème.</p>
           </article>
           <article class="dish">
-            <header><h3>Cacio e Pepe Tartufo</h3><p class="price">23</p></header>
+            <header><h3>Cacio e Pepe Tartufo</h3><i class="dots"></i><p class="price">23</p></header>
             <p>Émulsion de pecorino et de poivre torréfié, copeaux de truffe noire. Le classique romain, poussé jusqu'au luxe.</p>
             <ul class="tags"><li>Végétarienne</li><li>Truffe</li></ul>
           </article>
           <article class="dish">
-            <header><h3>Spaghetti alle Vongole</h3><p class="price">24</p></header>
+            <header><h3>Spaghetti alle Vongole</h3><i class="dots"></i><p class="price">24</p></header>
             <p>Palourdes ouvertes à la minute, ail doux, persil plat, zeste de citron, bouillon iodé. La mer, simplement, à la perfection.</p>
           </article>
         </div>
@@ -215,31 +276,29 @@
       <!-- Pennes -->
       <div class="panel" role="tabpanel" id="panel-pennes" aria-labelledby="tab-pennes" hidden>
         <figure class="panel__visual">
-          <div class="media" data-ph="Visuel 7 · Pennes à la crème de truffe, vapeur">
-            <img src="assets/img/plat-penne.webp" data-fallback="assets/img/plat-spaghetti.webp" alt="Pennes nappées de crème de truffe, copeaux de truffe noire et vapeur" width="1200" height="1500" loading="lazy" data-slot>
-          </div>
+          <div class="media"><video class="vid" data-src="assets/video/penne.mp4" poster="assets/img/penne.webp" muted loop playsinline preload="none" aria-hidden="true" style="object-position:88% 85%"></video></div>
           <figcaption>Pennes rigate, sauces liées au dernier moment</figcaption>
         </figure>
         <div class="panel__list">
           <p class="panel__intro">Des stries pour accrocher, un cœur pour fondre : la penne dans toute sa générosité.</p>
           <article class="dish">
-            <header><h3>Pennes à la Truffe Noire <span class="badge">Signature</span></h3><p class="price">24</p></header>
+            <header><h3>Pennes à la Truffe Noire <span class="badge">Signature</span></h3><i class="dots"></i><p class="price">24</p></header>
             <p>Crème de truffe noire, parmesan 24 mois, copeaux de truffe râpés à table. Une vapeur parfumée, une texture de velours.</p>
             <ul class="tags"><li>Végétarienne</li><li>Truffe</li></ul>
           </article>
           <article class="dish">
-            <header><h3>Ragù Bianco de Veau</h3><p class="price">22</p></header>
+            <header><h3>All'Arrabbiata</h3><i class="dots"></i><p class="price">16</p></header>
+            <p>Tomate mijotée, ail rôti, piment de Calabre, persil frais. Vive, franche, juste ce qu'il faut de feu.</p>
+            <ul class="tags"><li>Végétarienne</li><li>Relevée</li></ul>
+          </article>
+          <article class="dish">
+            <header><h3>Ragù Bianco de Veau</h3><i class="dots"></i><p class="price">22</p></header>
             <p>Veau mijoté six heures, zeste de citron, parmesan, persil plat. Fondant, lumineux, longuement réconfortant.</p>
           </article>
           <article class="dish">
-            <header><h3>Pesto &amp; Burrata</h3><p class="price">21</p></header>
+            <header><h3>Pesto &amp; Burrata</h3><i class="dots"></i><p class="price">21</p></header>
             <p>Pesto genovese au basilic frais pilé, burrata crémeuse, pignons torréfiés. Vert intense, cœur coulant, croquant doré.</p>
             <ul class="tags"><li>Végétarienne</li></ul>
-          </article>
-          <article class="dish">
-            <header><h3>All'Arrabbiata</h3><p class="price">16</p></header>
-            <p>Tomate mijotée, ail rôti, piment de Calabre, persil frais. Vive, franche, juste ce qu'il faut de feu.</p>
-            <ul class="tags"><li>Végétarienne</li><li>Relevée</li></ul>
           </article>
         </div>
       </div>
@@ -247,28 +306,26 @@
       <!-- Burgers -->
       <div class="panel" role="tabpanel" id="panel-burgers" aria-labelledby="tab-burgers" hidden>
         <figure class="panel__visual">
-          <div class="media" data-ph="Visuel 5 · Burger, cheddar affiné qui coule">
-            <img src="assets/img/plat-burger.webp" alt="Burger de bœuf maturé, cheddar affiné qui coule sur le steak saisi, brioche dorée" width="1200" height="1500" loading="lazy" data-slot>
-          </div>
+          <div class="media"><video class="vid" data-src="assets/video/burger.mp4" poster="assets/img/burger.webp" muted loop playsinline preload="none" aria-hidden="true"></video></div>
           <figcaption>Bœuf maturé 28 jours, haché et saisi à la commande</figcaption>
         </figure>
         <div class="panel__list">
           <p class="panel__intro">Le burger traité comme un plat de chef : la cuisson, la brioche, le fondant.</p>
           <article class="dish">
-            <header><h3>Le Casa Blanca <span class="badge">Signature</span></h3><p class="price">26</p></header>
+            <header><h3>Le Casa Blanca <span class="badge">Signature</span></h3><i class="dots"></i><p class="price">26</p></header>
             <p>Bœuf maturé 28 jours, cheddar affiné 18 mois, oignons confits au beurre, sauce maison, brioche toastée au beurre noisette. Saisi dehors, rosé dedans.</p>
           </article>
           <article class="dish">
-            <header><h3>Le Truffé</h3><p class="price">28</p></header>
+            <header><h3>Le Truffé</h3><i class="dots"></i><p class="price">28</p></header>
             <p>Bœuf maturé, brie de Meaux truffé fondu, roquette poivrée, mayonnaise à la truffe noire. Crémeux, terreux, irrésistible.</p>
             <ul class="tags"><li>Truffe</li></ul>
           </article>
           <article class="dish">
-            <header><h3>Le Smash Fumé</h3><p class="price">22</p></header>
+            <header><h3>Le Smash Fumé</h3><i class="dots"></i><p class="price">22</p></header>
             <p>Double smash de bœuf aux bords caramélisés, cheddar fondu, pickles maison, sauce fumée. Croustillant de partout.</p>
           </article>
           <article class="dish">
-            <header><h3>Le Poulet Doré</h3><p class="price">20</p></header>
+            <header><h3>Le Poulet Doré</h3><i class="dots"></i><p class="price">20</p></header>
             <p>Poulet fermier mariné au babeurre, panure dorée et craquante, coleslaw citronné, mayonnaise au miel épicé.</p>
           </article>
         </div>
@@ -278,78 +335,112 @@
   </div>
 </section>
 
-<!-- ================= 4. GALERIE ================= -->
+<!-- ================= 5. L'OBSESSION DU DÉTAIL ================= -->
 <section class="gallery section" id="galerie">
   <div class="wrap">
     <header class="gallery__head">
-      <p class="over" data-reveal><b>03</b>L'obsession du détail</p>
+      <p class="over" data-reveal><b>04</b>L'obsession du détail</p>
       <h2 class="h2" data-split>Ce que l'on ne voit <em>qu'en s'approchant.</em></h2>
     </header>
   </div>
-  <div class="bento" data-bento>
+  <div class="bento">
     <figure class="tile tile--a" data-cursor-label>
-      <div class="media" data-ph="Fior di latte filante"><img src="assets/img/hero-pizza.webp" alt="Gros plan sur la fior di latte qui file" width="2400" height="1350" loading="lazy" data-slot style="object-position:60% 45%"></div>
-      <figcaption><b>Fior di latte</b>Filante, brillante, à peine sortie du four</figcaption>
+      <div class="media"><video class="vid" data-src="assets/video/beurre.mp4" poster="assets/img/beurre.webp" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+      <figcaption><b>Beurre noisette</b>Il fond sur le bœuf saisi, dans sa fumée</figcaption>
     </figure>
     <figure class="tile tile--b" data-cursor-label>
-      <div class="media" data-ph="Visuel 10 · Fleur de sel et poivre concassé"><img src="assets/img/detail-sel.webp" data-fallback="assets/img/manifeste-produits.webp" alt="Grains de fleur de sel et de poivre noir concassé en macro" width="1200" height="1200" loading="lazy" data-slot></div>
-      <figcaption><b>Fleur de sel</b>Et poivre noir concassé minute</figcaption>
+      <div class="media"><video class="vid" data-src="assets/video/fromage.mp4" poster="assets/img/fromage.webp" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+      <figcaption><b>Râpé minute</b>Jamais en sachet, jamais à l'avance</figcaption>
     </figure>
     <figure class="tile tile--c" data-cursor-label>
-      <div class="media" data-ph="Cheddar affiné qui coule"><img src="assets/img/plat-burger.webp" alt="Cheddar affiné coulant lentement sur un steak saisi" width="1200" height="1500" loading="lazy" data-slot style="object-position:50% 55%"></div>
-      <figcaption><b>Cheddar 18 mois</b>Il coule lentement sur le bœuf saisi</figcaption>
+      <div class="media"><video class="vid" data-src="assets/video/flammes.mp4" poster="assets/img/flammes.webp" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+      <figcaption><b>La flamme</b>Bois de hêtre, 450 °C</figcaption>
     </figure>
     <figure class="tile tile--d" data-cursor-label>
-      <div class="media" data-ph="Visuel 9 · Brioche toastée au beurre"><img src="assets/img/detail-brioche.webp" data-fallback="assets/img/plat-burger.webp" alt="Mie de brioche toastée au beurre, croûte dorée en macro" width="1200" height="1200" loading="lazy" data-slot></div>
-      <figcaption><b>Brioche</b>Toastée au beurre noisette</figcaption>
+      <div class="media"><video class="vid" data-src="assets/video/assaisonnement.mp4" poster="assets/img/assaisonnement.webp" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+      <figcaption><b>L'assaisonnement</b>Fleur de sel et poivre concassé, à la main</figcaption>
     </figure>
     <figure class="tile tile--e" data-cursor-label>
-      <div class="media" data-ph="Vapeur de truffe sur les pennes"><img src="assets/img/plat-penne.webp" data-fallback="assets/img/plat-spaghetti.webp" alt="Vapeur s'échappant d'une assiette de pennes à la crème de truffe" width="1200" height="1500" loading="lazy" data-slot></div>
-      <figcaption><b>Vapeur de truffe</b>Elle monte avant même la première bouchée</figcaption>
+      <div class="media"><video class="vid" data-src="assets/video/spaghetti-cru.mp4" poster="assets/img/spaghetti-cru.webp" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+      <figcaption><b>Tréfilé au bronze</b>Une surface rugueuse qui retient la sauce</figcaption>
     </figure>
     <figure class="tile tile--f" data-cursor-label>
-      <div class="media" data-ph="Sauce mijotée six heures"><img src="assets/img/plat-spaghetti.webp" alt="Sauce tomate brillante nappant des spaghetti frais" width="1200" height="1500" loading="lazy" data-slot style="object-position:50% 40%"></div>
-      <figcaption><b>Six heures</b>De mijotage pour une sauce qui nappe</figcaption>
+      <div class="media"><video class="vid" data-src="assets/video/boeuf.mp4" poster="assets/img/boeuf.webp" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+      <figcaption><b>Maturé 28 jours</b>Un persillé tranché par le chef</figcaption>
     </figure>
   </div>
 </section>
 
-<!-- ================= 5. L'EXPÉRIENCE ================= -->
-<section class="experience section" id="experience">
-  <div class="wrap experience__grid">
-    <figure class="experience__visual" data-reveal>
-      <div class="media" data-ph="Visuel 6 · La salle : lumière tamisée, pierre, laiton">
-        <img src="assets/img/salle.webp" alt="La salle du restaurant : lumières tamisées, murs de pierre, laiton et cuisine ouverte" width="2400" height="1600" loading="lazy" data-slot data-parallax>
-      </div>
-    </figure>
-    <div class="experience__text">
-      <p class="over" data-reveal><b>04</b>L'expérience &amp; le lieu</p>
-      <h2 class="h2" data-split>Une table intime, <em>une cuisine à vif.</em></h2>
-      <p class="lead" data-reveal>Lumière tamisée, pierre brute, bois patiné, éclats de laiton : la salle de 48 couverts a été pensée comme un écrin.</p>
-      <p data-reveal>Au centre, la cuisine ouverte et son four à bois laissent voir chaque geste, chaque flamme. On vient pour dîner, on reste pour l'atmosphère.</p>
-      <ul class="materials" data-reveal>
-        <li>Pierre</li><li>Bois brut</li><li>Laiton</li><li>Four à bois</li><li>Cuisine ouverte</li>
-      </ul>
-    </div>
-  </div>
-
+<!-- ================= 6. LE MENU CASA ================= -->
+<section class="tasting section" id="menu-casa">
   <div class="wrap">
-    <ul class="quotes">
-      <li data-reveal>
-        <blockquote>« Une pizza d'une légèreté rare, une croûte qui chante sous la dent. On vient pour la truffe, on reste pour l'ambiance. »</blockquote>
-        <p>Une habituée du vendredi soir</p>
+    <header class="tasting__head">
+      <p class="over" data-reveal><b>05</b>Le menu Casa</p>
+      <h2 class="h2" data-split>Un dîner <em>en trois temps.</em></h2>
+      <p class="lead" data-reveal>Servi chaque soir, pour toute la table. <span class="tasting__price">49 € par personne</span></p>
+    </header>
+    <ol class="courses">
+      <li class="glass" data-course>
+        <span class="courses__num">I</span>
+        <h3>Pour ouvrir</h3>
+        <ul>
+          <li>Burrata crémeuse, tomates confites, basilic</li>
+          <li>Focaccia tiède au romarin, huile d'olive de Sicile</li>
+        </ul>
       </li>
-      <li data-reveal>
-        <blockquote>« La carbonara au bœuf fumé est un modèle d'équilibre. Le genre d'adresse qu'on garde pour soi. »</blockquote>
-        <p>Un amateur de pâtes fraîches</p>
+      <li class="glass" data-course>
+        <span class="courses__num">II</span>
+        <h3>Le cœur</h3>
+        <ul>
+          <li>Une pizza ou des pâtes signature, au choix</li>
+          <li>ou Le Casa Blanca, bœuf maturé 28 jours</li>
+        </ul>
       </li>
-      <li data-reveal>
-        <blockquote>« Un burger traité comme un plat de chef. La brioche, la cuisson, le cheddar : tout est juste. »</blockquote>
-        <p>Un client, dîner d'anniversaire</p>
+      <li class="glass" data-course>
+        <span class="courses__num">III</span>
+        <h3>Pour finir</h3>
+        <ul>
+          <li>Tiramisù maison au café serré</li>
+          <li>Panna cotta vanille, coulis de fruits rouges</li>
+        </ul>
       </li>
-    </ul>
+    </ol>
+  </div>
+</section>
 
-    <aside class="privat" data-reveal>
+<!-- ================= 7. LA VISION ================= -->
+<section class="vision section" id="vision">
+  <div class="wrap vision__grid">
+    <div class="vision__text">
+      <p class="over" data-reveal><b>06</b>La vision</p>
+      <h2 class="h2" data-split>Du réconfort, <em>sans compromis.</em></h2>
+      <p class="lead" data-reveal>« J'ai voulu une maison où la pizza, les pâtes et le burger sont traités avec le même respect qu'un plat étoilé. »</p>
+      <p data-reveal>Chaque matin, la pâte est pétrie, les pâtes sont tirées, les sauces sont lancées. Le soir, tout est servi à la minute, sous vos yeux. C'est simple, et c'est exigeant.</p>
+      <p class="signature" data-reveal>Ouweis<span>Fondateur</span></p>
+    </div>
+    <figure class="vision__visual" data-reveal>
+      <div class="vision__circle"><video class="vid" data-src="assets/video/chef.mp4" poster="assets/img/chef.webp" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+      <svg class="vision__ring" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="vring" d="M100 100 m-92 0 a92 92 0 1 1 184 0 a92 92 0 1 1 -184 0"/></defs><text><textPath href="#vring">FAIT MAISON · CHAQUE JOUR · SERVI À LA MINUTE · FAIT MAISON · CHAQUE JOUR · SERVI À LA MINUTE · </textPath></text></svg>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= 8. L'EXPÉRIENCE ================= -->
+<section class="experience" id="experience">
+  <div class="experience__bg" aria-hidden="true">
+    <video class="vid" data-src="assets/video/salle.mp4" poster="assets/img/salle.webp" muted loop playsinline preload="none" data-parallax></video>
+    <div class="experience__shade"></div>
+  </div>
+  <div class="wrap experience__content">
+    <p class="over" data-reveal><b>07</b>L'expérience &amp; le lieu</p>
+    <h2 class="h2" data-split>Une table intime, <em>une cuisine à vif.</em></h2>
+    <p class="lead" data-reveal>Lumière tamisée, pierre brute, bois patiné, éclats de laiton : 48 couverts pensés comme un écrin. Au centre, la cuisine ouverte et son four à bois laissent voir chaque geste, chaque flamme.</p>
+    <ul class="materials" data-reveal>
+      <li>Pierre</li><li>Bois brut</li><li>Laiton</li><li>Four à bois</li><li>Cuisine ouverte</li>
+    </ul>
+  </div>
+  <div class="wrap">
+    <aside class="privat glass" data-reveal>
       <div>
         <p class="over"><b>✦</b>Privatisation &amp; événements</p>
         <h3>La salle rien que pour vous.</h3>
@@ -365,11 +456,41 @@
   </div>
 </section>
 
-<!-- ================= 6. RÉSERVATION ================= -->
+<!-- ================= 9. AVIS ================= -->
+<section class="reviews section" id="avis" aria-roledescription="carrousel" aria-label="Avis de clients">
+  <div class="wrap">
+    <p class="over reviews__over" data-reveal><b>08</b>Ils en parlent</p>
+    <div class="reviews__stage" data-reviews data-reveal>
+      <figure class="review is-active" aria-roledescription="diapositive">
+        <blockquote>« Une pizza d'une légèreté rare, une croûte qui chante sous la dent. On vient pour la truffe, on reste pour l'ambiance. »</blockquote>
+        <figcaption>Une habituée du vendredi soir</figcaption>
+      </figure>
+      <figure class="review" aria-roledescription="diapositive" aria-hidden="true">
+        <blockquote>« La carbonara au bœuf fumé est un modèle d'équilibre. Le genre d'adresse qu'on garde pour soi. »</blockquote>
+        <figcaption>Un amateur de pâtes fraîches</figcaption>
+      </figure>
+      <figure class="review" aria-roledescription="diapositive" aria-hidden="true">
+        <blockquote>« Un burger traité comme un plat de chef. La brioche, la cuisson, le cheddar : tout est juste. »</blockquote>
+        <figcaption>Un client, dîner d'anniversaire</figcaption>
+      </figure>
+      <figure class="review" aria-roledescription="diapositive" aria-hidden="true">
+        <blockquote>« On voit le four, on entend la flamme, on sent la truffe avant même de s'asseoir. Une soirée entière de gourmandise. »</blockquote>
+        <figcaption>Une cliente, soirée privatisée</figcaption>
+      </figure>
+    </div>
+    <div class="reviews__nav" data-reveal>
+      <button type="button" class="reviews__btn" data-review-prev aria-label="Avis précédent">←</button>
+      <div class="reviews__dots" data-review-dots></div>
+      <button type="button" class="reviews__btn" data-review-next aria-label="Avis suivant">→</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 10. RÉSERVATION ================= -->
 <section class="booking section" id="reserver">
   <div class="wrap booking__grid">
     <div class="booking__intro">
-      <p class="over" data-reveal><b>05</b>Réservation</p>
+      <p class="over" data-reveal><b>09</b>Réservation</p>
       <h2 class="h2" data-split>Votre table <em>vous attend.</em></h2>
       <p class="lead" data-reveal>Réservez en quelques secondes. Pour un groupe de plus de 12 personnes, pensez à la privatisation.</p>
       <dl class="hours" data-reveal>
@@ -380,7 +501,7 @@
       </dl>
     </div>
 
-    <form class="resa" data-resa novalidate data-reveal>
+    <form class="resa glass" data-resa novalidate data-reveal>
       <div class="resa__steps">
         <fieldset class="field">
           <legend><span>01</span>Convives</legend>
@@ -441,6 +562,14 @@
     <div class="footer__brand">
       <a href="#top" class="brand brand--lg" aria-label="Retour en haut"><span class="brand__name">La Casa <i>Blanca</i></span><span class="brand__by">by Ouweis</span></a>
       <p>L'art du fait maison, l'instinct de la gourmandise.</p>
+      <form class="newsletter" data-newsletter novalidate>
+        <label for="nl-email">La lettre de la maison : pizzas de saison et soirées privées.</label>
+        <div class="newsletter__row">
+          <input id="nl-email" type="email" name="email" placeholder="Votre e-mail" autocomplete="email" required>
+          <button type="submit" class="btn btn--gold">S'inscrire</button>
+        </div>
+        <p class="newsletter__msg" data-newsletter-msg aria-live="polite"></p>
+      </form>
     </div>
     <div>
       <h4>Horaires</h4>
@@ -471,8 +600,8 @@
 <dialog class="legal" data-legal aria-labelledby="legal-title">
   <h2 id="legal-title">Mentions légales</h2>
   <p>Ce site est un concept réalisé par Ouweis Mansouri pour son portfolio de web designer. La Casa Blanca by Ouweis est un restaurant imaginaire : les plats, les prix, les avis, les horaires et l'adresse sont illustratifs.</p>
-  <p>Aucune donnée saisie dans le module de réservation n'est envoyée ni conservée. Aucun cookie n'est déposé.</p>
-  <p>Visuels : images générées par intelligence artificielle à partir de prompts de direction artistique.</p>
+  <p>Aucune donnée saisie dans les formulaires n'est envoyée ni conservée. Aucun cookie n'est déposé.</p>
+  <p>Vidéos : Mixkit, sous licence Mixkit gratuite, montées et étalonnées pour le site.</p>
   <button type="button" class="btn btn--line" data-legal-close>Fermer</button>
 </dialog>
 

@@ -5,12 +5,13 @@ Clair-obscur, contre-jour doré qui fait briller la vapeur et les sauces, macro 
 bokeh crémeux, fond sombre texturé (ardoise, bois brûlé, marbre noir), étalonnage ambré
 avec des noirs profonds.
 
+> Le site utilise aujourd'hui des vidéos Mixkit étalonnées (voir `README.md`). Ces prompts
+> servent si l'on veut remplacer certains plans par des visuels sur mesure.
+
 Les prompts sont écrits pour **Midjourney v6.1**. Pour **Flux**, copiez le texte sans les
 paramètres de fin (`--ar`, `--style`, `--v`, `--no`) et choisissez le format dans l'outil.
 
-Le site affiche une illustration d'attente tant qu'une image manque. Déposez les fichiers
-dans `assets/img/` avec **exactement** ces noms ; un PNG ou un JPG convient, ils seront
-convertis en WebP et redimensionnés.
+Les noms de fichiers ci-dessous indiquent l'usage prévu pour chaque visuel.
 
 ## Les 6 visuels principaux
 
@@ -57,8 +58,6 @@ Interior photograph of an intimate high-end Italian restaurant at night, dim war
 ```
 
 ## 4 visuels complémentaires (facultatifs)
-
-Sans eux, le site réutilise les visuels principaux à ces emplacements.
 
 ### 7. `plat-penne.webp` — 4:5 (1200 × 1500)
 La Carte, onglet Pennes, et vignette « Vapeur de truffe » (sinon : visuel 4).

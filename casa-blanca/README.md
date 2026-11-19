@@ -4,56 +4,60 @@ Site vitrine d'un restaurant **imaginaire** de cuisine réconfortante haut de ga
 (pizzas, spaghettis, pennes, burgers, 100 % fait maison). Concept personnel d'Ouweis
 Mansouri : direction artistique, copywriting, design et code.
 
-Direction : « Gastronomie nocturne & chaleureuse » — noir charbon `#0D0D0D`, expresso
+Direction : « Gastronomie nocturne & chaleureuse ». Noir charbon `#0D0D0D`, expresso
 `#161210`, ambre `#C88A36` et or brossé `#D4AF37`, crème `#F5F2EB`, rouge carmin `#8B1E1E`
-en touches. Titres en Cormorant Garamond, textes en Plus Jakarta Sans.
+en touches. Titres en Cormorant Garamond, textes en Plus Jakarta Sans. Surfaces en verre
+dépoli, filets dorés, grain photo.
 
 ## Structure
 
-- `index.html` — la page, en 6 sections : hero, manifeste, carte signature (4 onglets),
-  galerie « L'obsession du détail », expérience et privatisation, réservation, puis le pied de page
-- `assets/css/style.css` — tous les styles (variables de palette en tête de fichier), sans étape de compilation
-- `assets/js/app.js` — interactions : défilement fluide, intro, onglets, réservation,
-  curseur, boutons magnétiques, parallaxe, apparitions
+`index.html` — 11 temps :
+
+1. **Hero** : four à bois en vidéo plein écran, fumée réelle en surimpression, carte
+   flottante du plat signature, bandeau défilant.
+2. **Manifeste** : texte éditorial, chiffres clés, deux vidéos décalées en parallaxe.
+3. **Les quatre piliers** : défilement horizontal épinglé sur ordinateur, cartes à
+   balayer au doigt sur mobile.
+4. **La carte** : 4 onglets accessibles au clavier, 17 plats, lignes pointillées
+   jusqu'aux prix.
+5. **L'obsession du détail** : grille de six boucles vidéo en gros plan.
+6. **Le menu Casa** : menu en trois temps.
+7. **La vision** : texte du fondateur, signature, cercle vidéo entouré d'un texte qui tourne.
+8. **L'expérience** : la salle en vidéo plein écran, privatisation.
+9. **Avis** : carrousel automatique, avec flèches, points et balayage.
+10. **Réservation** : convives, date, horaires selon les jours d'ouverture, coordonnées.
+11. **Pied de page** : lettre d'information, horaires, adresse, Instagram, mentions légales.
+
+Fichiers :
+
+- `assets/css/style.css` — tous les styles (variables de palette en tête), sans étape de compilation
+- `assets/js/app.js` — gestion des vidéos, défilement fluide, intro, piliers, onglets,
+  carrousel, réservation, lettre, curseur, boutons magnétiques, parallaxe, apparitions
 - `assets/vendor/` — GSAP 3.12.5, ScrollTrigger et Lenis 1.1.13, copiés localement
-- `assets/img/` — visuels (voir ci-dessous) et favicon
-- `PROMPTS.md` — les prompts de génération des visuels (Midjourney v6.1 / Flux)
+- `assets/video/` — 17 boucles MP4 (H.264, 720p, sans son, 14 Mo au total)
+- `assets/img/` — une affiche par vidéo (`.webp`, première image), image de partage `og.jpg`, favicon
+- `PROMPTS.md` — prompts de génération d'images, si l'on veut un jour remplacer des
+  vidéos par des visuels sur mesure
 
-## Visuels
+## Vidéos
 
-Chaque image est placée dans un cadre `.media`. Tant que le fichier manque, le cadre
-affiche une illustration d'attente (halo ambré et légende). Quand un visuel complémentaire
-manque, l'image indiquée dans `data-fallback` prend sa place.
+Sources : [Mixkit](https://mixkit.co/license/#videoFree), licence gratuite, usage commercial
+autorisé. Chaque plan est coupé, étalonné avec le même réglage (noirs profonds, hautes
+lumières ambrées, vignettage), puis compressé. Une vidéo ne se charge qu'à l'approche de
+l'écran et ne joue que lorsqu'elle est visible. Avec « réduire les animations » ou le mode
+économie de données, seules les affiches s'affichent.
 
-| Fichier | Format | Emplacements |
-| --- | --- | --- |
-| `hero-pizza.webp` | 16:9 | hero, galerie |
-| `manifeste-mains.webp` | 4:5 | manifeste |
-| `manifeste-produits.webp` | 4:5 | manifeste (et repli de `detail-sel`) |
-| `plat-spaghetti.webp` | 4:5 | carte (spaghettis), galerie (et repli de `plat-penne`) |
-| `plat-burger.webp` | 4:5 | carte (burgers), galerie (et repli de `detail-brioche`) |
-| `salle.webp` | 3:2 | expérience |
-| `plat-penne.webp` *(facultatif)* | 4:5 | carte (pennes), galerie |
-| `plat-pizza.webp` *(facultatif)* | 4:5 | carte (pizzas) |
-| `detail-brioche.webp` *(facultatif)* | 1:1 | galerie |
-| `detail-sel.webp` *(facultatif)* | 1:1 | galerie |
+## Formulaires
 
-Une vidéo de hero (`assets/video/hero.mp4`) peut être ajoutée en remplissant `data-video`
-sur `.hero__media`.
+La réservation et la lettre d'information sont des démonstrations : rien n'est envoyé ni
+enregistré. Pour un vrai restaurant, il suffirait de brancher leur envoi sur un service de
+réservation et d'e-mailing.
 
-## Réservation
-
-Le module (convives, date, horaire selon les jours d'ouverture, coordonnées) est une
-démonstration : rien n'est envoyé ni enregistré. Pour un vrai restaurant, il suffirait de
-brancher l'envoi du formulaire sur un service de réservation.
-
-## Accessibilité et performance
+## Accessibilité
 
 - Onglets de la carte au clavier (flèches, Début, Fin), boîte de dialogue native pour les
-  mentions légales, focus visibles.
-- Animations désactivées pour les visiteurs qui préfèrent moins de mouvement. Sans
-  JavaScript, tout le contenu reste lisible (la carte s'affiche en entier) ; seul le module
-  de réservation en a besoin.
-- Images chargées à la demande, sauf celle du hero, qui est préchargée.
+  mentions légales, focus visibles, vidéos décoratives masquées aux lecteurs d'écran.
+- Sans JavaScript, tout le contenu reste lisible (la carte s'affiche en entier) ; seuls les
+  formulaires en ont besoin.
 - Bouton « Réserver une table » toujours accessible sur mobile. Il s'efface quand le bouton
   du hero ou le formulaire sont à l'écran.
