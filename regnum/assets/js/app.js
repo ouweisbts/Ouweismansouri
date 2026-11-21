@@ -44,7 +44,6 @@
   const intro = $('.intro');
   const ready = () => root.classList.add('is-ready');
   if (intro && !root.classList.contains('no-intro') && !reduced) {
-    try { sessionStorage.setItem('rg-intro', '1'); } catch (e) { /* private mode */ }
     lock(true);
     setTimeout(() => { intro.classList.add('is-out'); ready(); lock(false); }, 1500);
     setTimeout(() => intro.remove(), 2500);
@@ -56,9 +55,7 @@
   /* ---------- Videos: load when near, play when seen, pause when gone ---------- */
   const hero = $('.hero__video');
   if (hero) {
-    const tall = innerHeight / innerWidth > 1.05;
-    hero.poster = tall ? hero.dataset.posterTall : hero.dataset.posterWide;
-    hero.dataset.src = tall ? hero.dataset.tall : hero.dataset.wide;
+    hero.dataset.src = innerHeight / innerWidth > 1.05 ? hero.dataset.tall : hero.dataset.wide;
   }
   const play = (v) => { if (reduced) return; const p = v.play(); if (p && p.catch) p.catch(() => {}); };
   const load = (v) => { if (v.dataset.src && !v.getAttribute('src')) { v.src = v.dataset.src; v.preload = 'auto'; } };
@@ -174,18 +171,6 @@
     });
   }, { rootMargin: '0px 0px -8% 0px' });
   $$('[data-reveal], .reveal-img, .grid li').forEach((el) => rio.observe(el));
-
-  /* ---------- Manifesto: the words light up as you read ---------- */
-  const mani = $('[data-manifesto]');
-  if (mani) {
-    const words = mani.textContent.trim().split(/\s+/);
-    mani.innerHTML = words.map((w) => `<span class="w${/^feu\.?$/.test(w) ? ' w--feu' : ''}">${w}</span>`).join(' ');
-    const spans = $$('.w', mani);
-    const light = (p) => { const n = Math.round(p * spans.length); spans.forEach((s, i) => s.classList.toggle('is-lit', i < n)); };
-    if (hasGsap && !reduced) {
-      ScrollTrigger.create({ trigger: mani, start: 'top 82%', end: 'bottom 40%', scrub: true, onUpdate: (st) => light(st.progress) });
-    } else light(1);
-  }
 
   /* ---------- Le feu: three chapters, pinned on wide screens ---------- */
   const steps = $$('.feu__step'), frameVids = $$('.feu__frame video'), bar = $('.feu__bar i'), count = $('[data-feu-count]');
@@ -307,8 +292,10 @@
   };
   $$('[data-demo-form]').forEach((form) => form.addEventListener('submit', (e) => {
     e.preventDefault();
+    const trap = $('input[name="site"]', form);
+    if (trap && trap.value) return; // filled by a robot: ignore silently
     let bad = null;
-    $$('input, select, textarea', form).forEach((f) => {
+    $$('.f input, .f select, .f textarea', form).forEach((f) => {
       const wrong = (f.required && !f.value.trim()) || (f.type === 'email' && f.value && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.value));
       f.closest('.f').classList.toggle('is-bad', wrong);
       if (wrong && !bad) bad = f;
@@ -356,19 +343,45 @@
     } else if (!lb.hidden && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) lbShow(lbIndex + (e.key === 'ArrowRight' ? 1 : -1));
   });
 
-  /* ---------- Booking: the restaurant's Zenchef module ---------- */
-  // Every "Réserver" link points to the Zenchef booking page, so a click always leads to booking.
-  // Once the module has set up its booking window (an iframe from bookings.zenchef.com), it opens
-  // that window over the page instead: the module listens for clicks on [data-zc-action] itself.
-  const sdk = d.createElement('script');
-  sdk.async = true; sdk.id = 'zenchef-sdk'; sdk.src = 'https://sdk.zenchef.com/v1/sdk.min.js';
-  d.body.appendChild(sdk);
-  const sdkWindow = () => $$('iframe').some((f) => /zc-iframe/i.test(f.className) || (f.src || '').includes('bookings.zenchef.com'));
+  /* ---------- Booking: the restaurant's Zenchef module, loaded on the first click ---------- */
+  // Nothing from Zenchef is loaded until a visitor asks to book: no third-party request or cookie before that.
+  // Every "Réserver" link points to the Zenchef booking page, so a click always leads to booking, even if the
+  // module cannot load. Once loaded, the module listens for clicks on [data-zc-action] and opens its window.
+  let sdk = 'idle'; // idle, loading, ready or failed
+  const zcFrame = () => $$('iframe').find((f) => /zc-iframe/i.test(f.className));
+  const loadSdk = () => new Promise((resolve) => {
+    sdk = 'loading';
+    const el = d.createElement('script');
+    el.async = true; el.id = 'zenchef-sdk'; el.src = 'https://sdk.zenchef.com/v1/sdk.min.js';
+    el.onerror = () => { sdk = 'failed'; resolve(false); };
+    el.onload = () => {
+      // Ready once its booking window exists and listens (it then carries the "opened" class),
+      // or after a short delay for set-ups that only open on demand
+      const t0 = Date.now();
+      const wait = () => {
+        const f = zcFrame(), age = Date.now() - t0;
+        if (f && (/opened/i.test(f.className) || age > 2500)) { sdk = 'ready'; resolve(true); }
+        else if (age > 8000) { sdk = 'failed'; resolve(false); }
+        else setTimeout(wait, 120);
+      };
+      wait();
+    };
+    d.body.appendChild(el);
+  });
   d.addEventListener('click', (e) => {
-    const a = e.target.closest('.js-book');
-    if (a && sdkWindow()) e.preventDefault();
+    const link = e.target.closest('.js-book');
+    if (!link) return;
+    if (sdk === 'ready') { if (zcFrame()) e.preventDefault(); return; } // the module opens its window
+    if (sdk === 'failed') return;                                      // plain link to the booking page
+    e.preventDefault();
+    if (sdk === 'loading') return;
+    link.classList.add('is-loading'); link.setAttribute('aria-busy', 'true');
+    loadSdk().then((ok) => {
+      link.classList.toggle('is-loading', false); link.setAttribute('aria-busy', 'false');
+      if (ok) link.click(); else location.href = link.href;
+    });
   }, true);
-  $$('.js-book').forEach((a) => { if (!a.getAttribute('href')) a.href = BOOK_URL; });
+  $$('.js-book').forEach((l) => { if (!l.getAttribute('href')) l.href = BOOK_URL; });
 
   /* ---------- Footer year ---------- */
   $$('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
