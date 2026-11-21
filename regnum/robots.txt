@@ -1,0 +1,5 @@
+# Pour la mise en ligne sur le domaine du restaurant (ce fichier doit alors être à la racine du site).
+User-agent: *
+Allow: /
+
+Sitemap: https://www.regnumsteakhouse.com/sitemap.xml

@@ -1,0 +1,13 @@
+# Security headers for launch on a host that reads this file (Netlify, Cloudflare Pages).
+# GitHub Pages ignores it: there, index.html carries the content policy in a meta tag.
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-k0mDqyvPBaxdI7FPmw9u3h9kcS7tZPaVoHifWbJSx/8=' https://sdk.zenchef.com; style-src 'self' https://sdk.zenchef.com; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self' https://sdk.zenchef.com https://bookings.zenchef.com https://bookings-middleware.zenchef.com; frame-src https://bookings.zenchef.com https://nl.zenchef.com https://www.google.com https://maps.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(self "https://bookings.zenchef.com"), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin-allow-popups
+
+/assets/*
+  Cache-Control: public, max-age=604800

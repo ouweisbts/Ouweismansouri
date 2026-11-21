@@ -1,44 +1,103 @@
 # Regnum Steak House : proposition de refonte
 
-Maquette complète du futur site de Regnum Steak House (2 avenue Eugène Hénaff, Vaulx-en-Velin), conçue par Ouweis Mansouri pour être présentée au restaurant. **Site non officiel** : la page est marquée `noindex` et le pied de page le précise.
+Maquette complète du futur site de Regnum Steak House (2 avenue Eugène Hénaff, Vaulx-en-Velin), conçue par Ouweis Mansouri pour être présentée au restaurant. **Site non officiel** : les pages sont marquées `noindex`, et le pied de page comme la page légale le précisent.
 
-Site statique, sans étape de compilation : `index.html`, `assets/css/style.css`, `assets/js/app.js`. GSAP, ScrollTrigger et Lenis sont fournis dans `assets/vendor`. Les polices (Bodoni Moda, Barlow, Barlow Condensed, licence SIL OFL) sont hébergées sur le site : aucun appel à Google Fonts.
+Site statique, sans étape de compilation :
+- `index.html`, la page d'accueil ;
+- `mentions-legales.html`, les mentions légales, les données personnelles, les cookies, les avis, la carte, la médiation et l'accessibilité ;
+- `assets/css/style.css` et `assets/js/app.js`.
+
+GSAP, ScrollTrigger et Lenis sont fournis dans `assets/vendor`. Les polices (Bodoni Moda, Barlow, Barlow Condensed, licence SIL OFL) sont hébergées sur le site : aucun appel à Google Fonts.
 
 ## Ce qui fonctionne vraiment
 
-- **Réservation** : le module Zenchef du restaurant (restaurant n° 358260), le même que sur leur site actuel. Chaque bouton « Réserver » ouvre la fenêtre de réservation Zenchef par-dessus la page. Si le module ne se charge pas, le bouton ouvre la page de réservation Zenchef dans un nouvel onglet. Le bouton flottant propre à Zenchef est masqué, car le site a ses propres boutons (règle CSS `iframe[class*="zc-width-numeral"]`, à retirer pour le réafficher).
-- **Newsletter** : le formulaire d'inscription Zenchef du restaurant.
-- **Horaires en direct** : « Ouvert, jusqu'à 22 h 30 » ou « Fermé, ouvre à 18 h 45 », calculé à l'heure de Paris, et le jour actuel est mis en avant dans le tableau.
-- **Appeler, itinéraire, plan** : liens directs ; le plan Google Maps ne se charge qu'au clic (Google dépose des cookies).
+- **Réservation** : le module Zenchef du restaurant (n° 358260), le même que sur leur site actuel.
+  - Il ne se charge qu'au premier clic sur un bouton « Réserver », puis ouvre sa fenêtre de réservation par-dessus la page.
+  - Si le module ne se charge pas, le bouton mène à la page de réservation Zenchef.
+  - Ses options de statistiques sont désactivées (`data-disable-ga4`, `data-disable-gtm`, `data-send-page-views`).
+  - Son bouton flottant est masqué, puisque le site a ses propres boutons.
+- **Newsletter** : le formulaire d'inscription Zenchef du restaurant, ouvert au clic.
+- **Horaires en direct**, à l'heure de Paris, avec le jour actuel mis en avant.
+- **Appeler, itinéraire, plan** : le plan Google Maps ne se charge qu'au clic.
 
 ## Ce qui est une démonstration
 
-- **Formulaires de privatisation et de contact** : rien n'est envoyé, un message l'indique. À la mise en ligne, il faudra un service d'envoi (Formspree, un formulaire Zenchef ou l'adresse e-mail du restaurant).
-- **Liens légaux** : ils pointent vers les mentions légales, la politique de confidentialité et la politique de cookies du site actuel.
+Les formulaires de privatisation et de contact n'envoient rien, et un message le dit. À la mise en ligne, il faudra les relier à un service d'envoi : Formspree, un formulaire Zenchef ou l'e-mail du restaurant. Il faudra alors ajouter son adresse dans `form-action` de la politique de sécurité.
 
-## Contenus : sources et points à confirmer avec le patron
+## Écran : la page ne bouge jamais sur les côtés
 
-- **Carte et prix** : repris de leur site actuel.
-  - La bavette de veau n'y a pas de prix.
-  - Le faux-filet et la côte de veau n'y ont pas de poids.
-  - Pides, lahmacun, mezzes, pizzas, burgers, desserts et mocktails apparaissent sur leur Instagram mais pas sur leur carte en ligne : il faut leur carte complète.
-- **Photos et vidéos** : récupérées sur leur Instagram et leur site actuel. Les vidéos sont des enregistrements d'écran, recadrés pour retirer les boutons d'Instagram et le texte incrusté. Certaines viennent peut-être d'influenceurs : pour le site définitif, il faut leurs propres images ou l'accord des auteurs. C'est l'occasion de proposer un shooting photo et vidéo.
-- **Avis clients** : repris des visuels publiés sur leur Instagram (Sarah, Rukiye, Kadi, Ibtissem, Clara), avec de petites corrections d'orthographe.
-- **À confirmer avant d'en parler sur le site** :
-  - le halal (cité par des sites tiers, absent de leur site) ;
-  - « plus de 300 places » et « le plus grand steakhouse de la région lyonnaise » (texte d'une vidéo Instagram) ;
-  - le second numéro, 04 78 05 21 64, affiché dans leur fenêtre de réservation Zenchef.
-- **Services et paiements** : repris de leur site actuel (terrasse, wifi, accès PMR, climatisation, privatisation ; carte bancaire, espèces, titres-restaurant, Apple Pay…).
+Trois protections :
+- `html` refuse le défilement horizontal et le rebond (`overflow-x:hidden`, `overscroll-behavior-x:none`) ;
+- au doigt, la page n'accepte que le défilement vertical et le zoom (`touch-action:pan-y pinch-zoom`) ;
+- seuls les deux carrousels se balaient horizontalement.
 
-## Avant la mise en ligne définitive
+Test au doigt simulé sur 11 appareils, de 320 px à l'iPad, en portrait et en paysage : la page reste à la largeur de l'écran et ne se décale pas. Un témoin volontairement cassé est bien détecté, ce qui confirme que le test est fiable.
 
-1. Retirer `<meta name="robots" content="noindex, nofollow">` dans `index.html`.
-2. Remplacer les adresses de l'image de partage (`og:image`) par le domaine définitif.
-3. Faire pointer regnumsteakhouse.com vers le nouvel hébergement : il faut savoir qui gère le nom de domaine (le restaurant ou Zenchef).
-4. Brancher les formulaires sur un vrai service d'envoi.
-5. Retirer la mention « Proposition de refonte non officielle » du pied de page.
+## SEO
+
+- Titre de 54 caractères et description de 153 caractères.
+- Un seul `h1` et une hiérarchie de titres sans saut.
+- Toutes les images ont un texte alternatif et leurs dimensions.
+- `canonical` et `og:url` pointent vers le domaine du restaurant ; `robots.txt` et `sitemap.xml` sont prêts pour ce domaine.
+- Données structurées schema.org `Restaurant` : adresse, coordonnées GPS, horaires, réservation (`ReserveAction` vers Zenchef), services, moyens de paiement et carte complète avec les 15 plats et leurs prix (`hasMenu`).
+- Image du haut de page préchargée selon la forme de l'écran, vidéos chargées à la demande, polices préchargées.
+- Le mot « halal » n'est pas utilisé tant qu'il n'est pas confirmé : c'est pourtant une recherche importante pour leur clientèle.
+
+## Sécurité
+
+- **Politique de sécurité des contenus (CSP)** dans les pages : scripts limités au site, à Zenchef et au petit script d'en-tête autorisé par son empreinte, aucun style en ligne, cadres limités à Zenchef et Google Maps, `object-src 'none'`, `base-uri 'self'`.
+- **Fichier `_headers`** prêt pour un hébergeur qui le lit (Netlify, Cloudflare Pages) : CSP, interdiction d'affichage dans un cadre (`frame-ancestors 'none'`, `X-Frame-Options`), HSTS, `nosniff`, `Referrer-Policy`, `Permissions-Policy`. GitHub Pages l'ignore.
+- **Formulaires** : longueurs maximales, piège invisible contre les robots, aucune donnée envoyée tant qu'aucun service n'est branché.
+- **Aucun stockage sur l'appareil du visiteur** : ni cookie, ni `localStorage`, ni `sessionStorage`.
+
+## Points juridiques
+
+La page `mentions-legales.html` couvre les points suivants :
+- les mentions légales (LCEN), avec les informations de leur site actuel : REGNUM, capital de 10 000 €, RCS Lyon 911 036 812, SIRET 911 036 812 00012, TVA FR36 911 036 812 ;
+- l'éditeur et l'hébergeur de la maquette ;
+- les crédits et la propriété intellectuelle ;
+- le RGPD : finalités, bases légales, durées, destinataires, droits, CNIL ;
+- les cookies : aucun, et les services tiers chargés à la demande ;
+- les avis clients (Code de la consommation) ;
+- les informations de la carte : prix TTC service compris, origine des viandes, allergènes ;
+- la médiation de la consommation ;
+- l'accessibilité (WCAG 2.1 AA, auto-évaluation).
+
+Sur la page d'accueil, une note sous la carte rappelle les prix, l'origine des viandes et les allergènes. Une autre, sous les avis, précise qu'ils sont reproduits mot pour mot et non vérifiés. Sous chaque formulaire, un rappel pointe vers la politique de confidentialité.
+
+**À compléter avec le patron** (surligné en rouge sur la page légale) :
+- la forme juridique ;
+- l'e-mail ;
+- le directeur de la publication ;
+- l'hébergeur définitif ;
+- le médiateur de la consommation.
+
+Leurs mentions légales actuelles ne donnent pas non plus ces informations.
+
+## À confirmer avant toute publication officielle
+
+- **Images** : accord écrit pour toutes les photos et vidéos (certaines viennent peut-être d'influenceurs), et accord des personnes reconnaissables (le chef notamment). Sinon, prévoir un shooting.
+- **Carte** :
+  - la carte complète (pides, pizzas, burgers, desserts, mocktails), absente de leur site actuel ;
+  - le prix de la bavette de veau ;
+  - le poids du faux-filet et de la côte de veau.
+- **Affichages obligatoires en salle** : l'origine des viandes et la liste des allergènes doivent bien être disponibles en salle, comme l'annonce le site.
+- **Halal** : à confirmer avant d'en parler.
+- **« Plus de 300 places »** : à confirmer.
+- **Second numéro** : le 04 78 05 21 64, affiché dans leur fenêtre Zenchef.
+
+## Mise en ligne définitive
+
+1. Retirer `<meta name="robots" content="noindex, nofollow">` des deux pages.
+2. Retirer l'encadré « Version de démonstration » de la page légale et la mention « Proposition de refonte non officielle » du pied de page.
+3. Remplacer l'adresse de l'image de partage (`og:image`) par le domaine définitif.
+4. Faire pointer regnumsteakhouse.com vers le nouvel hébergement (savoir qui gère le nom de domaine : le restaurant ou Zenchef), puis placer `robots.txt`, `sitemap.xml` et `_headers` à la racine.
+5. Brancher les formulaires sur un vrai service d'envoi.
+6. Compléter les informations surlignées de la page légale.
+7. Déclarer le site dans Google Search Console et mettre à jour la fiche Google du restaurant avec le nouveau site.
 
 ## Médias
 
-- `assets/video` : 5 boucles H.264 sans son (3,4 Mo au total) : hero en paysage et en portrait, puis la braise, la maturation et le four à bois.
-- `assets/img` : photos en WebP, en deux tailles (`-640` pour les vignettes), logo vectorisé à partir de leur logo (`logo-regnum.svg`), favicon, icône iPhone, image de partage `og.jpg`.
+- `assets/video` : 5 boucles H.264 sans son (3,4 Mo au total), recadrées sans les boutons ni le texte d'Instagram.
+- `assets/img` : photos en WebP en deux tailles, logo vectorisé (`logo-regnum.svg`), favicon, icône iPhone, image de partage `og.jpg`.
+- À la demande du client, deux photos ont été retirées : l'enseigne sur le mur végétal et l'entrée avec l'olivier.
