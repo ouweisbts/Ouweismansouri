@@ -339,9 +339,29 @@
     if (e.key === 'Escape') {
       if (!lb.hidden) lbClose();
       else if (!modal.hidden) closeModal();
-      else if (!menu.hidden) setMenu(false);
+      else if (!menu.hidden) { setMenu(false); burger.focus(); }
     } else if (!lb.hidden && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) lbShow(lbIndex + (e.key === 'ArrowRight' ? 1 : -1));
   });
+
+  const FOCUSABLE = 'a[href],button:not([disabled]),input:not([tabindex="-1"]),select,textarea,iframe,[tabindex]:not([tabindex="-1"])';
+  const openZones = () => (!lb.hidden ? [lb] : !modal.hidden ? [modal] : !menu.hidden ? [burger, menu] : null);
+  const zoneItems = (zones) => zones.flatMap((z) => (z.matches(FOCUSABLE) ? [z] : $$(FOCUSABLE, z)))
+    .filter((el) => el.getClientRects().length && !el.closest('[hidden],.trap'));
+  d.addEventListener('keydown', (e) => {
+    const zones = e.key === 'Tab' && openZones();
+    if (!zones) return;
+    const list = zoneItems(zones), i = list.indexOf(d.activeElement);
+    if (!list.length) return;
+    if (e.shiftKey && i <= 0) { e.preventDefault(); list[list.length - 1].focus(); }
+    else if (!e.shiftKey && (i === -1 || i === list.length - 1)) { e.preventDefault(); list[0].focus(); }
+  });
+  d.addEventListener('focusin', (e) => {
+    const zones = openZones();
+    if (zones && !zones.some((z) => z.contains(e.target))) { const list = zoneItems(zones); if (list[0]) list[0].focus(); }
+  });
+  const scrollers = $$('[data-scroller]');
+  const tabScrollers = () => scrollers.forEach((s) => { s.tabIndex = s.scrollWidth > s.clientWidth + 2 ? 0 : -1; });
+  tabScrollers(); addEventListener('resize', tabScrollers); addEventListener('load', tabScrollers);
 
   /* ---------- Booking: the restaurant's Zenchef module, loaded on the first click ---------- */
   // Nothing from Zenchef is loaded until a visitor asks to book: no third-party request or cookie before that.
