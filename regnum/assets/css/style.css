@@ -418,6 +418,8 @@ html:not(.js) .intro,html.no-intro .intro{display:none}
 .ft__logo{width:clamp(220px,30vw,400px);color:var(--creme)}
 .ft__cta{display:grid;gap:16px;justify-items:start}
 .ft__cta p{font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,2.6vw,2.2rem)}
+/* phones: the logo and the booking call stack, centred */
+@media (max-width:700px){.ft__top{flex-direction:column;align-items:center;text-align:center}.ft__cta{justify-items:center}}
 .ft__cols{display:grid;grid-template-columns:repeat(2,1fr);gap:36px 24px;padding-block:clamp(40px,5vw,60px)}
 .ft__cols h2{font-family:var(--cond);font-weight:600;font-size:.8rem;letter-spacing:.28em;text-transform:uppercase;color:var(--cuivre-clair);margin-bottom:12px}
 .ft__cols p,.ft__cols address{color:var(--creme-60);font-size:.98rem;font-style:normal}
