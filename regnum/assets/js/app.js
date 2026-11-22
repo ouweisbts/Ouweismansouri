@@ -211,6 +211,7 @@
     });
     gsap.to('.hero__video', { scale: 1.16, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
     gsap.to('.hero__in', { yPercent: -12, opacity: 0.2, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'center center', end: 'bottom top', scrub: true } });
+    gsap.to('.hero__veil', { opacity: 0, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'center center', end: 'bottom top', scrub: true } });
     addEventListener('load', () => ScrollTrigger.refresh());
     if (d.fonts && d.fonts.ready) d.fonts.ready.then(() => ScrollTrigger.refresh());
   }
