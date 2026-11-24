@@ -61,3 +61,18 @@ réservation et d'e-mailing.
   formulaires en ont besoin.
 - Bouton « Réserver une table » toujours accessible sur mobile. Il s'efface quand le bouton
   du hero ou le formulaire sont à l'écran.
+
+## Stabilité sur mobile
+
+La page ne bouge que de haut en bas, jamais sur les côtés :
+
+- `html` refuse le défilement horizontal et le rebond (`overflow-x:hidden`, `overscroll-behavior-x:none`) ;
+- au doigt, la page n'accepte que le défilement vertical et le zoom (`touch-action:pan-y pinch-zoom`) ;
+  les carrousels (piliers, onglets de la carte, détails, dates) défilent toujours au doigt ;
+- sur ordinateur, la rangée des piliers est coupée par son propre cadre épinglé : elle n'élargit
+  jamais la page, même au pavé tactile ou au clavier ;
+- les colonnes de la réservation peuvent rétrécir (`minmax(0,…)`) et, sous 380 px, les longs
+  boutons resserrent leurs lettres : à 320 px (iPhone en affichage agrandi), plus rien ne dépasse.
+
+Vérifié de 280 à 1000 px de large, et par un balayage au doigt simulé sur 13 écrans, du
+téléphone à la tablette, en portrait et en paysage.

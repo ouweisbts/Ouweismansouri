@@ -32,11 +32,14 @@
 
 /* ---------- Reset & base ---------- */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%}
+/* The page only ever moves up and down: nothing may push it sideways, on phones (finger) or computers (trackpad) */
+html{-webkit-text-size-adjust:100%;overflow-x:hidden;overscroll-behavior-x:none}
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
 .lenis.lenis-stopped{overflow:hidden}
-body{background:var(--charbon);color:var(--creme);font-family:var(--sans);font-size:16px;font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:clip}
+body{background:var(--charbon);color:var(--creme);font-family:var(--sans);font-size:16px;font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:clip;touch-action:pan-y pinch-zoom}
+/* Sideways swipes stay inside the carousels that are made for them */
+.pillars__viewport,.tabs,.bento,.days{touch-action:pan-x pan-y pinch-zoom;overscroll-behavior-x:contain}
 img,video{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
@@ -210,6 +213,8 @@ p{color:var(--creme-70)}
 /* Horizontal mode, set by the script on desktop */
 .pillars.is-horizontal .pillars__pin{height:100vh;display:flex;flex-direction:column;justify-content:center;padding-block:calc(var(--nav) + 10px) 40px}
 .pillars.is-horizontal .pillars__viewport{overflow:visible;scroll-snap-type:none}
+/* The sliding row is cut at the edges of its own pinned frame, so it never widens the page */
+.pillars.is-horizontal .pillars__pin{overflow-x:hidden;overflow-x:clip}
 .pillars.is-horizontal .pillar{width:min(62vw,960px);height:min(62vh,620px)}
 
 /* ---------- 4. La Carte ---------- */
@@ -301,7 +306,7 @@ p{color:var(--creme-70)}
 .privat p:not(.over){font-size:.95rem}
 .privat__facts{display:grid;gap:14px}
 .privat__facts li{display:flex;align-items:baseline;gap:12px;font-size:.85rem;color:var(--creme-70);border-bottom:1px solid var(--line-soft);padding-bottom:12px}
-.privat__facts b{font-family:var(--serif);font-weight:400;font-size:1.7rem;color:var(--or-clair);min-width:2.2ch;white-space:nowrap}
+.privat__facts b{flex:none;font-family:var(--serif);font-weight:400;font-size:1.7rem;color:var(--or-clair);min-width:2.2ch;white-space:nowrap}
 
 /* ---------- 9. Reviews ---------- */
 .reviews{background:var(--charbon);text-align:center}
@@ -320,7 +325,7 @@ p{color:var(--creme-70)}
 
 /* ---------- 10. Booking ---------- */
 .booking{position:relative;background:radial-gradient(45% 55% at 72% 50%,rgba(200,138,54,.16),transparent 70%),radial-gradient(30% 40% at 20% 80%,rgba(139,30,30,.1),transparent 70%),var(--expresso)}
-.booking__grid{display:grid;grid-template-columns:5fr 7fr;gap:clamp(36px,6vw,110px);align-items:start}
+.booking__grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(36px,6vw,110px);align-items:start}
 .booking__intro{position:sticky;top:calc(var(--nav) + 30px)}
 .hours{margin-top:36px;border-top:1px solid var(--line)}
 .hours div{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line-soft);font-size:.9rem}
@@ -451,7 +456,7 @@ p{color:var(--creme-70)}
   .vision__grid{grid-template-columns:1fr}
   .vision__visual{width:min(86vw,420px)}
   .experience__shade{background:linear-gradient(180deg,rgba(13,13,13,.7),rgba(13,13,13,.55) 40%,rgba(13,13,13,.85) 80%,var(--charbon))}
-  .booking__grid{grid-template-columns:1fr}
+  .booking__grid{grid-template-columns:minmax(0,1fr)}
   .booking__intro{position:relative;top:auto}
   .footer{padding-bottom:90px}
 }
@@ -467,6 +472,15 @@ p{color:var(--creme-70)}
   .footer__grid{grid-template-columns:1fr}
   .newsletter__row{flex-direction:column}
   .dish h3{font-size:1.4rem}
+}
+/* Small phones, and larger iPhones in zoomed display (320 px): long buttons keep their words inside */
+@media (max-width:380px){
+  .btn{white-space:normal;height:auto;min-height:54px;padding:15px 16px;line-height:1.35;letter-spacing:.12em;text-align:center}
+  .privat{padding:30px 22px}
+  .resa{padding:24px 18px}
+}
+@media (max-width:340px){
+  .btn{letter-spacing:.08em;padding-inline:12px;text-wrap:balance}
 }
 
 @media (prefers-reduced-motion:reduce){
